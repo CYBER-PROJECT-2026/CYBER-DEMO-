@@ -1,0 +1,122 @@
+{
+  "model_name": "AEGIS-Live v3 Raw Baseline Classifier (Topology-Augmented)",
+  "timestamp_utc": "2026-09-21 17:18:08",
+  "evaluation_contract": "TEMPORAL GENERALIZATION WITH PERSISTENT-FLOW IDENTITY",
+  "feature_schema": {
+    "feature_count": 27,
+    "features": [
+      "duration_ms",
+      "pkt_rate_pps",
+      "byte_rate_bps",
+      "iat_mean_ms",
+      "iat_std_ms",
+      "pkt_size_mean",
+      "pkt_size_std",
+      "pkt_size_min",
+      "pkt_size_max",
+      "syn_ratio",
+      "ack_ratio",
+      "rst_ratio",
+      "fin_ratio",
+      "urg_ratio",
+      "psh_ratio",
+      "ece_ratio",
+      "cwr_ratio",
+      "ip_ttl_mean",
+      "ip_ttl_std",
+      "tcp_ratio",
+      "udp_ratio",
+      "icmp_ratio",
+      "inbound_pkt_ratio",
+      "outbound_pkt_ratio",
+      "fan_in_ratio",
+      "src_concentration_ratio",
+      "src_ip_cardinality_per_window"
+    ],
+    "canonical_24_features": [
+      "duration_ms",
+      "pkt_rate_pps",
+      "byte_rate_bps",
+      "iat_mean_ms",
+      "iat_std_ms",
+      "pkt_size_mean",
+      "pkt_size_std",
+      "pkt_size_min",
+      "pkt_size_max",
+      "syn_ratio",
+      "ack_ratio",
+      "rst_ratio",
+      "fin_ratio",
+      "urg_ratio",
+      "psh_ratio",
+      "ece_ratio",
+      "cwr_ratio",
+      "ip_ttl_mean",
+      "ip_ttl_std",
+      "tcp_ratio",
+      "udp_ratio",
+      "icmp_ratio",
+      "inbound_pkt_ratio",
+      "outbound_pkt_ratio"
+    ],
+    "topology_features": [
+      "fan_in_ratio",
+      "src_concentration_ratio",
+      "src_ip_cardinality_per_window"
+    ],
+    "excluded_features": [
+      "unique_5tuple_flow_count"
+    ]
+  },
+  "model_parameters": {
+    "objective": "multi:softprob",
+    "num_class": 4,
+    "n_estimators": 300,
+    "max_depth": 8,
+    "learning_rate": 0.1,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "tree_method": "hist",
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "preprocessing": {
+    "scaler": null,
+    "smote": false,
+    "resampling": null,
+    "note": "Raw 27-feature physical values with no scaler or synthetic generation."
+  },
+  "training_row_count": 56000,
+  "validation_row_count": 12000,
+  "test_row_count": 12000,
+  "class_mapping": {
+    "Benign": 0,
+    "DDoS": 1,
+    "DoS": 2,
+    "Spoofing": 3
+  },
+  "classes": [
+    "Benign",
+    "DDoS",
+    "DoS",
+    "Spoofing"
+  ],
+  "random_seed": 42,
+  "training_duration_seconds": 5.3521716594696045,
+  "software_versions": {
+    "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:05:56) [MSC v.1942 64 bit (AMD64)]",
+    "xgboost": "3.3.0",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2"
+  },
+  "reproducibility": {
+    "verified": true,
+    "max_prob_diff": 0.0
+  },
+  "artifact_hashes": {
+    "model_pkl_sha256": "5eadae3284f0973039b5743d8aa9f5db6c0e5ee3b43ed668f245d168d7958128",
+    "train_csv_sha256": "b4d542fe66fa0e5f3e662330e3ae3bf04cfc8c9deb763d5ccdc77739377dc02c",
+    "validation_csv_sha256": "8a8dac87db7aca168f2938b226c22179004f99bbeccf71b9ec36acaa47ab675d",
+    "test_csv_sha256": "f72de43d90eeda9967244dbde45a612c08dc7fcccc78beeec2d17938ed793a39"
+  }
+}

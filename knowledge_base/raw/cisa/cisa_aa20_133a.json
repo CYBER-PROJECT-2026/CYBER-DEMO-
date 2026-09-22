@@ -1,0 +1,17 @@
+{
+  "source": "CISA",
+  "document_id": "CISA-AA20-133A",
+  "title": "CISA Advisory AA20-133A: Top Routinely Exploited Vulnerabilities in Network and IoT Infrastructure",
+  "official_url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-133a",
+  "publication_date": "2020-05",
+  "findings": [
+    "Unpatched embedded firmware in IoT IP cameras, routers, and smart sensors frequently targeted for initial access.",
+    "Default credential exploitation and unauthenticated command injection used to enroll IoT devices into distributed denial-of-service swarms.",
+    "Adversaries employ ARP spoofing and DNS poisoning inside local subnets to hijack IoT telemetry streams."
+  ],
+  "recommended_controls": [
+    "Enforce strict Zero Trust network segmentation between IoT assets and internal corporate networks.",
+    "Continuously monitor flow metrics: Rate, Srate, Drate, Header Length, and TCP flags for burst anomalies.",
+    "Implement automated alert correlation with MITRE ATT&CK techniques and NIST security frameworks."
+  ]
+}

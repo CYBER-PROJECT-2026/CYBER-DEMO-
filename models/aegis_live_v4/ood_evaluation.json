@@ -1,0 +1,118 @@
+{
+  "timestamp_utc": "2026-09-21 18:03:14",
+  "evaluation_contract": "TEMPORAL GENERALIZATION WITH PERSISTENT-FLOW IDENTITY + NETWORK TOPOLOGY",
+  "thresholds": {
+    "confidence_threshold": 0.75,
+    "mahalanobis_threshold": 7.92
+  },
+  "validation_results": {
+    "coverage": 0.9121666666666667,
+    "abstention_rate": 0.08783333333333333,
+    "retained_samples": 10946,
+    "abstained_samples": 1054,
+    "retained_accuracy": 0.9755161702905171,
+    "retained_macro_f1": 0.9736251508741853,
+    "total_errors": 580,
+    "errors_caught": 312,
+    "error_capture_rate": 0.5379310344827586,
+    "retained_errors": 268,
+    "false_abstentions": 742,
+    "false_abstention_rate": 0.0649737302977233,
+    "retained_ddos_to_dos": 0,
+    "retained_dos_to_ddos": 39,
+    "retained_cross_talk": 39,
+    "per_class_coverage": {
+      "Benign": 0.875,
+      "DDoS": 0.9916666666666667,
+      "DoS": 0.9926666666666667,
+      "Spoofing": 0.7893333333333333
+    },
+    "per_class_abstention": {
+      "Benign": 0.125,
+      "DDoS": 0.008333333333333333,
+      "DoS": 0.007333333333333333,
+      "Spoofing": 0.21066666666666667
+    },
+    "confusion_matrix_retained": [
+      [
+        2599,
+        0,
+        0,
+        26
+      ],
+      [
+        0,
+        2974,
+        0,
+        1
+      ],
+      [
+        0,
+        39,
+        2939,
+        0
+      ],
+      [
+        202,
+        0,
+        0,
+        2166
+      ]
+    ]
+  },
+  "test_results": {
+    "coverage": 0.9173333333333333,
+    "abstention_rate": 0.08266666666666667,
+    "retained_samples": 11008,
+    "abstained_samples": 992,
+    "retained_accuracy": 0.9598473837209303,
+    "retained_macro_f1": 0.9580639142329378,
+    "total_errors": 838,
+    "errors_caught": 396,
+    "error_capture_rate": 0.47255369928400953,
+    "retained_errors": 442,
+    "false_abstentions": 596,
+    "false_abstention_rate": 0.05339544884429314,
+    "retained_ddos_to_dos": 0,
+    "retained_dos_to_ddos": 113,
+    "retained_cross_talk": 113,
+    "per_class_coverage": {
+      "Benign": 0.8696666666666667,
+      "DDoS": 0.993,
+      "DoS": 0.982,
+      "Spoofing": 0.8246666666666667
+    },
+    "per_class_abstention": {
+      "Benign": 0.13033333333333333,
+      "DDoS": 0.007,
+      "DoS": 0.018,
+      "Spoofing": 0.17533333333333334
+    },
+    "confusion_matrix_retained": [
+      [
+        2473,
+        2,
+        0,
+        134
+      ],
+      [
+        0,
+        2979,
+        0,
+        0
+      ],
+      [
+        0,
+        113,
+        2833,
+        0
+      ],
+      [
+        193,
+        0,
+        0,
+        2281
+      ]
+    ]
+  }
+}

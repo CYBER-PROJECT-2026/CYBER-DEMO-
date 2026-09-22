@@ -1,0 +1,95 @@
+{
+  "model_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\cic_iot_xgboost_model.pkl",
+  "encoder_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\label_encoder.pkl",
+  "dataset_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\CIC_IoT_2023_DDoS_DoS_Spoofing_1.5M.csv",
+  "classes": [
+    "DDoS",
+    "DoS",
+    "Spoofing"
+  ],
+  "feature_count": 46,
+  "features": [
+    "flow_duration",
+    "Header_Length",
+    "Protocol Type",
+    "Duration",
+    "Rate",
+    "Srate",
+    "Drate",
+    "fin_flag_number",
+    "syn_flag_number",
+    "rst_flag_number",
+    "psh_flag_number",
+    "ack_flag_number",
+    "ece_flag_number",
+    "cwr_flag_number",
+    "ack_count",
+    "syn_count",
+    "fin_count",
+    "urg_count",
+    "rst_count",
+    "HTTP",
+    "HTTPS",
+    "DNS",
+    "Telnet",
+    "SMTP",
+    "SSH",
+    "IRC",
+    "TCP",
+    "UDP",
+    "DHCP",
+    "ARP",
+    "ICMP",
+    "IPv",
+    "LLC",
+    "Tot sum",
+    "Min",
+    "Max",
+    "AVG",
+    "Std",
+    "Tot size",
+    "IAT",
+    "Number",
+    "Magnitue",
+    "Radius",
+    "Covariance",
+    "Variance",
+    "Weight"
+  ],
+  "metrics": {
+    "accuracy": 0.9999086666666667,
+    "balanced_accuracy": 0.9999175120554226,
+    "precision_macro": 0.9999172561779074,
+    "precision_weighted": 0.999908666740879,
+    "recall_macro": 0.9999175120554226,
+    "recall_weighted": 0.9999086666666667,
+    "f1_macro": 0.999917384044518,
+    "f1_weighted": 0.9999086666238234,
+    "cohen_kappa": 0.999861300974333,
+    "mcc": 0.9998613010640931,
+    "roc_auc": 0.9999999767681048,
+    "confusion_matrix": [
+      [
+        555278,
+        62,
+        0
+      ],
+      [
+        72,
+        555265,
+        2
+      ],
+      [
+        1,
+        0,
+        389320
+      ]
+    ]
+  },
+  "latency": {
+    "mean_us": 3014.532699598931,
+    "p50_us": 2816.750027704984,
+    "p95_us": 3599.42004433833,
+    "p99_us": 7216.2089846096915
+  }
+}

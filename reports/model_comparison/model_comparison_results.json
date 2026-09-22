@@ -1,0 +1,416 @@
+{
+  "timestamp": "2026-09-20 00:57:04",
+  "production_model_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\cic_iot_xgboost_model.pkl",
+  "production_encoder_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\label_encoder.pkl",
+  "aegis_model_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\models\\aegis\\aegis_xgboost_model.pkl",
+  "aegis_encoder_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\models\\aegis\\aegis_label_encoder.pkl",
+  "test_dataset": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\Testing_data\\testing_data.csv",
+  "metadata": {
+    "production": {
+      "name": "Production",
+      "type": "<class 'xgboost.sklearn.XGBClassifier'>",
+      "n_classes": 3,
+      "n_features": 46,
+      "feature_names": [
+        "flow_duration",
+        "Header_Length",
+        "Protocol Type",
+        "Duration",
+        "Rate",
+        "Srate",
+        "Drate",
+        "fin_flag_number",
+        "syn_flag_number",
+        "rst_flag_number",
+        "psh_flag_number",
+        "ack_flag_number",
+        "ece_flag_number",
+        "cwr_flag_number",
+        "ack_count",
+        "syn_count",
+        "fin_count",
+        "urg_count",
+        "rst_count",
+        "HTTP",
+        "HTTPS",
+        "DNS",
+        "Telnet",
+        "SMTP",
+        "SSH",
+        "IRC",
+        "TCP",
+        "UDP",
+        "DHCP",
+        "ARP",
+        "ICMP",
+        "IPv",
+        "LLC",
+        "Tot sum",
+        "Min",
+        "Max",
+        "AVG",
+        "Std",
+        "Tot size",
+        "IAT",
+        "Number",
+        "Magnitue",
+        "Radius",
+        "Covariance",
+        "Variance",
+        "Weight"
+      ],
+      "n_estimators": 300,
+      "total_trees": 900,
+      "max_depth": 8,
+      "learning_rate": 0.1,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "objective": "multi:softprob",
+      "tree_method": "hist",
+      "random_state": 42,
+      "n_jobs": -1
+    },
+    "aegis": {
+      "name": "AEGIS-Independent",
+      "type": "<class 'xgboost.sklearn.XGBClassifier'>",
+      "n_classes": 3,
+      "n_features": 46,
+      "feature_names": [
+        "flow_duration",
+        "Header_Length",
+        "Protocol Type",
+        "Duration",
+        "Rate",
+        "Srate",
+        "Drate",
+        "fin_flag_number",
+        "syn_flag_number",
+        "rst_flag_number",
+        "psh_flag_number",
+        "ack_flag_number",
+        "ece_flag_number",
+        "cwr_flag_number",
+        "ack_count",
+        "syn_count",
+        "fin_count",
+        "urg_count",
+        "rst_count",
+        "HTTP",
+        "HTTPS",
+        "DNS",
+        "Telnet",
+        "SMTP",
+        "SSH",
+        "IRC",
+        "TCP",
+        "UDP",
+        "DHCP",
+        "ARP",
+        "ICMP",
+        "IPv",
+        "LLC",
+        "Tot sum",
+        "Min",
+        "Max",
+        "AVG",
+        "Std",
+        "Tot size",
+        "IAT",
+        "Number",
+        "Magnitue",
+        "Radius",
+        "Covariance",
+        "Variance",
+        "Weight"
+      ],
+      "n_estimators": 300,
+      "total_trees": 900,
+      "max_depth": 8,
+      "learning_rate": 0.1,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "objective": "multi:softprob",
+      "tree_method": "hist",
+      "random_state": 42,
+      "n_jobs": -1
+    }
+  },
+  "label_encoders": {
+    "production_mapping": {
+      "DDoS": 0,
+      "DoS": 1,
+      "Spoofing": 2
+    },
+    "aegis_mapping": {
+      "DDoS": 0,
+      "DoS": 1,
+      "Spoofing": 2
+    },
+    "identical": true
+  },
+  "feature_schema": {
+    "production_features": [
+      "flow_duration",
+      "Header_Length",
+      "Protocol Type",
+      "Duration",
+      "Rate",
+      "Srate",
+      "Drate",
+      "fin_flag_number",
+      "syn_flag_number",
+      "rst_flag_number",
+      "psh_flag_number",
+      "ack_flag_number",
+      "ece_flag_number",
+      "cwr_flag_number",
+      "ack_count",
+      "syn_count",
+      "fin_count",
+      "urg_count",
+      "rst_count",
+      "HTTP",
+      "HTTPS",
+      "DNS",
+      "Telnet",
+      "SMTP",
+      "SSH",
+      "IRC",
+      "TCP",
+      "UDP",
+      "DHCP",
+      "ARP",
+      "ICMP",
+      "IPv",
+      "LLC",
+      "Tot sum",
+      "Min",
+      "Max",
+      "AVG",
+      "Std",
+      "Tot size",
+      "IAT",
+      "Number",
+      "Magnitue",
+      "Radius",
+      "Covariance",
+      "Variance",
+      "Weight"
+    ],
+    "aegis_features": [
+      "flow_duration",
+      "Header_Length",
+      "Protocol Type",
+      "Duration",
+      "Rate",
+      "Srate",
+      "Drate",
+      "fin_flag_number",
+      "syn_flag_number",
+      "rst_flag_number",
+      "psh_flag_number",
+      "ack_flag_number",
+      "ece_flag_number",
+      "cwr_flag_number",
+      "ack_count",
+      "syn_count",
+      "fin_count",
+      "urg_count",
+      "rst_count",
+      "HTTP",
+      "HTTPS",
+      "DNS",
+      "Telnet",
+      "SMTP",
+      "SSH",
+      "IRC",
+      "TCP",
+      "UDP",
+      "DHCP",
+      "ARP",
+      "ICMP",
+      "IPv",
+      "LLC",
+      "Tot sum",
+      "Min",
+      "Max",
+      "AVG",
+      "Std",
+      "Tot size",
+      "IAT",
+      "Number",
+      "Magnitue",
+      "Radius",
+      "Covariance",
+      "Variance",
+      "Weight"
+    ],
+    "identical": true
+  },
+  "predictions": {
+    "total_samples": 5000,
+    "disagreements": 0,
+    "disagreement_pct": 0.0
+  },
+  "probabilities": {
+    "mean_abs_diff": 7.480269687221153e-06,
+    "max_abs_diff": 0.036936454474925995,
+    "median_abs_diff": 6.531972474022041e-08,
+    "per_class": {
+      "DDoS": {
+        "mean_abs_diff": 1.0950360774586443e-05,
+        "max_abs_diff": 0.036936454474925995,
+        "median_abs_diff": 1.0086349533366956e-07
+      },
+      "DoS": {
+        "mean_abs_diff": 1.0995582670147996e-05,
+        "max_abs_diff": 0.03680354356765747,
+        "median_abs_diff": 8.001308060556767e-08
+      },
+      "Spoofing": {
+        "mean_abs_diff": 4.948671517013281e-07,
+        "max_abs_diff": 0.0006802082061767578,
+        "median_abs_diff": 3.724310460029301e-08
+      }
+    }
+  },
+  "metrics": {
+    "production": {
+      "accuracy": 0.9998,
+      "balanced_accuracy": 0.9998,
+      "macro_precision": 0.9998,
+      "macro_recall": 0.9998,
+      "macro_f1": 0.9998,
+      "weighted_precision": 0.9998,
+      "weighted_recall": 0.9998,
+      "weighted_f1": 0.9998,
+      "confusion_matrix": [
+        [
+          1666,
+          1,
+          0
+        ],
+        [
+          0,
+          1667,
+          0
+        ],
+        [
+          0,
+          0,
+          1666
+        ]
+      ],
+      "per_class": {
+        "DDoS": {
+          "support": 1667,
+          "precision": 1.0,
+          "recall": 0.9994,
+          "f1_score": 0.9997
+        },
+        "DoS": {
+          "support": 1667,
+          "precision": 0.9994,
+          "recall": 1.0,
+          "f1_score": 0.9997
+        },
+        "Spoofing": {
+          "support": 1666,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0
+        }
+      }
+    },
+    "aegis": {
+      "accuracy": 0.9998,
+      "balanced_accuracy": 0.9998,
+      "macro_precision": 0.9998,
+      "macro_recall": 0.9998,
+      "macro_f1": 0.9998,
+      "weighted_precision": 0.9998,
+      "weighted_recall": 0.9998,
+      "weighted_f1": 0.9998,
+      "confusion_matrix": [
+        [
+          1666,
+          1,
+          0
+        ],
+        [
+          0,
+          1667,
+          0
+        ],
+        [
+          0,
+          0,
+          1666
+        ]
+      ],
+      "per_class": {
+        "DDoS": {
+          "support": 1667,
+          "precision": 1.0,
+          "recall": 0.9994,
+          "f1_score": 0.9997
+        },
+        "DoS": {
+          "support": 1667,
+          "precision": 0.9994,
+          "recall": 1.0,
+          "f1_score": 0.9997
+        },
+        "Spoofing": {
+          "support": 1666,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0
+        }
+      }
+    }
+  },
+  "errors": {
+    "production_only_count": 0,
+    "aegis_only_count": 0,
+    "both_count": 1,
+    "details": [
+      {
+        "row_index": 657,
+        "ground_truth": "DDoS",
+        "prod_pred": "DoS",
+        "aegis_pred": "DoS",
+        "prod_probs": [
+          0.295835,
+          0.704133,
+          3.2e-05
+        ],
+        "aegis_probs": [
+          0.307799,
+          0.692168,
+          3.3e-05
+        ],
+        "misclassified_by": "Both"
+      }
+    ]
+  },
+  "structure": {
+    "num_trees_prod": 900,
+    "num_trees_aegis": 900,
+    "dumps_identical": false,
+    "verdict": "Structurally different but produce identical predictions"
+  },
+  "determinism": {
+    "aegis_predictions_deterministic": true,
+    "aegis_probabilities_deterministic": true
+  },
+  "conclusion": {
+    "identical_schemas": true,
+    "identical_label_mappings": true,
+    "identical_predictions": true,
+    "identical_probabilities": false,
+    "identical_errors": true,
+    "identical_structures": false,
+    "technical_replacement_viable": true
+  }
+}

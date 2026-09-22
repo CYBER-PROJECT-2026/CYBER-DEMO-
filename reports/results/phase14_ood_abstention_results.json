@@ -1,0 +1,384 @@
+{
+  "calibration_records": 21000,
+  "baseline_calibration_accuracy": 0.9997619047619047,
+  "baseline_calibration_macro_f1": 0.9997619047509718,
+  "baseline_calibration_errors": 5,
+  "confidence_threshold_sweep": [
+    {
+      "threshold": 0.7,
+      "retained_count": 20994,
+      "abstained_count": 6,
+      "coverage_pct": 99.9714,
+      "abstention_rate_pct": 0.0286,
+      "correct_abstained": 4,
+      "incorrect_abstained": 2,
+      "retained_accuracy_pct": 99.9857,
+      "retained_macro_f1": 0.999857,
+      "per_class_coverage_pct": {
+        "DDoS": 99.9286,
+        "DoS": 99.9857,
+        "Spoofing": 100.0
+      }
+    },
+    {
+      "threshold": 0.75,
+      "retained_count": 20994,
+      "abstained_count": 6,
+      "coverage_pct": 99.9714,
+      "abstention_rate_pct": 0.0286,
+      "correct_abstained": 4,
+      "incorrect_abstained": 2,
+      "retained_accuracy_pct": 99.9857,
+      "retained_macro_f1": 0.999857,
+      "per_class_coverage_pct": {
+        "DDoS": 99.9286,
+        "DoS": 99.9857,
+        "Spoofing": 100.0
+      }
+    },
+    {
+      "threshold": 0.8,
+      "retained_count": 20994,
+      "abstained_count": 6,
+      "coverage_pct": 99.9714,
+      "abstention_rate_pct": 0.0286,
+      "correct_abstained": 4,
+      "incorrect_abstained": 2,
+      "retained_accuracy_pct": 99.9857,
+      "retained_macro_f1": 0.999857,
+      "per_class_coverage_pct": {
+        "DDoS": 99.9286,
+        "DoS": 99.9857,
+        "Spoofing": 100.0
+      }
+    },
+    {
+      "threshold": 0.85,
+      "retained_count": 20992,
+      "abstained_count": 8,
+      "coverage_pct": 99.9619,
+      "abstention_rate_pct": 0.0381,
+      "correct_abstained": 5,
+      "incorrect_abstained": 3,
+      "retained_accuracy_pct": 99.9905,
+      "retained_macro_f1": 0.999905,
+      "per_class_coverage_pct": {
+        "DDoS": 99.9286,
+        "DoS": 99.9571,
+        "Spoofing": 100.0
+      }
+    },
+    {
+      "threshold": 0.9,
+      "retained_count": 20989,
+      "abstained_count": 11,
+      "coverage_pct": 99.9476,
+      "abstention_rate_pct": 0.0524,
+      "correct_abstained": 8,
+      "incorrect_abstained": 3,
+      "retained_accuracy_pct": 99.9905,
+      "retained_macro_f1": 0.999905,
+      "per_class_coverage_pct": {
+        "DDoS": 99.8857,
+        "DoS": 99.9571,
+        "Spoofing": 100.0
+      }
+    },
+    {
+      "threshold": 0.95,
+      "retained_count": 20988,
+      "abstained_count": 12,
+      "coverage_pct": 99.9429,
+      "abstention_rate_pct": 0.0571,
+      "correct_abstained": 9,
+      "incorrect_abstained": 3,
+      "retained_accuracy_pct": 99.9905,
+      "retained_macro_f1": 0.999905,
+      "per_class_coverage_pct": {
+        "DDoS": 99.8857,
+        "DoS": 99.9429,
+        "Spoofing": 100.0
+      }
+    }
+  ],
+  "cc_mahalanobis_percentiles": {
+    "90.0": 6.034917555842007,
+    "95.0": 8.405722103621578,
+    "97.5": 13.728932648631435,
+    "99.0": 23.434100210346998
+  },
+  "cc_mahalanobis_sweep": [
+    {
+      "percentile": 90.0,
+      "threshold_value": 6.0349,
+      "retained_count": 18900,
+      "abstained_count": 2100,
+      "coverage_pct": 90.0,
+      "abstention_rate_pct": 10.0,
+      "false_rejection_rate_pct": 9.9786,
+      "correct_abstained": 2095,
+      "incorrect_abstained": 5,
+      "retained_accuracy_pct": 100.0,
+      "retained_macro_f1": 1.0,
+      "per_class_coverage_pct": {
+        "DDoS": 90.4571,
+        "DoS": 93.7286,
+        "Spoofing": 85.8143
+      }
+    },
+    {
+      "percentile": 95.0,
+      "threshold_value": 8.4057,
+      "retained_count": 19950,
+      "abstained_count": 1050,
+      "coverage_pct": 95.0,
+      "abstention_rate_pct": 5.0,
+      "false_rejection_rate_pct": 4.9774,
+      "correct_abstained": 1045,
+      "incorrect_abstained": 5,
+      "retained_accuracy_pct": 100.0,
+      "retained_macro_f1": 1.0,
+      "per_class_coverage_pct": {
+        "DDoS": 93.5714,
+        "DoS": 95.6143,
+        "Spoofing": 95.8143
+      }
+    },
+    {
+      "percentile": 97.5,
+      "threshold_value": 13.7289,
+      "retained_count": 20475,
+      "abstained_count": 525,
+      "coverage_pct": 97.5,
+      "abstention_rate_pct": 2.5,
+      "false_rejection_rate_pct": 2.4815,
+      "correct_abstained": 521,
+      "incorrect_abstained": 4,
+      "retained_accuracy_pct": 99.9951,
+      "retained_macro_f1": 0.999951,
+      "per_class_coverage_pct": {
+        "DDoS": 96.2571,
+        "DoS": 97.6143,
+        "Spoofing": 98.6286
+      }
+    },
+    {
+      "percentile": 99.0,
+      "threshold_value": 23.4341,
+      "retained_count": 20790,
+      "abstained_count": 210,
+      "coverage_pct": 99.0,
+      "abstention_rate_pct": 1.0,
+      "false_rejection_rate_pct": 0.9812,
+      "correct_abstained": 206,
+      "incorrect_abstained": 4,
+      "retained_accuracy_pct": 99.9952,
+      "retained_macro_f1": 0.999952,
+      "per_class_coverage_pct": {
+        "DDoS": 99.0143,
+        "DoS": 98.9286,
+        "Spoofing": 99.0571
+      }
+    }
+  ],
+  "strategy_comparison": [
+    {
+      "strategy": "A1: Conf >= 0.70 Only",
+      "retained_count": 20994,
+      "abstained_count": 6,
+      "coverage_pct": 99.9714,
+      "abstention_rate_pct": 0.0286,
+      "false_abstention_count": 4,
+      "false_abstention_rate_pct": 0.0191,
+      "incorrect_captured": 2,
+      "retained_accuracy_pct": 99.9857,
+      "retained_macro_f1": 0.999857,
+      "review_burden": 6,
+      "per_class_coverage_pct": {
+        "DDoS": 99.9286,
+        "DoS": 99.9857,
+        "Spoofing": 100.0
+      }
+    },
+    {
+      "strategy": "A2: Conf >= 0.80 Only",
+      "retained_count": 20994,
+      "abstained_count": 6,
+      "coverage_pct": 99.9714,
+      "abstention_rate_pct": 0.0286,
+      "false_abstention_count": 4,
+      "false_abstention_rate_pct": 0.0191,
+      "incorrect_captured": 2,
+      "retained_accuracy_pct": 99.9857,
+      "retained_macro_f1": 0.999857,
+      "review_burden": 6,
+      "per_class_coverage_pct": {
+        "DDoS": 99.9286,
+        "DoS": 99.9857,
+        "Spoofing": 100.0
+      }
+    },
+    {
+      "strategy": "A3: Conf >= 0.90 Only",
+      "retained_count": 20989,
+      "abstained_count": 11,
+      "coverage_pct": 99.9476,
+      "abstention_rate_pct": 0.0524,
+      "false_abstention_count": 8,
+      "false_abstention_rate_pct": 0.0381,
+      "incorrect_captured": 3,
+      "retained_accuracy_pct": 99.9905,
+      "retained_macro_f1": 0.999905,
+      "review_burden": 11,
+      "per_class_coverage_pct": {
+        "DDoS": 99.8857,
+        "DoS": 99.9571,
+        "Spoofing": 100.0
+      }
+    },
+    {
+      "strategy": "B1: CC Mah <= P95.0 Only",
+      "retained_count": 19950,
+      "abstained_count": 1050,
+      "coverage_pct": 95.0,
+      "abstention_rate_pct": 5.0,
+      "false_abstention_count": 1045,
+      "false_abstention_rate_pct": 4.9774,
+      "incorrect_captured": 5,
+      "retained_accuracy_pct": 100.0,
+      "retained_macro_f1": 1.0,
+      "review_burden": 1050,
+      "per_class_coverage_pct": {
+        "DDoS": 93.5714,
+        "DoS": 95.6143,
+        "Spoofing": 95.8143
+      }
+    },
+    {
+      "strategy": "B2: CC Mah <= P97.5 Only",
+      "retained_count": 20475,
+      "abstained_count": 525,
+      "coverage_pct": 97.5,
+      "abstention_rate_pct": 2.5,
+      "false_abstention_count": 521,
+      "false_abstention_rate_pct": 2.4815,
+      "incorrect_captured": 4,
+      "retained_accuracy_pct": 99.9951,
+      "retained_macro_f1": 0.999951,
+      "review_burden": 525,
+      "per_class_coverage_pct": {
+        "DDoS": 96.2571,
+        "DoS": 97.6143,
+        "Spoofing": 98.6286
+      }
+    },
+    {
+      "strategy": "B3: CC Mah <= P99.0 Only",
+      "retained_count": 20790,
+      "abstained_count": 210,
+      "coverage_pct": 99.0,
+      "abstention_rate_pct": 1.0,
+      "false_abstention_count": 206,
+      "false_abstention_rate_pct": 0.9812,
+      "incorrect_captured": 4,
+      "retained_accuracy_pct": 99.9952,
+      "retained_macro_f1": 0.999952,
+      "review_burden": 210,
+      "per_class_coverage_pct": {
+        "DDoS": 99.0143,
+        "DoS": 98.9286,
+        "Spoofing": 99.0571
+      }
+    },
+    {
+      "strategy": "C1: Conf >= 0.70 AND CC Mah <= P97.5 (Abstain if either triggers)",
+      "retained_count": 20475,
+      "abstained_count": 525,
+      "coverage_pct": 97.5,
+      "abstention_rate_pct": 2.5,
+      "false_abstention_count": 521,
+      "false_abstention_rate_pct": 2.4815,
+      "incorrect_captured": 4,
+      "retained_accuracy_pct": 99.9951,
+      "retained_macro_f1": 0.999951,
+      "review_burden": 525,
+      "per_class_coverage_pct": {
+        "DDoS": 96.2571,
+        "DoS": 97.6143,
+        "Spoofing": 98.6286
+      }
+    },
+    {
+      "strategy": "C2: Conf >= 0.80 AND CC Mah <= P99.0 (Abstain if either triggers)",
+      "retained_count": 20790,
+      "abstained_count": 210,
+      "coverage_pct": 99.0,
+      "abstention_rate_pct": 1.0,
+      "false_abstention_count": 206,
+      "false_abstention_rate_pct": 0.9812,
+      "incorrect_captured": 4,
+      "retained_accuracy_pct": 99.9952,
+      "retained_macro_f1": 0.999952,
+      "review_burden": 210,
+      "per_class_coverage_pct": {
+        "DDoS": 99.0143,
+        "DoS": 98.9286,
+        "Spoofing": 99.0571
+      }
+    },
+    {
+      "strategy": "C3: Conf >= 0.70 AND CC Mah <= P99.0 (Abstain if either triggers)",
+      "retained_count": 20790,
+      "abstained_count": 210,
+      "coverage_pct": 99.0,
+      "abstention_rate_pct": 1.0,
+      "false_abstention_count": 206,
+      "false_abstention_rate_pct": 0.9812,
+      "incorrect_captured": 4,
+      "retained_accuracy_pct": 99.9952,
+      "retained_macro_f1": 0.999952,
+      "review_burden": 210,
+      "per_class_coverage_pct": {
+        "DDoS": 99.0143,
+        "DoS": 98.9286,
+        "Spoofing": 99.0571
+      }
+    },
+    {
+      "strategy": "D1: Conf < 0.70 AND CC Mah > P97.5 (Abstain only if both trigger)",
+      "retained_count": 20994,
+      "abstained_count": 6,
+      "coverage_pct": 99.9714,
+      "abstention_rate_pct": 0.0286,
+      "false_abstention_count": 4,
+      "false_abstention_rate_pct": 0.0191,
+      "incorrect_captured": 2,
+      "retained_accuracy_pct": 99.9857,
+      "retained_macro_f1": 0.999857,
+      "review_burden": 6,
+      "per_class_coverage_pct": {
+        "DDoS": 99.9286,
+        "DoS": 99.9857,
+        "Spoofing": 100.0
+      }
+    },
+    {
+      "strategy": "D2: Conf < 0.70 AND CC Mah > P99.0 (Abstain only if both trigger)",
+      "retained_count": 20994,
+      "abstained_count": 6,
+      "coverage_pct": 99.9714,
+      "abstention_rate_pct": 0.0286,
+      "false_abstention_count": 4,
+      "false_abstention_rate_pct": 0.0191,
+      "incorrect_captured": 2,
+      "retained_accuracy_pct": 99.9857,
+      "retained_macro_f1": 0.999857,
+      "review_burden": 6,
+      "per_class_coverage_pct": {
+        "DDoS": 99.9286,
+        "DoS": 99.9857,
+        "Spoofing": 100.0
+      }
+    }
+  ]
+}

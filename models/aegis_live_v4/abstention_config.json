@@ -1,0 +1,142 @@
+{
+  "rule_name": "AEGIS-Live v4 Evidence-Based Abstention Gate",
+  "created_at_utc": "2026-09-21 18:03:14",
+  "evaluation_contract": "TEMPORAL GENERALIZATION WITH PERSISTENT-FLOW IDENTITY + NETWORK TOPOLOGY",
+  "feature_space": "CANONICAL_29_FEATURES (24 Flow + 5 Network Topology)",
+  "gate_definition": {
+    "condition": "(confidence < confidence_threshold) OR (mahalanobis_distance > mahalanobis_threshold)",
+    "confidence_threshold": 0.75,
+    "mahalanobis_threshold": 7.92,
+    "calibrated_temperature": 1.1997873771804932,
+    "mahalanobis_regularization_lambda": 0.0001
+  },
+  "semantics": {
+    "status_trusted": "TRUSTED",
+    "status_abstained": "UNKNOWN_OR_REVIEW",
+    "automated_blocking_allowed": false,
+    "meaning": "UNKNOWN_OR_REVIEW denotes insufficient evidence to trust the closed-set prediction. Not a proven zero-day detector."
+  },
+  "selection_criteria": {
+    "policy": "Validation coverage >= 90.0% while maximizing retained macro-F1 and error capture rate",
+    "validation_coverage": 0.9121666666666667,
+    "validation_retained_accuracy": 0.9755161702905171,
+    "validation_retained_macro_f1": 0.9736251508741853
+  },
+  "validation_performance": {
+    "coverage": 0.9121666666666667,
+    "abstention_rate": 0.08783333333333333,
+    "retained_samples": 10946,
+    "abstained_samples": 1054,
+    "retained_accuracy": 0.9755161702905171,
+    "retained_macro_f1": 0.9736251508741853,
+    "total_errors": 580,
+    "errors_caught": 312,
+    "error_capture_rate": 0.5379310344827586,
+    "retained_errors": 268,
+    "false_abstentions": 742,
+    "false_abstention_rate": 0.0649737302977233,
+    "retained_ddos_to_dos": 0,
+    "retained_dos_to_ddos": 39,
+    "retained_cross_talk": 39,
+    "per_class_coverage": {
+      "Benign": 0.875,
+      "DDoS": 0.9916666666666667,
+      "DoS": 0.9926666666666667,
+      "Spoofing": 0.7893333333333333
+    },
+    "per_class_abstention": {
+      "Benign": 0.125,
+      "DDoS": 0.008333333333333333,
+      "DoS": 0.007333333333333333,
+      "Spoofing": 0.21066666666666667
+    },
+    "confusion_matrix_retained": [
+      [
+        2599,
+        0,
+        0,
+        26
+      ],
+      [
+        0,
+        2974,
+        0,
+        1
+      ],
+      [
+        0,
+        39,
+        2939,
+        0
+      ],
+      [
+        202,
+        0,
+        0,
+        2166
+      ]
+    ]
+  },
+  "test_performance": {
+    "coverage": 0.9173333333333333,
+    "abstention_rate": 0.08266666666666667,
+    "retained_samples": 11008,
+    "abstained_samples": 992,
+    "retained_accuracy": 0.9598473837209303,
+    "retained_macro_f1": 0.9580639142329378,
+    "total_errors": 838,
+    "errors_caught": 396,
+    "error_capture_rate": 0.47255369928400953,
+    "retained_errors": 442,
+    "false_abstentions": 596,
+    "false_abstention_rate": 0.05339544884429314,
+    "retained_ddos_to_dos": 0,
+    "retained_dos_to_ddos": 113,
+    "retained_cross_talk": 113,
+    "per_class_coverage": {
+      "Benign": 0.8696666666666667,
+      "DDoS": 0.993,
+      "DoS": 0.982,
+      "Spoofing": 0.8246666666666667
+    },
+    "per_class_abstention": {
+      "Benign": 0.13033333333333333,
+      "DDoS": 0.007,
+      "DoS": 0.018,
+      "Spoofing": 0.17533333333333334
+    },
+    "confusion_matrix_retained": [
+      [
+        2473,
+        2,
+        0,
+        134
+      ],
+      [
+        0,
+        2979,
+        0,
+        0
+      ],
+      [
+        0,
+        113,
+        2833,
+        0
+      ],
+      [
+        193,
+        0,
+        0,
+        2281
+      ]
+    ]
+  },
+  "dataset_hashes": {
+    "train_csv_sha256": "378d981f7871215487a2a46ef70e44107984df75e7317555eebe79f200fd9c63",
+    "validation_csv_sha256": "f1a677ebd0bff3fdc5bc0f56d835062e8bd62a6ea0d68d86c4b7a779bcef4c78",
+    "test_csv_sha256": "bf1c7c3783e79496dfee1a08bca5569d81c8dde07541acf6605cebf3158683f6",
+    "model_sha256": "c0e5aee8e9e1726f12bfc19e98c440fe44fe278d1796d5866fe2a2488d458a56"
+  },
+  "verdict": "V4_OOD_ABSTENTION_AUDIT = PASS"
+}

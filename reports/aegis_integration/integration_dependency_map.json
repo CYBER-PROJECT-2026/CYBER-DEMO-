@@ -1,0 +1,525 @@
+{
+  "timestamp": "2026-09-20",
+  "total_active_references": 73,
+  "category_breakdown": {
+    "OTHER": 39,
+    "MODEL_CORE": 6,
+    "LABEL_ENCODING": 6,
+    "CALIBRATION": 18,
+    "OOD": 1,
+    "SHAP": 3
+  },
+  "locations": [
+    {
+      "file": "aegis_ml/evaluate_model.py",
+      "line_number": 59,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = PROJECT_ROOT / \"models\" / \"aegis\" / \"aegis_label_encoder.pkl\""
+    },
+    {
+      "file": "aegis_ml/train_model.py",
+      "line_number": 52,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "OUTPUT_ENCODER_PATH = OUTPUT_DIR / \"aegis_label_encoder.pkl\""
+    },
+    {
+      "file": "audit_aegis_end_to_end.py",
+      "line_number": 44,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = PROJECT_ROOT / \"models\" / \"aegis\" / \"aegis_label_encoder.pkl\""
+    },
+    {
+      "file": "audit_aegis_end_to_end.py",
+      "line_number": 45,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "OTHER",
+      "code_snippet": "CALIB_PATH = PROJECT_ROOT / \"models\" / \"aegis\" / \"aegis_calibrator_temperature.pkl\""
+    },
+    {
+      "file": "audit_aegis_end_to_end.py",
+      "line_number": 46,
+      "artifact": "cc_mahalanobis_params.pkl",
+      "category": "OTHER",
+      "code_snippet": "CC_PARAMS_PATH = PROJECT_ROOT / \"cc_mahalanobis_params.pkl\""
+    },
+    {
+      "file": "backend/detection/detector.py",
+      "line_number": 26,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "MODEL_CORE",
+      "code_snippet": "MODEL_PATH = os.path.join(ROOT_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "backend/detection/detector.py",
+      "line_number": 27,
+      "artifact": "label_encoder.pkl",
+      "category": "LABEL_ENCODING",
+      "code_snippet": "ENCODER_PATH = os.path.join(ROOT_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "backend/detection/detector.py",
+      "line_number": 28,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "CALIB_PATH = os.path.join(ROOT_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "backend/detection/ood_detector.py",
+      "line_number": 37,
+      "artifact": "cc_mahalanobis_params.pkl",
+      "category": "OOD",
+      "code_snippet": "DEFAULT_PARAMS_PATH = os.path.join(BASE_DIR, \"cc_mahalanobis_params.pkl\")"
+    },
+    {
+      "file": "backend/engine/pipeline.py",
+      "line_number": 31,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "MODEL_CORE",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "backend/engine/pipeline.py",
+      "line_number": 32,
+      "artifact": "label_encoder.pkl",
+      "category": "LABEL_ENCODING",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "backend/engine/pipeline.py",
+      "line_number": 33,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "CALIB_PATH = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "check_encoder.py",
+      "line_number": 3,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "encoder = joblib.load(\"label_encoder.pkl\")"
+    },
+    {
+      "file": "check_model.py",
+      "line_number": 3,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "OTHER",
+      "code_snippet": "model = joblib.load(\"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "compare_production_vs_aegis.py",
+      "line_number": 72,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "AEGIS_ENCODER_PATH = PROJECT_ROOT / \"models\" / \"aegis\" / \"aegis_label_encoder.pkl\""
+    },
+    {
+      "file": "create_calibration_data.py",
+      "line_number": 31,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "create_unseen_holdout.py",
+      "line_number": 31,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "OTHER",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "evaluate_46features_5k_holdout.py",
+      "line_number": 27,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "OTHER",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "evaluate_46features_5k_holdout.py",
+      "line_number": 28,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "evaluate_overall_performance.py",
+      "line_number": 41,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "OTHER",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "evaluate_overall_performance.py",
+      "line_number": 42,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "evaluate_overall_performance.py",
+      "line_number": 43,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "OTHER",
+      "code_snippet": "CALIB_PATH = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "evaluate_overall_performance.py",
+      "line_number": 262,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "OTHER",
+      "code_snippet": "(\"cic_iot_xgboost_model.pkl (PRODUCTION)\", os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\"), \"46 Features, 3 Classes, RAW (No Scaler)\"),"
+    },
+    {
+      "file": "explain_prediction.py",
+      "line_number": 32,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "MODEL_CORE",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "explain_prediction.py",
+      "line_number": 33,
+      "artifact": "label_encoder.pkl",
+      "category": "LABEL_ENCODING",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "explain_prediction.py",
+      "line_number": 34,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "TEMP_CALIB_PATH = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "fit_aegis_calibration.py",
+      "line_number": 47,
+      "artifact": "label_encoder.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "ENCODER_PATH = PROJECT_ROOT / \"models\" / \"aegis\" / \"aegis_label_encoder.pkl\""
+    },
+    {
+      "file": "fit_aegis_calibration.py",
+      "line_number": 48,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "OUTPUT_CALIB_PATH = PROJECT_ROOT / \"models\" / \"aegis\" / \"aegis_calibrator_temperature.pkl\""
+    },
+    {
+      "file": "inference.py",
+      "line_number": 34,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "MODEL_CORE",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "inference.py",
+      "line_number": 35,
+      "artifact": "label_encoder.pkl",
+      "category": "LABEL_ENCODING",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "inference.py",
+      "line_number": 36,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "CALIB_PATH = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "predict_with_calibration.py",
+      "line_number": 38,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "MODEL_CORE",
+      "code_snippet": "DEFAULT_MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "predict_with_calibration.py",
+      "line_number": 39,
+      "artifact": "label_encoder.pkl",
+      "category": "LABEL_ENCODING",
+      "code_snippet": "DEFAULT_ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "predict_with_temperature.py",
+      "line_number": 33,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "MODEL_CORE",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "predict_with_temperature.py",
+      "line_number": 34,
+      "artifact": "label_encoder.pkl",
+      "category": "LABEL_ENCODING",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "predict_with_temperature.py",
+      "line_number": 35,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "TEMP_CALIB_PATH = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "run_calibration_experiments.py",
+      "line_number": 48,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "run_calibration_experiments.py",
+      "line_number": 49,
+      "artifact": "label_encoder.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "run_calibration_experiments.py",
+      "line_number": 56,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "TEMP_ART_PATH = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "run_forensic_near_duplicate_eval.py",
+      "line_number": 30,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "OTHER",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "run_forensic_near_duplicate_eval.py",
+      "line_number": 31,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "run_full_evaluation.py",
+      "line_number": 38,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "OTHER",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "run_full_evaluation.py",
+      "line_number": 39,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "run_full_evaluation.py",
+      "line_number": 40,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "OTHER",
+      "code_snippet": "CALIB_PATH = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "run_phase11_12_audit.py",
+      "line_number": 33,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "OTHER",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "run_phase11_12_audit.py",
+      "line_number": 34,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "run_phase11_12_audit.py",
+      "line_number": 36,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "OTHER",
+      "code_snippet": "CALIB_TEMP_PATH = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "run_phase13_ood_audit.py",
+      "line_number": 29,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "OTHER",
+      "code_snippet": "MODEL_PATH   = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "run_phase13_ood_audit.py",
+      "line_number": 30,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "run_phase13_ood_audit.py",
+      "line_number": 31,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "OTHER",
+      "code_snippet": "CALIB_PATH   = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "run_phase14_calibration_study.py",
+      "line_number": 30,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "run_phase14_calibration_study.py",
+      "line_number": 31,
+      "artifact": "label_encoder.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "run_phase14_calibration_study.py",
+      "line_number": 32,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "CALIB_MODEL_PATH = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "run_phase14_calibration_study.py",
+      "line_number": 285,
+      "artifact": "cc_mahalanobis_params.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "CC_PARAMS_PKL = os.path.join(BASE_DIR, \"cc_mahalanobis_params.pkl\")"
+    },
+    {
+      "file": "run_phase14_test_evaluation.py",
+      "line_number": 31,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "OTHER",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "run_phase14_test_evaluation.py",
+      "line_number": 32,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "run_phase14_test_evaluation.py",
+      "line_number": 33,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "OTHER",
+      "code_snippet": "CALIB_MODEL_PATH = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "run_phase14_test_evaluation.py",
+      "line_number": 34,
+      "artifact": "cc_mahalanobis_params.pkl",
+      "category": "OTHER",
+      "code_snippet": "CC_PARAMS_PKL = os.path.join(BASE_DIR, \"cc_mahalanobis_params.pkl\")"
+    },
+    {
+      "file": "sanity_check_confidence.py",
+      "line_number": 33,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "OTHER",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "sanity_check_confidence.py",
+      "line_number": 34,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "save_test_artifacts.py",
+      "line_number": 199,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "encoder_path = os.path.join(PREPROCESSED_OBJECTS_PATH, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "scratch/verify_calibration.py",
+      "line_number": 15,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "calib_path = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "scratch/verify_calibration.py",
+      "line_number": 16,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "model_path = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "scratch/verify_calibration.py",
+      "line_number": 17,
+      "artifact": "label_encoder.pkl",
+      "category": "CALIBRATION",
+      "code_snippet": "encoder_path = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "shap_global_analysis.py",
+      "line_number": 44,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "SHAP",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "shap_global_analysis.py",
+      "line_number": 45,
+      "artifact": "label_encoder.pkl",
+      "category": "SHAP",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "shap_global_analysis.py",
+      "line_number": 46,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "SHAP",
+      "code_snippet": "TEMP_CALIB_PATH = os.path.join(BASE_DIR, \"calibrator_temperature.pkl\")"
+    },
+    {
+      "file": "test_new_model.py",
+      "line_number": 28,
+      "artifact": "cic_iot_xgboost_model.pkl",
+      "category": "OTHER",
+      "code_snippet": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")"
+    },
+    {
+      "file": "test_new_model.py",
+      "line_number": 29,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = os.path.join(BASE_DIR, \"label_encoder.pkl\")"
+    },
+    {
+      "file": "validate_aegis_ood.py",
+      "line_number": 43,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = PROJECT_ROOT / \"models\" / \"aegis\" / \"aegis_label_encoder.pkl\""
+    },
+    {
+      "file": "validate_aegis_ood.py",
+      "line_number": 44,
+      "artifact": "calibrator_temperature.pkl",
+      "category": "OTHER",
+      "code_snippet": "CALIB_PATH = PROJECT_ROOT / \"models\" / \"aegis\" / \"aegis_calibrator_temperature.pkl\""
+    },
+    {
+      "file": "validate_aegis_ood.py",
+      "line_number": 45,
+      "artifact": "cc_mahalanobis_params.pkl",
+      "category": "OTHER",
+      "code_snippet": "CC_PARAMS_PATH = PROJECT_ROOT / \"cc_mahalanobis_params.pkl\""
+    },
+    {
+      "file": "validate_official_ciciot.py",
+      "line_number": 77,
+      "artifact": "label_encoder.pkl",
+      "category": "OTHER",
+      "code_snippet": "ENCODER_PATH = PROJECT_ROOT / \"models\" / \"aegis\" / \"aegis_label_encoder.pkl\""
+    }
+  ]
+}

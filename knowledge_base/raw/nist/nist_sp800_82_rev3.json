@@ -1,0 +1,25 @@
+{
+  "source": "NIST",
+  "document_id": "NIST-SP-800-82-Rev3",
+  "title": "NIST SP 800-82 Rev 3: Guide to Operational Technology (OT) & IoT Security",
+  "official_url": "https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final",
+  "publication_date": "2023-04",
+  "sections": [
+    {
+      "section": "Section 5: OT/IoT Threat and Vulnerability Overview",
+      "content": "Operational Technology and IoT devices are vulnerable to volumetric network denial-of-service (DDoS/DoS) attacks, unauthorized command injection, ARP spoofing, and rogue gateway masquerading. Constrained IoT microcontrollers lack cryptographic hardware acceleration, making them prone to resource exhaustion when bombarded with high-rate packet floods."
+    },
+    {
+      "section": "Section 6.2: Network Segmentation & Purdue Architecture",
+      "content": "IoT field devices, sensors, and actuators must be segregated into dedicated security zones (Purdue Level 1/0) using firewalls, VLANs, and micro-segmentation. Cross-zone communication must be strictly restricted to stateful inspection proxies to isolate lateral movement."
+    },
+    {
+      "section": "Section 6.4: Incident Containment & Human-in-the-Loop Mandates",
+      "content": "Defensive automated response mechanisms on safety-critical IoT (e.g., medical infusion devices, industrial programmable logic controllers) must prioritize non-destructive isolation (quarantine VLAN) over abrupt port shutdown. Automated mitigations must provide transparent explainability and enforce human-in-the-loop analyst authorization before persistent configuration changes."
+    },
+    {
+      "section": "Section 6.7: Detection Signatures & Flow Rate Anomaly Monitoring",
+      "content": "Network flow anomalies such as rapid deviations in packet rate (Rate > 1000 pkts/s), source burst rate (Srate), destination drift (Drate), and irregular TCP flags (excessive SYN without ACK or unexpected RST/FIN counts) are primary indicators of ongoing denial of service or network reconnaissance."
+    }
+  ]
+}

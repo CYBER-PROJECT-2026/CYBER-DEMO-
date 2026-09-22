@@ -1,0 +1,33 @@
+{
+  "interface_name": "Wi-Fi (Realtek 8852BE-VT Wireless LAN WiFi 6)",
+  "elapsed_seconds": 16.20441460609436,
+  "packets_captured": 4593,
+  "packets_rejected": 16,
+  "packet_rejection_reasons": {
+    "non_ip_packet": 16
+  },
+  "windows_generated": 112,
+  "windows_rejected": 0,
+  "window_rejection_reasons": {},
+  "trusted_count": 72,
+  "unknown_or_review_count": 40,
+  "rejected_quarantine_count": 0,
+  "total_detections": 112,
+  "class_distribution": {
+    "Benign": 65,
+    "Spoofing": 46,
+    "DDoS": 1
+  },
+  "confidence_summary": {
+    "mean": 0.7962171281022685,
+    "min": 0.4770573675632477,
+    "max": 0.9998353719711304
+  },
+  "mahalanobis_summary": {
+    "mean": 27.24662624907136,
+    "min": 1.8784707826123859,
+    "max": 133.77038126335657
+  },
+  "nan_inf_count": 0,
+  "automated_blocking_allowed_all_false": true
+}

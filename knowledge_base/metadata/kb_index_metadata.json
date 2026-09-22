@@ -1,0 +1,25 @@
+{
+  "total_chunks": 906,
+  "embedding_model": "TF-IDF Sublinear N-Gram Vectorizer",
+  "embedding_dimension": 10000,
+  "sources_represented": [
+    "NIST",
+    "MITRE ATT&CK",
+    "CISA"
+  ],
+  "categories": [
+    "ATTACK_TECHNIQUE",
+    "MITIGATION",
+    "STANDARDS_GUIDANCE",
+    "SECURITY_CONTROL",
+    "GOVERNANCE",
+    "DEVICE_BASELINE",
+    "CISA_ADVISORY"
+  ],
+  "artifacts": {
+    "vectorizer": "tfidf_vectorizer.pkl",
+    "tfidf_matrix": "tfidf_matrix.pkl",
+    "bm25_store": "bm25_store.pkl",
+    "chunks_lookup": "chunks_lookup.json"
+  }
+}

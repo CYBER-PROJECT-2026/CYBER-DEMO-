@@ -1,0 +1,33 @@
+{
+  "feature_names": [
+    "flow_duration",
+    "Protocol Type",
+    "Duration",
+    "Rate",
+    "Srate",
+    "Drate",
+    "fin_flag_number",
+    "syn_flag_number",
+    "rst_flag_number",
+    "psh_flag_number",
+    "ack_flag_number",
+    "syn_count",
+    "fin_count",
+    "TCP",
+    "UDP",
+    "Tot sum",
+    "Weight"
+  ],
+  "num_features": 17,
+  "label_classes": [
+    "DDoS",
+    "DoS",
+    "Spoofing"
+  ],
+  "num_classes": 3,
+  "random_state": 42,
+  "test_size": 0.2,
+  "train_size": 0.8,
+  "scaler_type": "RobustScaler",
+  "balancing_method": "SMOTE-Tomek"
+}

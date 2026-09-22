@@ -1,0 +1,36 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment / secrets
+.env
+.env.*
+
+# Logs
+logs/
+suricata_logs/
+
+# Large dataset
+CIC_IoT_2023_DDoS_DoS_Spoofing_1.5M.csv
+
+# Virtual environments
+venv/
+.venv/
+env/
+pcaps/*.pcap
+
+# Node dependencies
+node_modules/
+**/node_modules/
+
+# Next.js
+.next/
+**/.next/
+
+# Build output
+dist/
+build/
+
+# Large PCAP captures
+pcaps/*.pcap

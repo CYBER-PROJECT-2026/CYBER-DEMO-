@@ -1,0 +1,90 @@
+{
+  "evaluation_name": "AEGIS-IoT Retrained Model Holdout Evaluation",
+  "timestamp": "2026-09-20 00:37:40",
+  "model_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\models\\aegis\\aegis_xgboost_model.pkl",
+  "encoder_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\models\\aegis\\aegis_label_encoder.pkl",
+  "test_dataset": "Testing_data/testing_data.csv",
+  "n_test_samples": 5000,
+  "n_features": 46,
+  "class_names": [
+    "DDoS",
+    "DoS",
+    "Spoofing"
+  ],
+  "ground_truth_distribution": {
+    "DDoS": 1667,
+    "DoS": 1667,
+    "Spoofing": 1666
+  },
+  "predicted_distribution": {
+    "DDoS": 1666,
+    "DoS": 1668,
+    "Spoofing": 1666
+  },
+  "metrics": {
+    "accuracy": 0.9998,
+    "balanced_accuracy": 0.9998,
+    "macro_precision": 0.9998,
+    "weighted_precision": 0.9998,
+    "macro_recall": 0.9998,
+    "weighted_recall": 0.9998,
+    "macro_f1": 0.9998,
+    "weighted_f1": 0.9998
+  },
+  "confusion_matrix": {
+    "labels": [
+      "DDoS",
+      "DoS",
+      "Spoofing"
+    ],
+    "matrix": [
+      [
+        1666,
+        1,
+        0
+      ],
+      [
+        0,
+        1667,
+        0
+      ],
+      [
+        0,
+        0,
+        1666
+      ]
+    ]
+  },
+  "per_class": {
+    "DDoS": {
+      "support": 1667,
+      "TP": 1666,
+      "FP": 0,
+      "FN": 1,
+      "TN": 3333,
+      "precision": 1.0,
+      "recall": 0.9994,
+      "f1_score": 0.9997
+    },
+    "DoS": {
+      "support": 1667,
+      "TP": 1667,
+      "FP": 1,
+      "FN": 0,
+      "TN": 3332,
+      "precision": 0.9994,
+      "recall": 1.0,
+      "f1_score": 0.9997
+    },
+    "Spoofing": {
+      "support": 1666,
+      "TP": 1666,
+      "FP": 0,
+      "FN": 0,
+      "TN": 3334,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    }
+  }
+}

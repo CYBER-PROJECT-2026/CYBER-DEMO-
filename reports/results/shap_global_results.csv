@@ -1,0 +1,47 @@
+global_rank,feature,mean_absolute_shap
+1,IAT,3.507062
+2,Number,0.8847847
+3,Magnitue,0.8093032
+4,Weight,0.5670319
+5,Header_Length,0.44901133
+6,flow_duration,0.3176
+7,rst_count,0.2752549
+8,Variance,0.27248955
+9,Rate,0.21601349
+10,AVG,0.17506838
+11,Tot size,0.1373523
+12,urg_count,0.121128716
+13,Protocol Type,0.10989829
+14,syn_count,0.101929635
+15,Min,0.08402788
+16,Covariance,0.07774815
+17,Duration,0.073599406
+18,Tot sum,0.06843389
+19,UDP,0.06506809
+20,syn_flag_number,0.056040306
+21,ack_flag_number,0.054869074
+22,Srate,0.04353717
+23,HTTPS,0.037313204
+24,fin_flag_number,0.036689628
+25,ICMP,0.034924675
+26,ack_count,0.029125696
+27,Max,0.0244093
+28,psh_flag_number,0.022127181
+29,fin_count,0.017837113
+30,Radius,0.017512487
+31,Std,0.016061086
+32,TCP,0.01512558
+33,HTTP,0.012919878
+34,rst_flag_number,0.00548161
+35,IPv,2.7083386e-05
+36,ARP,1.1543277e-05
+37,LLC,0.0
+38,DHCP,0.0
+39,Telnet,0.0
+40,SMTP,0.0
+41,DNS,0.0
+42,SSH,0.0
+43,IRC,0.0
+44,ece_flag_number,0.0
+45,cwr_flag_number,0.0
+46,Drate,0.0

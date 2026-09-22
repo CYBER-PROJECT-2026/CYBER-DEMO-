@@ -1,0 +1,94 @@
+[
+  {
+    "chunk_id": "CISA-AA22-110A",
+    "source": "CISA",
+    "domain": "Cybersecurity Advisory",
+    "technique_id": "AA22-110A",
+    "title": "CISA Advisory AA22-110A: Defending IoT and OT Devices Against State-Sponsored and Botnet Threats",
+    "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-110a",
+    "category": "CISA_ADVISORY",
+    "tactics": [
+      "Threat Defense",
+      "Containment"
+    ],
+    "platforms": [
+      "IoT",
+      "OT",
+      "Network"
+    ],
+    "content": "CISA Advisory AA22-110A: Defending IoT and OT Devices Against State-Sponsored and Botnet Threats. Threat Profile: Adversaries leverage IoT botnets (Mirai, Mozi, Reaper derivatives) executing high-volume SYN/UDP floods, TCP ACK exhaustion, and ARP/IP spoofing to overwhelm critical infrastructure gateways. Mandates: Mandate immediate isolation of compromised IoT devices to prevent lateral movement within the OT perimeter. Deploy stateful edge inspection and automated packet rate anomaly detection. Block inbound access from unauthorized external IP subnets to IoT web management interfaces. Enable TCP SYN cookies and per-source socket thresholds to counteract volumetric flood saturation. Maintain comprehensive flow telemetry logs and TreeSHAP attribution records for forensic auditability.",
+    "keywords": "CISA AA22-110A IoT botnet Mirai Mozi SYN flood UDP flood ARP spoofing isolation TreeSHAP"
+  },
+  {
+    "chunk_id": "CISA-AA20-133A",
+    "source": "CISA",
+    "domain": "Cybersecurity Advisory",
+    "technique_id": "AA20-133A",
+    "title": "CISA Advisory AA20-133A: Top Routinely Exploited Vulnerabilities in Network and IoT Infrastructure",
+    "url": "https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-133a",
+    "category": "CISA_ADVISORY",
+    "tactics": [
+      "Vulnerability Mitigation"
+    ],
+    "platforms": [
+      "IoT",
+      "Network"
+    ],
+    "content": "CISA Advisory AA20-133A: Top Routinely Exploited Vulnerabilities in Network and IoT Infrastructure. Key Findings: Unpatched embedded firmware in IoT IP cameras, routers, and smart sensors frequently targeted for initial access. Default credential exploitation and unauthenticated command injection used to enroll IoT devices into distributed denial-of-service swarms. Adversaries employ ARP spoofing and DNS poisoning inside local subnets to hijack IoT telemetry streams. Controls: Enforce strict Zero Trust network segmentation between IoT assets and internal corporate networks. Continuously monitor flow metrics: Rate, Srate, Drate, Header Length, and TCP flags for burst anomalies. Implement automated alert correlation with MITRE ATT&CK techniques and NIST security frameworks.",
+    "keywords": "CISA AA20-133A IoT camera router vulnerability zero trust rate anomaly flow metrics"
+  },
+  {
+    "chunk_id": "CISA-CPG-1",
+    "source": "CISA",
+    "domain": "Performance Goals",
+    "technique_id": "CPG-1",
+    "title": "CISA CPG: CPG 2.A: Asset Inventory & Protocol Visibility",
+    "url": "https://www.cisa.gov/cross-sector-cybersecurity-performance-goals",
+    "category": "GOVERNANCE",
+    "tactics": [
+      "Defense in Depth"
+    ],
+    "platforms": [
+      "IoT",
+      "OT"
+    ],
+    "content": "CISA Performance Goal: CPG 2.A: Asset Inventory & Protocol Visibility. Description: Maintain accurate, real-time inventory of all connected IoT endpoints, listening ports, and baseline protocol behaviors.",
+    "keywords": "CISA CPG micro-segmentation playbooks asset inventory CPG 2.A: Asset Inventory & Protocol Visibility"
+  },
+  {
+    "chunk_id": "CISA-CPG-2",
+    "source": "CISA",
+    "domain": "Performance Goals",
+    "technique_id": "CPG-2",
+    "title": "CISA CPG: CPG 3.A: Network Micro-segmentation",
+    "url": "https://www.cisa.gov/cross-sector-cybersecurity-performance-goals",
+    "category": "GOVERNANCE",
+    "tactics": [
+      "Defense in Depth"
+    ],
+    "platforms": [
+      "IoT",
+      "OT"
+    ],
+    "content": "CISA Performance Goal: CPG 3.A: Network Micro-segmentation. Description: Prevent lateral movement by enforcing VLAN segregation, access control lists (ACLs), and firewall inspection between IoT device tiers.",
+    "keywords": "CISA CPG micro-segmentation playbooks asset inventory CPG 3.A: Network Micro-segmentation"
+  },
+  {
+    "chunk_id": "CISA-CPG-3",
+    "source": "CISA",
+    "domain": "Performance Goals",
+    "technique_id": "CPG-3",
+    "title": "CISA CPG: CPG 5.A: Rapid Containment Playbooks",
+    "url": "https://www.cisa.gov/cross-sector-cybersecurity-performance-goals",
+    "category": "GOVERNANCE",
+    "tactics": [
+      "Defense in Depth"
+    ],
+    "platforms": [
+      "IoT",
+      "OT"
+    ],
+    "content": "CISA Performance Goal: CPG 5.A: Rapid Containment Playbooks. Description: Establish pre-approved incident containment playbooks for volumetric DDoS, endpoint exhaustion, and spoofing attacks with human oversight.",
+    "keywords": "CISA CPG micro-segmentation playbooks asset inventory CPG 5.A: Rapid Containment Playbooks"
+  }
+]

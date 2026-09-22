@@ -1,0 +1,285 @@
+{
+  "dataset_name": "AEGIS-Live v2 Final Temporal Quarantine Dataset",
+  "created_at": "2026-09-20 16:46:27",
+  "evaluation_contract": "TEMPORAL GENERALIZATION WITH PERSISTENT-FLOW IDENTITY",
+  "contract_note": "Canonical flow identity may persist across Train/Validation/Test. Evaluates future-time generalization on persistent network endpoints.",
+  "extraction_version": "v2.0-quarantine-5s",
+  "feature_schema_version": "canonical-24",
+  "source_pcaps": {
+    "DDoS-SYN_Flood.pcap": {
+      "label": "DDoS",
+      "sha256": "5e8124a87e12483af05cb5b4f36dc095c2a979b08f2ee4e18918c26ad3b041b8",
+      "size_bytes": 2048000063,
+      "size_mb": 1953.13
+    },
+    "DoS-SYN_Flood.pcap": {
+      "label": "DoS",
+      "sha256": "3f45569b3438b1ee5fa9105922a423789e4de176a66d550082f5f082f6546ebd",
+      "size_bytes": 2048000026,
+      "size_mb": 1953.13
+    },
+    "MITM-ArpSpoofing.pcap": {
+      "label": "Spoofing",
+      "sha256": "da097ba27f5690cf4fe47b916c825735af8a829074a71202624740bf4b7cc196",
+      "size_bytes": 2046238529,
+      "size_mb": 1951.45
+    },
+    "BenignTraffic.pcap": {
+      "label": "Benign",
+      "sha256": "549a89337f529412f2507f862d06394c95e5966b9c01aaa980511590657d1dc8",
+      "size_bytes": 2048000100,
+      "size_mb": 1953.13
+    }
+  },
+  "window_parameters": {
+    "capacity_packets": 50,
+    "timeout_sec": 2.0,
+    "quarantine_dead_time_sec": 5.0,
+    "local_subnet": "192.168.0.0/16"
+  },
+  "split_strategy": "Chronological Block Partitioning with 5-Second Temporal Quarantine Dead-Time",
+  "quarantine_audit": {
+    "DDoS-SYN_Flood.pcap": {
+      "train_end_ts": 1661537978.483755,
+      "quarantine_train_val_start": 1661537978.483755,
+      "quarantine_train_val_end": 1661537983.483755,
+      "val_start_ts": 1661537983.495844,
+      "train_val_actual_gap_sec": 5.012088775634766,
+      "quarantined_train_val_packets": 68106,
+      "val_end_ts": 1661537995.670902,
+      "quarantine_val_test_start": 1661537995.670902,
+      "quarantine_val_test_end": 1661538000.670902,
+      "test_start_ts": 1661538000.68231,
+      "val_test_actual_gap_sec": 5.011408090591431,
+      "quarantined_val_test_packets": 64919
+    },
+    "DoS-SYN_Flood.pcap": {
+      "train_end_ts": 1659447776.292807,
+      "quarantine_train_val_start": 1659447776.292807,
+      "quarantine_train_val_end": 1659447781.292807,
+      "val_start_ts": 1659447781.296314,
+      "train_val_actual_gap_sec": 5.003506898880005,
+      "quarantined_train_val_packets": 72021,
+      "val_end_ts": 1659447791.380628,
+      "quarantine_val_test_start": 1659447791.380628,
+      "quarantine_val_test_end": 1659447796.380628,
+      "test_start_ts": 1659447796.382438,
+      "val_test_actual_gap_sec": 5.00180983543396,
+      "quarantined_val_test_packets": 63115
+    },
+    "MITM-ArpSpoofing.pcap": {
+      "train_end_ts": 1666098731.148053,
+      "quarantine_train_val_start": 1666098731.148053,
+      "quarantine_train_val_end": 1666098736.148053,
+      "val_start_ts": 1666098736.150565,
+      "train_val_actual_gap_sec": 5.002511978149414,
+      "quarantined_train_val_packets": 3083,
+      "val_end_ts": 1666100891.620455,
+      "quarantine_val_test_start": 1666100891.620455,
+      "quarantine_val_test_end": 1666100896.620455,
+      "test_start_ts": 1666100896.674524,
+      "val_test_actual_gap_sec": 5.0540690422058105,
+      "quarantined_val_test_packets": 1202
+    },
+    "BenignTraffic.pcap": {
+      "train_end_ts": 1665176981.646544,
+      "quarantine_train_val_start": 1665176981.646544,
+      "quarantine_train_val_end": 1665176986.646544,
+      "val_start_ts": 1665176986.646577,
+      "train_val_actual_gap_sec": 5.000032901763916,
+      "quarantined_train_val_packets": 56140,
+      "val_end_ts": 1665177887.484005,
+      "quarantine_val_test_start": 1665177887.484005,
+      "quarantine_val_test_end": 1665177892.484005,
+      "test_start_ts": 1665177892.765256,
+      "val_test_actual_gap_sec": 5.281250953674316,
+      "quarantined_val_test_packets": 499
+    }
+  },
+  "ratios": {
+    "train": 0.7,
+    "validation": 0.15,
+    "test": 0.15
+  },
+  "row_counts": {
+    "total": 80000,
+    "train": 56000,
+    "validation": 12000,
+    "test": 12000
+  },
+  "class_counts": {
+    "train": {
+      "DDoS": 14000,
+      "DoS": 14000,
+      "Spoofing": 14000,
+      "Benign": 14000
+    },
+    "validation": {
+      "DDoS": 3000,
+      "DoS": 3000,
+      "Spoofing": 3000,
+      "Benign": 3000
+    },
+    "test": {
+      "DDoS": 3000,
+      "DoS": 3000,
+      "Spoofing": 3000,
+      "Benign": 3000
+    }
+  },
+  "exclusion_counts": {
+    "DDoS-SYN_Flood.pcap": {
+      "non_ipv4_packet": 1552,
+      "flushed_subcapacity_window": 1167,
+      "quarantine_train_val_packet": 68106,
+      "quarantine_val_test_packet": 64919
+    },
+    "DoS-SYN_Flood.pcap": {
+      "non_ipv4_packet": 591,
+      "flushed_subcapacity_window": 621,
+      "cross_partition_duplicate_train_vs_test": 1,
+      "quarantine_train_val_packet": 72021,
+      "quarantine_val_test_packet": 63115
+    },
+    "MITM-ArpSpoofing.pcap": {
+      "non_ipv4_packet": 26360,
+      "flushed_subcapacity_window": 57203,
+      "quarantine_train_val_packet": 3083,
+      "quarantine_val_test_packet": 1202
+    },
+    "BenignTraffic.pcap": {
+      "non_ipv4_packet": 62632,
+      "flushed_subcapacity_window": 184602,
+      "quarantine_train_val_packet": 56140,
+      "quarantine_val_test_packet": 499
+    }
+  },
+  "leakage_audit": {
+    "1_exact_duplicate_features_cross_partitions": {
+      "pass": true,
+      "train_val_duplicates": 0,
+      "train_test_duplicates": 0,
+      "val_test_duplicates": 0
+    },
+    "2_persistent_flow_overlap_target_b": {
+      "pass": true,
+      "detail": "Persistent-flow identity overlap \u2014 expected by evaluation design (Temporal Generalization with Persistent-Flow Identity).",
+      "train_flows": 460,
+      "val_flows": 108,
+      "test_flows": 180,
+      "overlap_train_val": 40,
+      "overlap_train_test": 47,
+      "overlap_val_test": 37
+    },
+    "3_identical_pcap_temporal_group_cross_partitions": {
+      "pass": true,
+      "overlap_train_val": [],
+      "overlap_train_test": [],
+      "overlap_val_test": []
+    },
+    "4_temporal_quarantine_enforcement": {
+      "pass": true,
+      "required_min_gap_sec": 5.0,
+      "details": {
+        "DDoS-SYN_Flood.pcap": {
+          "max_train_end": 1661537978.483755,
+          "min_val_start": 1661537983.484781,
+          "train_val_gap_sec": 5.001025915145874,
+          "max_val_end": 1661537995.670902,
+          "min_test_start": 1661538000.68231,
+          "val_test_gap_sec": 5.011408090591431,
+          "satisfies_5s_quarantine": true
+        },
+        "DoS-SYN_Flood.pcap": {
+          "max_train_end": 1659447776.292807,
+          "min_val_start": 1659447781.29321,
+          "train_val_gap_sec": 5.000402927398682,
+          "max_val_end": 1659447791.380628,
+          "min_test_start": 1659447796.382438,
+          "val_test_gap_sec": 5.00180983543396,
+          "satisfies_5s_quarantine": true
+        },
+        "MITM-ArpSpoofing.pcap": {
+          "max_train_end": 1666098731.148053,
+          "min_val_start": 1666098736.150565,
+          "train_val_gap_sec": 5.002511978149414,
+          "max_val_end": 1666100891.620455,
+          "min_test_start": 1666100896.65749,
+          "val_test_gap_sec": 5.03703498840332,
+          "satisfies_5s_quarantine": true
+        },
+        "BenignTraffic.pcap": {
+          "max_train_end": 1665176981.646544,
+          "min_val_start": 1665176986.646577,
+          "train_val_gap_sec": 5.000032901763916,
+          "max_val_end": 1665177887.484005,
+          "min_test_start": 1665177892.530205,
+          "val_test_gap_sec": 5.0462000370025635,
+          "satisfies_5s_quarantine": true
+        }
+      }
+    },
+    "5_no_feature_derived_label_leakage": {
+      "pass": true,
+      "feature_names_checked": 24
+    },
+    "6_no_test_partition_feature_selection": {
+      "pass": true,
+      "detail": "All 24 features defined a priori in feature_schema.py; zero data-driven feature selection performed."
+    },
+    "7_no_scaler_fitted_on_val_test": {
+      "pass": true,
+      "detail": "Zero scalers, min-max estimators, standardizers, or calibrators fitted; raw physical features preserved."
+    },
+    "8_no_labels_inferred_from_packet_behavior": {
+      "pass": true,
+      "detail": "Labels mapped 100% strictly from verified UNB CICIoT2023 folder provenance."
+    },
+    "9_no_future_test_windows_used_in_training": {
+      "pass": true,
+      "detail": "Streaming window extraction proceeds chronologically; buffer cleared between partitions; train precedes val precedes test."
+    },
+    "OVERALL_LEAKAGE_AUDIT_PASS": true
+  },
+  "variance_audit": {
+    "zero_variance_features": [
+      "urg_ratio"
+    ],
+    "near_zero_variance_features": [],
+    "high_correlation_pairs_gt_0_95": [
+      [
+        "duration_ms",
+        "iat_mean_ms",
+        0.9999999999999999
+      ],
+      [
+        "tcp_ratio",
+        "udp_ratio",
+        0.9896317116525108
+      ],
+      [
+        "inbound_pkt_ratio",
+        "outbound_pkt_ratio",
+        0.9999999999999997
+      ]
+    ],
+    "flag_ratios_detailed": {
+      "urg_ratio": {
+        "mean": 0.0,
+        "std": 0.0,
+        "max": 0.0
+      },
+      "ece_ratio": {
+        "mean": 0.00010821428571428572,
+        "std": 0.003168354293121437,
+        "max": 0.2
+      },
+      "cwr_ratio": {
+        "mean": 7.357142857142857e-05,
+        "std": 0.0019109671144923973,
+        "max": 0.12
+      }
+    }
+  },
+  "verdict": "FINAL_TEMPORAL_DATASET = PASS"
+}

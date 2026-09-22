@@ -1,0 +1,170 @@
+{
+  "dataset_name": "AEGIS-Live v3 Leakage-Safe Topology-Augmented Dataset",
+  "created_at_utc": "2026-09-21 17:09:05",
+  "evaluation_contract": "TEMPORAL GENERALIZATION WITH PERSISTENT-FLOW IDENTITY",
+  "schema_version": "canonical-27",
+  "feature_count": 27,
+  "canonical_features": [
+    "duration_ms",
+    "pkt_rate_pps",
+    "byte_rate_bps",
+    "iat_mean_ms",
+    "iat_std_ms",
+    "pkt_size_mean",
+    "pkt_size_std",
+    "pkt_size_min",
+    "pkt_size_max",
+    "syn_ratio",
+    "ack_ratio",
+    "rst_ratio",
+    "fin_ratio",
+    "urg_ratio",
+    "psh_ratio",
+    "ece_ratio",
+    "cwr_ratio",
+    "ip_ttl_mean",
+    "ip_ttl_std",
+    "tcp_ratio",
+    "udp_ratio",
+    "icmp_ratio",
+    "inbound_pkt_ratio",
+    "outbound_pkt_ratio",
+    "fan_in_ratio",
+    "src_concentration_ratio",
+    "src_ip_cardinality_per_window"
+  ],
+  "topology_features": [
+    "fan_in_ratio",
+    "src_concentration_ratio",
+    "src_ip_cardinality_per_window"
+  ],
+  "window_parameters": {
+    "capacity_packets": 50,
+    "timeout_sec": 2.0,
+    "quarantine_dead_time_sec": 5.0,
+    "local_subnet": "192.168.0.0/16"
+  },
+  "pcap_hashes": {
+    "DDoS-SYN_Flood.pcap": "5e8124a87e12483af05cb5b4f36dc095c2a979b08f2ee4e18918c26ad3b041b8",
+    "DoS-SYN_Flood.pcap": "3f45569b3438b1ee5fa9105922a423789e4de176a66d550082f5f082f6546ebd",
+    "MITM-ArpSpoofing.pcap": "da097ba27f5690cf4fe47b916c825735af8a829074a71202624740bf4b7cc196",
+    "BenignTraffic.pcap": "549a89337f529412f2507f862d06394c95e5966b9c01aaa980511590657d1dc8"
+  },
+  "row_counts": {
+    "total": 80000,
+    "train": 56000,
+    "validation": 12000,
+    "test": 12000
+  },
+  "class_counts": {
+    "train": {
+      "DDoS": 14000,
+      "DoS": 14000,
+      "Spoofing": 14000,
+      "Benign": 14000
+    },
+    "validation": {
+      "DDoS": 3000,
+      "DoS": 3000,
+      "Spoofing": 3000,
+      "Benign": 3000
+    },
+    "test": {
+      "DDoS": 3000,
+      "DoS": 3000,
+      "Spoofing": 3000,
+      "Benign": 3000
+    }
+  },
+  "split_hashes": {
+    "train.csv": "b4d542fe66fa0e5f3e662330e3ae3bf04cfc8c9deb763d5ccdc77739377dc02c",
+    "validation.csv": "8a8dac87db7aca168f2938b226c22179004f99bbeccf71b9ec36acaa47ab675d",
+    "test.csv": "f72de43d90eeda9967244dbde45a612c08dc7fcccc78beeec2d17938ed793a39"
+  },
+  "quarantine_audit": {
+    "DDoS-SYN_Flood.pcap": {
+      "train_end_ts": 1661537978.483755,
+      "quarantine_train_val_start": 1661537978.483755,
+      "quarantine_train_val_end": 1661537983.483755,
+      "val_start_ts": 1661537983.484781,
+      "train_val_actual_gap_sec": 5.001025915145874,
+      "quarantined_train_val_packets": 68106,
+      "val_end_ts": 1661537995.670902,
+      "quarantine_val_test_start": 1661537995.670902,
+      "quarantine_val_test_end": 1661538000.670902,
+      "test_start_ts": 1661538000.68231,
+      "val_test_actual_gap_sec": 5.011408090591431,
+      "quarantined_val_test_packets": 64919
+    },
+    "DoS-SYN_Flood.pcap": {
+      "train_end_ts": 1659447776.292807,
+      "quarantine_train_val_start": 1659447776.292807,
+      "quarantine_train_val_end": 1659447781.292807,
+      "val_start_ts": 1659447781.29321,
+      "train_val_actual_gap_sec": 5.000402927398682,
+      "quarantined_train_val_packets": 72021,
+      "val_end_ts": 1659447791.380628,
+      "quarantine_val_test_start": 1659447791.380628,
+      "quarantine_val_test_end": 1659447796.380628,
+      "test_start_ts": 1659447796.382438,
+      "val_test_actual_gap_sec": 5.00180983543396,
+      "quarantined_val_test_packets": 63115
+    },
+    "MITM-ArpSpoofing.pcap": {
+      "train_end_ts": 1666098731.148053,
+      "quarantine_train_val_start": 1666098731.148053,
+      "quarantine_train_val_end": 1666098736.148053,
+      "val_start_ts": 1666098736.150565,
+      "train_val_actual_gap_sec": 5.002511978149414,
+      "quarantined_train_val_packets": 3083,
+      "val_end_ts": 1666100891.620455,
+      "quarantine_val_test_start": 1666100891.620455,
+      "quarantine_val_test_end": 1666100896.620455,
+      "test_start_ts": 1666100896.65749,
+      "val_test_actual_gap_sec": 5.03703498840332,
+      "quarantined_val_test_packets": 1202
+    },
+    "BenignTraffic.pcap": {
+      "train_end_ts": 1665176981.646544,
+      "quarantine_train_val_start": 1665176981.646544,
+      "quarantine_train_val_end": 1665176986.646544,
+      "val_start_ts": 1665176986.646577,
+      "train_val_actual_gap_sec": 5.000032901763916,
+      "quarantined_train_val_packets": 56140,
+      "val_end_ts": 1665177887.484005,
+      "quarantine_val_test_start": 1665177887.484005,
+      "quarantine_val_test_end": 1665177892.484005,
+      "test_start_ts": 1665177892.530205,
+      "val_test_actual_gap_sec": 5.0462000370025635,
+      "quarantined_val_test_packets": 499
+    }
+  },
+  "exclusion_counts": {
+    "DDoS-SYN_Flood.pcap": {
+      "non_ipv4_packet": 1552,
+      "flushed_subcapacity_window": 1167,
+      "quarantine_train_val_packet": 68106,
+      "quarantine_val_test_packet": 64919
+    },
+    "DoS-SYN_Flood.pcap": {
+      "non_ipv4_packet": 591,
+      "flushed_subcapacity_window": 621,
+      "cross_partition_duplicate_train_vs_test": 1,
+      "quarantine_train_val_packet": 72021,
+      "quarantine_val_test_packet": 63115
+    },
+    "MITM-ArpSpoofing.pcap": {
+      "non_ipv4_packet": 26360,
+      "flushed_subcapacity_window": 57203,
+      "quarantine_train_val_packet": 3083,
+      "quarantine_val_test_packet": 1202
+    },
+    "BenignTraffic.pcap": {
+      "non_ipv4_packet": 62632,
+      "flushed_subcapacity_window": 184602,
+      "quarantine_train_val_packet": 56140,
+      "quarantine_val_test_packet": 499
+    }
+  },
+  "verdict": "V3_DATASET_CONSTRUCTION = PASS"
+}

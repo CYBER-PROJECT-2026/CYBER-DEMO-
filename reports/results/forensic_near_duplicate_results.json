@@ -1,0 +1,525 @@
+{
+  "timestamp": "2026-09-19 20:18:03",
+  "model_artifact": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\cic_iot_xgboost_model.pkl",
+  "encoder_artifact": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\label_encoder.pkl",
+  "train_dataset_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\CIC_IoT_2023_DDoS_DoS_Spoofing_1.5M.csv",
+  "test_dataset_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\Testing_data\\testing_data.csv",
+  "filtered_1e6_dataset_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\Testing_data\\testing_data_near_duplicate_free_1e6.csv",
+  "filtered_01_dataset_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\Testing_data\\testing_data_near_duplicate_free_01.csv",
+  "filtered_05_dataset_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\Testing_data\\testing_data_near_duplicate_free_05.csv",
+  "canonical_46_features": [
+    "flow_duration",
+    "Header_Length",
+    "Protocol Type",
+    "Duration",
+    "Rate",
+    "Srate",
+    "Drate",
+    "fin_flag_number",
+    "syn_flag_number",
+    "rst_flag_number",
+    "psh_flag_number",
+    "ack_flag_number",
+    "ece_flag_number",
+    "cwr_flag_number",
+    "ack_count",
+    "syn_count",
+    "fin_count",
+    "urg_count",
+    "rst_count",
+    "HTTP",
+    "HTTPS",
+    "DNS",
+    "Telnet",
+    "SMTP",
+    "SSH",
+    "IRC",
+    "TCP",
+    "UDP",
+    "DHCP",
+    "ARP",
+    "ICMP",
+    "IPv",
+    "LLC",
+    "Tot sum",
+    "Min",
+    "Max",
+    "AVG",
+    "Std",
+    "Tot size",
+    "IAT",
+    "Number",
+    "Magnitue",
+    "Radius",
+    "Covariance",
+    "Variance",
+    "Weight"
+  ],
+  "classes": [
+    "DDoS",
+    "DoS",
+    "Spoofing"
+  ],
+  "exact_46_feature_overlap": 0,
+  "near_duplicate_counts": {
+    "1e-06": {
+      "count": 1075,
+      "percentage": 21.5
+    },
+    "0.1": {
+      "count": 3438,
+      "percentage": 68.76
+    },
+    "0.5": {
+      "count": 4336,
+      "percentage": 86.72
+    }
+  },
+  "original_5k_test": {
+    "samples": 5000,
+    "correct": 4999,
+    "errors": 1,
+    "accuracy": 0.9998,
+    "balanced_accuracy": 0.9998000399920016,
+    "macro_precision": 0.9998001598721024,
+    "weighted_precision": 0.9998001199040768,
+    "macro_recall": 0.9998000399920016,
+    "weighted_recall": 0.9998,
+    "macro_f1": 0.9998000399740125,
+    "weighted_f1": 0.9997999999820073,
+    "cohen_kappa": 0.999699999988,
+    "matthews_corrcoef": 0.9997000599700078,
+    "roc_auc_ovr": 1.0,
+    "confusion_matrix": [
+      [
+        1666,
+        1,
+        0
+      ],
+      [
+        0,
+        1667,
+        0
+      ],
+      [
+        0,
+        0,
+        1666
+      ]
+    ],
+    "per_class": {
+      "DDoS": {
+        "support": 1667,
+        "TP": 1666,
+        "FP": 0,
+        "FN": 1,
+        "TN": 3333,
+        "precision": 1.0,
+        "recall": 0.9994001199760048,
+        "f1_score": 0.9996999699969997,
+        "errors": 1
+      },
+      "DoS": {
+        "support": 1667,
+        "TP": 1667,
+        "FP": 1,
+        "FN": 0,
+        "TN": 3332,
+        "precision": 0.999400479616307,
+        "recall": 1.0,
+        "f1_score": 0.9997001499250375,
+        "errors": 0
+      },
+      "Spoofing": {
+        "support": 1666,
+        "TP": 1666,
+        "FP": 0,
+        "FN": 0,
+        "TN": 3334,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "errors": 0
+      }
+    },
+    "confidence_stats": {
+      "mean_confidence": 0.9999250173568726,
+      "median_confidence": 0.9999992847442627,
+      "min_confidence": 0.7041327953338623,
+      "count_below_90": 1,
+      "count_below_75": 1,
+      "count_below_50": 0
+    }
+  },
+  "filtered_1e6_test": {
+    "samples": 3925,
+    "correct": 3924,
+    "errors": 1,
+    "accuracy": 0.9997452229299363,
+    "balanced_accuracy": 0.9996840442338072,
+    "macro_precision": 0.9997233748271093,
+    "weighted_precision": 0.9997454343631895,
+    "macro_recall": 0.9996840442338072,
+    "weighted_recall": 0.9997452229299363,
+    "macro_f1": 0.9997035772089845,
+    "weighted_f1": 0.9997452154078516,
+    "cohen_kappa": 0.9996101230531109,
+    "matthews_corrcoef": 0.999610222457058,
+    "roc_auc_ovr": 1.0,
+    "confusion_matrix": [
+      [
+        1054,
+        1,
+        0
+      ],
+      [
+        0,
+        1204,
+        0
+      ],
+      [
+        0,
+        0,
+        1666
+      ]
+    ],
+    "per_class": {
+      "DDoS": {
+        "support": 1055,
+        "TP": 1054,
+        "FP": 0,
+        "FN": 1,
+        "TN": 2870,
+        "precision": 1.0,
+        "recall": 0.9990521327014218,
+        "f1_score": 0.9995258416311048,
+        "errors": 1
+      },
+      "DoS": {
+        "support": 1204,
+        "TP": 1204,
+        "FP": 1,
+        "FN": 0,
+        "TN": 2720,
+        "precision": 0.9991701244813278,
+        "recall": 1.0,
+        "f1_score": 0.9995848899958489,
+        "errors": 0
+      },
+      "Spoofing": {
+        "support": 1666,
+        "TP": 1666,
+        "FP": 0,
+        "FN": 0,
+        "TN": 2259,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "errors": 0
+      }
+    },
+    "confidence_stats": {
+      "mean_confidence": 0.9999048113822937,
+      "median_confidence": 0.9999991655349731,
+      "min_confidence": 0.7041327953338623,
+      "count_below_90": 1,
+      "count_below_75": 1,
+      "count_below_50": 0
+    }
+  },
+  "filtered_01_test": {
+    "samples": 1562,
+    "correct": 1562,
+    "errors": 0,
+    "accuracy": 1.0,
+    "balanced_accuracy": 1.0,
+    "macro_precision": 1.0,
+    "weighted_precision": 1.0,
+    "macro_recall": 1.0,
+    "weighted_recall": 1.0,
+    "macro_f1": 1.0,
+    "weighted_f1": 1.0,
+    "cohen_kappa": 1.0,
+    "matthews_corrcoef": 1.0,
+    "roc_auc_ovr": 1.0,
+    "confusion_matrix": [
+      [
+        26,
+        0,
+        0
+      ],
+      [
+        0,
+        78,
+        0
+      ],
+      [
+        0,
+        0,
+        1458
+      ]
+    ],
+    "per_class": {
+      "DDoS": {
+        "support": 26,
+        "TP": 26,
+        "FP": 0,
+        "FN": 0,
+        "TN": 1536,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "errors": 0
+      },
+      "DoS": {
+        "support": 78,
+        "TP": 78,
+        "FP": 0,
+        "FN": 0,
+        "TN": 1484,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "errors": 0
+      },
+      "Spoofing": {
+        "support": 1458,
+        "TP": 1458,
+        "FP": 0,
+        "FN": 0,
+        "TN": 104,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "errors": 0
+      }
+    },
+    "confidence_stats": {
+      "mean_confidence": 0.9999567270278931,
+      "median_confidence": 0.9999991655349731,
+      "min_confidence": 0.9363900423049927,
+      "count_below_90": 0,
+      "count_below_75": 0,
+      "count_below_50": 0
+    }
+  },
+  "filtered_05_test": {
+    "samples": 664,
+    "correct": 664,
+    "errors": 0,
+    "accuracy": 1.0,
+    "balanced_accuracy": 1.0,
+    "macro_precision": 1.0,
+    "weighted_precision": 1.0,
+    "macro_recall": 1.0,
+    "weighted_recall": 1.0,
+    "macro_f1": 1.0,
+    "weighted_f1": 1.0,
+    "cohen_kappa": 1.0,
+    "matthews_corrcoef": 1.0,
+    "roc_auc_ovr": 1.0,
+    "confusion_matrix": [
+      [
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        21,
+        0
+      ],
+      [
+        0,
+        0,
+        640
+      ]
+    ],
+    "per_class": {
+      "DDoS": {
+        "support": 3,
+        "TP": 3,
+        "FP": 0,
+        "FN": 0,
+        "TN": 661,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "errors": 0
+      },
+      "DoS": {
+        "support": 21,
+        "TP": 21,
+        "FP": 0,
+        "FN": 0,
+        "TN": 643,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "errors": 0
+      },
+      "Spoofing": {
+        "support": 640,
+        "TP": 640,
+        "FP": 0,
+        "FN": 0,
+        "TN": 24,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "errors": 0
+      }
+    },
+    "confidence_stats": {
+      "mean_confidence": 0.9999020099639893,
+      "median_confidence": 0.9999991655349731,
+      "min_confidence": 0.9363900423049927,
+      "count_below_90": 0,
+      "count_below_75": 0,
+      "count_below_50": 0
+    }
+  },
+  "accuracy_difference_1e6": -5.477707006373844e-05,
+  "balanced_accuracy_difference_1e6": -0.00011599575819443153,
+  "macro_f1_difference_1e6": -9.646276502794926e-05,
+  "single_error_analysis": {
+    "original_error_index": 657,
+    "actual_class": "DDoS",
+    "predicted_class": "DoS",
+    "confidence": 0.7041327953338623,
+    "probabilities": {
+      "DDoS": 0.29583540558815,
+      "DoS": 0.7041327953338623,
+      "Spoofing": 3.17969752359204e-05
+    },
+    "min_train_distance": 1.176342627763185e-06,
+    "in_filtered_1e6": true,
+    "in_filtered_01": false,
+    "in_filtered_05": false
+  },
+  "lowest_confidence_samples_filtered_1e6": [
+    {
+      "rank": 1,
+      "orig_index": 657,
+      "actual_class": "DDoS",
+      "predicted_class": "DoS",
+      "confidence": 0.7041327953338623,
+      "min_train_distance": 1.176342627763185e-06,
+      "probabilities": {
+        "DDoS": 0.29583540558815,
+        "DoS": 0.7041327953338623,
+        "Spoofing": 3.17969752359204e-05
+      }
+    },
+    {
+      "rank": 2,
+      "orig_index": 4071,
+      "actual_class": "DoS",
+      "predicted_class": "DoS",
+      "confidence": 0.9363900423049927,
+      "min_train_distance": 0.5202416130226671,
+      "probabilities": {
+        "DDoS": 0.06328853964805603,
+        "DoS": 0.9363900423049927,
+        "Spoofing": 0.00032143021235242486
+      }
+    },
+    {
+      "rank": 3,
+      "orig_index": 244,
+      "actual_class": "DDoS",
+      "predicted_class": "DDoS",
+      "confidence": 0.9961029291152954,
+      "min_train_distance": 0.0028212734549375503,
+      "probabilities": {
+        "DDoS": 0.9961029291152954,
+        "DoS": 0.0038884636014699936,
+        "Spoofing": 8.60290583659662e-06
+      }
+    },
+    {
+      "rank": 4,
+      "orig_index": 1934,
+      "actual_class": "DoS",
+      "predicted_class": "DoS",
+      "confidence": 0.9992883801460266,
+      "min_train_distance": 0.0003940198257866189,
+      "probabilities": {
+        "DDoS": 0.0006996814627200365,
+        "DoS": 0.9992883801460266,
+        "Spoofing": 1.197145593323512e-05
+      }
+    },
+    {
+      "rank": 5,
+      "orig_index": 417,
+      "actual_class": "Spoofing",
+      "predicted_class": "Spoofing",
+      "confidence": 0.9994214773178101,
+      "min_train_distance": 0.110762948936063,
+      "probabilities": {
+        "DDoS": 7.329099844355369e-06,
+        "DoS": 0.0005712001002393663,
+        "Spoofing": 0.9994214773178101
+      }
+    }
+  ],
+  "class_balance_comparison": {
+    "original_5k": {
+      "counts": {
+        "DDoS": 1667,
+        "DoS": 1667,
+        "Spoofing": 1666
+      },
+      "percentages": {
+        "DDoS": 33.339999999999996,
+        "DoS": 33.339999999999996,
+        "Spoofing": 33.32
+      }
+    },
+    "filtered_1e6": {
+      "counts": {
+        "Spoofing": 1666,
+        "DoS": 1204,
+        "DDoS": 1055
+      },
+      "percentages": {
+        "Spoofing": 42.445859872611464,
+        "DoS": 30.675159235668794,
+        "DDoS": 26.878980891719745
+      }
+    },
+    "filtered_01": {
+      "counts": {
+        "Spoofing": 1458,
+        "DoS": 78,
+        "DDoS": 26
+      },
+      "percentages": {
+        "Spoofing": 93.34186939820742,
+        "DoS": 4.99359795134443,
+        "DDoS": 1.6645326504481435
+      }
+    },
+    "filtered_05": {
+      "counts": {
+        "Spoofing": 640,
+        "DoS": 21,
+        "DDoS": 3
+      },
+      "percentages": {
+        "Spoofing": 96.3855421686747,
+        "DoS": 3.1626506024096384,
+        "DDoS": 0.4518072289156626
+      }
+    }
+  },
+  "invariants": {
+    "production_model_changed": false,
+    "production_dataset_changed": false,
+    "schema_46_features_changed": false,
+    "calibration_changed": false,
+    "rag_changed": false,
+    "retraining_performed": false
+  }
+}

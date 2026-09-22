@@ -1,0 +1,207 @@
+{
+  "frame_budget_per_pcap": 5000,
+  "pcap_summaries": {
+    "DDoS-SYN_Flood.pcap": {
+      "source_category": "DDoS",
+      "frames_processed": 5000,
+      "packets_captured": 5000,
+      "packets_rejected": 114,
+      "packet_rejection_reasons": {
+        "non_ip_packet": 114
+      },
+      "windows_generated": 265,
+      "windows_rejected": 0,
+      "trusted_count": 219,
+      "review_count": 46,
+      "trusted_pct": 82.64150943396227,
+      "review_pct": 17.358490566037734,
+      "advisory_distribution": {
+        "Benign": 159,
+        "DDoS": 70,
+        "Spoofing": 36
+      },
+      "reason_distribution": {
+        "mahalanobis_above_35.0": 25,
+        "confidence_below_0.55": 25
+      },
+      "confidence": {
+        "mean": 0.7934034583703526,
+        "median": 0.8172789216041565,
+        "min": 0.40844032168388367,
+        "max": 0.9966778755187988,
+        "std": 0.16105741105343302
+      },
+      "mahalanobis": {
+        "mean": 15.553225120177988,
+        "median": 5.983058875852976,
+        "min": 1.6040762487231943,
+        "max": 337.04529340322154,
+        "std": 29.675385837870827
+      },
+      "entropy": {
+        "mean": 0.6868684013356577,
+        "median": 0.7608113288879395
+      },
+      "invariants": {
+        "nan_count": 0,
+        "inf_count": 0,
+        "iat_violations": 0,
+        "pkt_count_violations": 0,
+        "ratio_violations": 0,
+        "ttl_violations": 0,
+        "direction_violations": 0
+      }
+    },
+    "DoS-SYN_Flood.pcap": {
+      "source_category": "DoS",
+      "frames_processed": 5000,
+      "packets_captured": 5000,
+      "packets_rejected": 9,
+      "packet_rejection_reasons": {
+        "non_ip_packet": 9
+      },
+      "windows_generated": 110,
+      "windows_rejected": 0,
+      "trusted_count": 106,
+      "review_count": 4,
+      "trusted_pct": 96.36363636363636,
+      "review_pct": 3.6363636363636362,
+      "advisory_distribution": {
+        "DoS": 82,
+        "DDoS": 15,
+        "Benign": 8,
+        "Spoofing": 5
+      },
+      "reason_distribution": {
+        "confidence_below_0.55": 4
+      },
+      "confidence": {
+        "mean": 0.8341022659431804,
+        "median": 0.886644572019577,
+        "min": 0.5098363757133484,
+        "max": 0.9987139701843262,
+        "std": 0.14354891811204878
+      },
+      "mahalanobis": {
+        "mean": 2.1677695279170144,
+        "median": 1.443471583957309,
+        "min": 0.25979586652480824,
+        "max": 16.381201676266983,
+        "std": 2.1247370012422557
+      },
+      "entropy": {
+        "mean": 0.5445375611751594,
+        "median": 0.5168822705745697
+      },
+      "invariants": {
+        "nan_count": 0,
+        "inf_count": 0,
+        "iat_violations": 0,
+        "pkt_count_violations": 0,
+        "ratio_violations": 0,
+        "ttl_violations": 0,
+        "direction_violations": 0
+      }
+    },
+    "MITM-ArpSpoofing.pcap": {
+      "source_category": "Spoofing",
+      "frames_processed": 5000,
+      "packets_captured": 5000,
+      "packets_rejected": 50,
+      "packet_rejection_reasons": {
+        "non_ip_packet": 50
+      },
+      "windows_generated": 135,
+      "windows_rejected": 0,
+      "trusted_count": 135,
+      "review_count": 0,
+      "trusted_pct": 100.0,
+      "review_pct": 0.0,
+      "advisory_distribution": {
+        "Spoofing": 120,
+        "Benign": 14,
+        "DDoS": 1
+      },
+      "reason_distribution": {},
+      "confidence": {
+        "mean": 0.9407854539376718,
+        "median": 0.9921108484268188,
+        "min": 0.6093830466270447,
+        "max": 0.9998732805252075,
+        "std": 0.09112071654615185
+      },
+      "mahalanobis": {
+        "mean": 3.626189913053665,
+        "median": 2.1667007098189606,
+        "min": 1.3715482201846603,
+        "max": 23.30177765568549,
+        "std": 3.7596372274913517
+      },
+      "entropy": {
+        "mean": 0.2540480798696754,
+        "median": 0.0674244686961174
+      },
+      "invariants": {
+        "nan_count": 0,
+        "inf_count": 0,
+        "iat_violations": 0,
+        "pkt_count_violations": 0,
+        "ratio_violations": 0,
+        "ttl_violations": 0,
+        "direction_violations": 0
+      }
+    },
+    "BenignTraffic.pcap": {
+      "source_category": "Benign",
+      "frames_processed": 5000,
+      "packets_captured": 5000,
+      "packets_rejected": 96,
+      "packet_rejection_reasons": {
+        "non_ip_packet": 96
+      },
+      "windows_generated": 297,
+      "windows_rejected": 0,
+      "trusted_count": 246,
+      "review_count": 51,
+      "trusted_pct": 82.82828282828282,
+      "review_pct": 17.17171717171717,
+      "advisory_distribution": {
+        "Benign": 207,
+        "Spoofing": 73,
+        "DDoS": 17
+      },
+      "reason_distribution": {
+        "confidence_below_0.55": 39,
+        "mahalanobis_above_35.0": 14
+      },
+      "confidence": {
+        "mean": 0.8240887910027295,
+        "median": 0.896882951259613,
+        "min": 0.3901469111442566,
+        "max": 0.9996086955070496,
+        "std": 0.1779052903647029
+      },
+      "mahalanobis": {
+        "mean": 7.315176050954169,
+        "median": 4.132854120068632,
+        "min": 1.4437879226074826,
+        "max": 111.2372697832696,
+        "std": 12.471480414333982
+      },
+      "entropy": {
+        "mean": 0.5648665087162721,
+        "median": 0.5488613247871399
+      },
+      "invariants": {
+        "nan_count": 0,
+        "inf_count": 0,
+        "iat_violations": 0,
+        "pkt_count_violations": 0,
+        "ratio_violations": 0,
+        "ttl_violations": 0,
+        "direction_violations": 0
+      }
+    }
+  },
+  "reproducibility_verified": true
+}

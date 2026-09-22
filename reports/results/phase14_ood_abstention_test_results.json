@@ -1,0 +1,154 @@
+{
+  "test_records": 5000,
+  "locked_thresholds": {
+    "confidence_threshold": 0.7,
+    "cc_mahalanobis_threshold": 23.4341,
+    "percentile_source": "P99.0 on calibration_data.csv (21,000 records)"
+  },
+  "original_performance": {
+    "accuracy": 0.9998,
+    "balanced_accuracy": 0.9998000399920016,
+    "macro_f1": 0.9998000399740125,
+    "errors": 1,
+    "per_class": {
+      "DDoS": {
+        "precision": 1.0,
+        "recall": 0.9994001199760048,
+        "f1-score": 0.9996999699969997,
+        "support": 1667.0
+      },
+      "DoS": {
+        "precision": 0.999400479616307,
+        "recall": 1.0,
+        "f1-score": 0.9997001499250375,
+        "support": 1667.0
+      },
+      "Spoofing": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1666.0
+      },
+      "accuracy": 0.9998,
+      "macro avg": {
+        "precision": 0.9998001598721024,
+        "recall": 0.9998000399920016,
+        "f1-score": 0.9998000399740125,
+        "support": 5000.0
+      },
+      "weighted avg": {
+        "precision": 0.9998001199040768,
+        "recall": 0.9998,
+        "f1-score": 0.9997999999820073,
+        "support": 5000.0
+      }
+    }
+  },
+  "post_abstention_performance": {
+    "retained_samples": 4957,
+    "abstained_samples": 43,
+    "coverage_pct": 99.14,
+    "abstention_rate_pct": 0.86,
+    "retained_accuracy": 1.0,
+    "retained_balanced_accuracy": 1.0,
+    "retained_macro_f1": 1.0,
+    "per_class_coverage": {
+      "DDoS": {
+        "total": 1667,
+        "retained": 1658,
+        "coverage_pct": 99.4601
+      },
+      "DoS": {
+        "total": 1667,
+        "retained": 1647,
+        "coverage_pct": 98.8002
+      },
+      "Spoofing": {
+        "total": 1666,
+        "retained": 1652,
+        "coverage_pct": 99.1597
+      }
+    },
+    "retained_per_class": {
+      "DDoS": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1658.0
+      },
+      "DoS": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1647.0
+      },
+      "Spoofing": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 1652.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4957.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 4957.0
+      }
+    }
+  },
+  "error_handling": {
+    "original_errors": 1,
+    "errors_retained": 0,
+    "errors_abstained": 1,
+    "error_capture_rate_pct": 100.0,
+    "false_abstentions": 42,
+    "false_abstention_rate_pct": 0.8401680336067214
+  },
+  "row_657_forensic": {
+    "index": 657,
+    "actual": "DDoS",
+    "predicted": "DoS",
+    "calibrated_confidence": 0.6586171984672546,
+    "margin": 0.3175662159919739,
+    "cc_mahalanobis_distance": 29.25570179565738,
+    "knn_min_distance": 1.18e-06,
+    "low_conf_triggered": true,
+    "high_mah_triggered": true,
+    "abstained": true,
+    "reasons": [
+      "LOW_CONFIDENCE",
+      "OOD_DISTANCE"
+    ],
+    "scientific_interpretation": "Row #657 has an infinitesimal kNN distance (1.18e-6) to training points but an elevated class-conditional Mahalanobis distance (29.26) and low confidence (65.86%) relative to its predicted DoS class. This confirms it is an in-distribution decision boundary ambiguity between DDoS and DoS, caught by both the confidence gate and the class-conditional distance gate."
+  },
+  "ablation_comparison": {
+    "Confidence_Only_0.70": {
+      "coverage_pct": 99.98,
+      "abstained": 1,
+      "errors_caught": 1,
+      "false_abstentions": 0,
+      "retained_accuracy": 100.0
+    },
+    "CC_Mahalanobis_Only_P99": {
+      "coverage_pct": 99.14,
+      "abstained": 43,
+      "errors_caught": 1,
+      "false_abstentions": 42,
+      "retained_accuracy": 100.0
+    },
+    "Combined_Dual_Gate": {
+      "coverage_pct": 99.14,
+      "abstained": 43,
+      "errors_caught": 1,
+      "false_abstentions": 42,
+      "retained_accuracy": 100.0
+    }
+  }
+}

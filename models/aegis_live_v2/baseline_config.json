@@ -1,0 +1,275 @@
+{
+  "model_name": "AEGIS-Live v2 Raw Baseline Classifier",
+  "timestamp_utc": "2026-09-20 16:55:44",
+  "evaluation_contract": "TEMPORAL GENERALIZATION WITH PERSISTENT-FLOW IDENTITY",
+  "evaluation_note": "Canonical flow identity overlap across temporal partitions is intentional and expected by evaluation design.",
+  "features": [
+    "duration_ms",
+    "pkt_rate_pps",
+    "byte_rate_bps",
+    "iat_mean_ms",
+    "iat_std_ms",
+    "pkt_size_mean",
+    "pkt_size_std",
+    "pkt_size_min",
+    "pkt_size_max",
+    "syn_ratio",
+    "ack_ratio",
+    "rst_ratio",
+    "fin_ratio",
+    "urg_ratio",
+    "psh_ratio",
+    "ece_ratio",
+    "cwr_ratio",
+    "ip_ttl_mean",
+    "ip_ttl_std",
+    "tcp_ratio",
+    "udp_ratio",
+    "icmp_ratio",
+    "inbound_pkt_ratio",
+    "outbound_pkt_ratio"
+  ],
+  "label_mapping": {
+    "Benign": 0,
+    "DDoS": 1,
+    "DoS": 2,
+    "Spoofing": 3
+  },
+  "classes": [
+    "Benign",
+    "DDoS",
+    "DoS",
+    "Spoofing"
+  ],
+  "preprocessing": {
+    "scaler": null,
+    "note": "Baseline model uses raw 24-feature physical values with no scaler."
+  },
+  "hyperparameters": {
+    "objective": "multi:softprob",
+    "num_class": 4,
+    "n_estimators": 300,
+    "max_depth": 8,
+    "learning_rate": 0.1,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "tree_method": "hist",
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "dataset_hashes": {
+    "train_csv_sha256": "ee8cbaab106d83468cf9a8e8af624f02b489d4cdc2ddaba30acca5b2826b9d11",
+    "validation_csv_sha256": "6ef5f1f49e078160c1065b7bde01a4caaba1b00480abc343e2ca3072c2694ec5",
+    "test_csv_sha256": "dbe9c194a808f1e57d832458981df912138db637bb9f4ae030fd0fdeaad19d49"
+  },
+  "software_versions": {
+    "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:05:56) [MSC v.1942 64 bit (AMD64)]",
+    "xgboost": "3.3.0",
+    "shap": "0.52.0",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2"
+  },
+  "metrics": {
+    "train": {
+      "accuracy": 0.9047142857142857,
+      "balanced_accuracy": 0.9047142857142858,
+      "precision_macro": 0.9047982677988846,
+      "recall_macro": 0.9047142857142858,
+      "f1_macro": 0.9046483443661221,
+      "f1_weighted": 0.9046483443661221,
+      "cohen_kappa": 0.8729523809523809,
+      "mcc": 0.8730284149420602,
+      "roc_auc_ovr_macro": 0.9847770537840136,
+      "log_loss": 0.21708647906780243,
+      "confusion_matrix": [
+        [
+          13814,
+          3,
+          1,
+          182
+        ],
+        [
+          31,
+          11729,
+          2240,
+          0
+        ],
+        [
+          5,
+          2704,
+          11291,
+          0
+        ],
+        [
+          170,
+          0,
+          0,
+          13830
+        ]
+      ],
+      "per_class": {
+        "Benign": {
+          "precision": 0.9853067047075607,
+          "recall": 0.9867142857142858,
+          "f1_score": 0.9860099928622412,
+          "support": 14000
+        },
+        "DDoS": {
+          "precision": 0.8124826821834303,
+          "recall": 0.8377857142857142,
+          "f1_score": 0.824940216626811,
+          "support": 14000
+        },
+        "DoS": {
+          "precision": 0.8343925509902453,
+          "recall": 0.8065,
+          "f1_score": 0.8202092110998112,
+          "support": 14000
+        },
+        "Spoofing": {
+          "precision": 0.987011133314302,
+          "recall": 0.9878571428571429,
+          "f1_score": 0.9874339568756247,
+          "support": 14000
+        }
+      }
+    },
+    "validation": {
+      "accuracy": 0.853,
+      "balanced_accuracy": 0.853,
+      "precision_macro": 0.8556605234629646,
+      "recall_macro": 0.853,
+      "f1_macro": 0.8527158477730992,
+      "f1_weighted": 0.8527158477730991,
+      "cohen_kappa": 0.804,
+      "mcc": 0.8050374000516635,
+      "roc_auc_ovr_macro": 0.9744403055555555,
+      "log_loss": 0.32938894629478455,
+      "confusion_matrix": [
+        [
+          2890,
+          9,
+          0,
+          101
+        ],
+        [
+          3,
+          2483,
+          513,
+          1
+        ],
+        [
+          4,
+          809,
+          2186,
+          1
+        ],
+        [
+          322,
+          1,
+          0,
+          2677
+        ]
+      ],
+      "per_class": {
+        "Benign": {
+          "precision": 0.8977943460702081,
+          "recall": 0.9633333333333334,
+          "f1_score": 0.9294098729699308,
+          "support": 3000
+        },
+        "DDoS": {
+          "precision": 0.7519685039370079,
+          "recall": 0.8276666666666667,
+          "f1_score": 0.7880038083148206,
+          "support": 3000
+        },
+        "DoS": {
+          "precision": 0.8099296035568729,
+          "recall": 0.7286666666666667,
+          "f1_score": 0.7671521319529742,
+          "support": 3000
+        },
+        "Spoofing": {
+          "precision": 0.9629496402877697,
+          "recall": 0.8923333333333333,
+          "f1_score": 0.9262975778546713,
+          "support": 3000
+        }
+      }
+    },
+    "test": {
+      "accuracy": 0.8179166666666666,
+      "balanced_accuracy": 0.8179166666666666,
+      "precision_macro": 0.8181475205615366,
+      "recall_macro": 0.8179166666666666,
+      "f1_macro": 0.8178939199989139,
+      "f1_weighted": 0.8178939199989139,
+      "cohen_kappa": 0.7572222222222222,
+      "mcc": 0.7573075784014008,
+      "roc_auc_ovr_macro": 0.9681857685185186,
+      "log_loss": 0.38738512992858887,
+      "confusion_matrix": [
+        [
+          2620,
+          1,
+          1,
+          378
+        ],
+        [
+          2,
+          2287,
+          711,
+          0
+        ],
+        [
+          3,
+          631,
+          2365,
+          1
+        ],
+        [
+          451,
+          3,
+          3,
+          2543
+        ]
+      ],
+      "per_class": {
+        "Benign": {
+          "precision": 0.8517555266579974,
+          "recall": 0.8733333333333333,
+          "f1_score": 0.8624094799210007,
+          "support": 3000
+        },
+        "DDoS": {
+          "precision": 0.7826830937713894,
+          "recall": 0.7623333333333333,
+          "f1_score": 0.7723741979061128,
+          "support": 3000
+        },
+        "DoS": {
+          "precision": 0.7678571428571429,
+          "recall": 0.7883333333333333,
+          "f1_score": 0.7779605263157895,
+          "support": 3000
+        },
+        "Spoofing": {
+          "precision": 0.8702943189596167,
+          "recall": 0.8476666666666667,
+          "f1_score": 0.8588314758527524,
+          "support": 3000
+        }
+      }
+    }
+  },
+  "train_val_gap": {
+    "accuracy_gap": 0.05171428571428571,
+    "f1_macro_gap": 0.0519324965930229
+  },
+  "reproducibility": {
+    "verified": true,
+    "max_prob_diff": 0.0
+  },
+  "verdict": "RAW_CLASSIFIER_TRAINING = PASS"
+}

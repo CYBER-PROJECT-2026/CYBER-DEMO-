@@ -1,0 +1,161 @@
+{
+  "model_name": "AEGIS-Live v4 Raw Baseline Classifier (Network-Level Topology Augmented)",
+  "timestamp_utc": "2026-09-21 17:41:44",
+  "evaluation_contract": "TEMPORAL GENERALIZATION WITH PERSISTENT-FLOW IDENTITY + NETWORK TOPOLOGY",
+  "observation_window_seconds": 1.0,
+  "feature_schema": {
+    "feature_count": 29,
+    "features": [
+      "duration_ms",
+      "pkt_rate_pps",
+      "byte_rate_bps",
+      "iat_mean_ms",
+      "iat_std_ms",
+      "pkt_size_mean",
+      "pkt_size_std",
+      "pkt_size_min",
+      "pkt_size_max",
+      "syn_ratio",
+      "ack_ratio",
+      "rst_ratio",
+      "fin_ratio",
+      "urg_ratio",
+      "psh_ratio",
+      "ece_ratio",
+      "cwr_ratio",
+      "ip_ttl_mean",
+      "ip_ttl_std",
+      "tcp_ratio",
+      "udp_ratio",
+      "icmp_ratio",
+      "inbound_pkt_ratio",
+      "outbound_pkt_ratio",
+      "src_concentration_ratio",
+      "src_ip_entropy",
+      "src_ip_cardinality",
+      "dst_ip_cardinality",
+      "fan_in_ratio"
+    ],
+    "canonical_24_features": [
+      "duration_ms",
+      "pkt_rate_pps",
+      "byte_rate_bps",
+      "iat_mean_ms",
+      "iat_std_ms",
+      "pkt_size_mean",
+      "pkt_size_std",
+      "pkt_size_min",
+      "pkt_size_max",
+      "syn_ratio",
+      "ack_ratio",
+      "rst_ratio",
+      "fin_ratio",
+      "urg_ratio",
+      "psh_ratio",
+      "ece_ratio",
+      "cwr_ratio",
+      "ip_ttl_mean",
+      "ip_ttl_std",
+      "tcp_ratio",
+      "udp_ratio",
+      "icmp_ratio",
+      "inbound_pkt_ratio",
+      "outbound_pkt_ratio"
+    ],
+    "topology_features": [
+      "src_concentration_ratio",
+      "src_ip_entropy",
+      "src_ip_cardinality",
+      "dst_ip_cardinality",
+      "fan_in_ratio"
+    ],
+    "excluded_features": [
+      "unique_flow_count",
+      "unique_5tuple_flow_count",
+      "fan_out_ratio"
+    ]
+  },
+  "model_parameters": {
+    "objective": "multi:softprob",
+    "num_class": 4,
+    "n_estimators": 300,
+    "max_depth": 8,
+    "learning_rate": 0.1,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "tree_method": "hist",
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "preprocessing": {
+    "scaler": null,
+    "smote": false,
+    "resampling": null,
+    "note": "Raw 29-feature physical values with no scaler or synthetic generation."
+  },
+  "training_row_count": 56000,
+  "validation_row_count": 12000,
+  "test_row_count": 12000,
+  "class_mapping": {
+    "Benign": 0,
+    "DDoS": 1,
+    "DoS": 2,
+    "Spoofing": 3
+  },
+  "classes": [
+    "Benign",
+    "DDoS",
+    "DoS",
+    "Spoofing"
+  ],
+  "random_seed": 42,
+  "training_duration_seconds": 5.250202178955078,
+  "software_versions": {
+    "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:05:56) [MSC v.1942 64 bit (AMD64)]",
+    "xgboost": "3.3.0",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2"
+  },
+  "reproducibility": {
+    "verified": true,
+    "max_prob_diff": 0.0
+  },
+  "artifact_hashes": {
+    "model_pkl_sha256": "c0e5aee8e9e1726f12bfc19e98c440fe44fe278d1796d5866fe2a2488d458a56",
+    "train_csv_sha256": "378d981f7871215487a2a46ef70e44107984df75e7317555eebe79f200fd9c63",
+    "validation_csv_sha256": "f1a677ebd0bff3fdc5bc0f56d835062e8bd62a6ea0d68d86c4b7a779bcef4c78",
+    "test_csv_sha256": "bf1c7c3783e79496dfee1a08bca5569d81c8dde07541acf6605cebf3158683f6"
+  },
+  "topology_features_summary": {
+    "src_concentration_ratio": {
+      "rank": 4,
+      "gain": 25.79706573486328,
+      "splits": 7270,
+      "cover": 240.5692901611328
+    },
+    "src_ip_entropy": {
+      "rank": 10,
+      "gain": 14.179598808288574,
+      "splits": 7674,
+      "cover": 201.01353454589844
+    },
+    "src_ip_cardinality": {
+      "rank": 23,
+      "gain": 2.287649154663086,
+      "splits": 4209,
+      "cover": 176.3697509765625
+    },
+    "dst_ip_cardinality": {
+      "rank": 25,
+      "gain": 1.8008813858032227,
+      "splits": 3820,
+      "cover": 160.9053955078125
+    },
+    "fan_in_ratio": {
+      "rank": 28,
+      "gain": 0.9124552607536316,
+      "splits": 5266,
+      "cover": 82.81690216064453
+    }
+  }
+}

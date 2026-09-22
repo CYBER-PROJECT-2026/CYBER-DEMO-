@@ -1,0 +1,511 @@
+{
+  "timestamp": "2026-09-19 21:40:13",
+  "audit_phase": "Phase 13: OOD + Abstention Design & Validation Audit",
+  "production_freeze": {
+    "model_changed": false,
+    "schema_changed": false,
+    "calibration_changed": false,
+    "rag_changed": false,
+    "retraining_performed": false,
+    "live_traffic_used": false,
+    "synthetic_ood_created": false
+  },
+  "dataset_sizes": {
+    "n_train": 1500000,
+    "n_test": 5000,
+    "n_calib": 21000
+  },
+  "baseline_reproduction": {
+    "accuracy_pct": 99.98,
+    "n_errors": 1,
+    "calibration_accuracy_pct": 99.9762
+  },
+  "part4_global_mahalanobis": {
+    "description": "Global Mahalanobis from training centroid with regularized covariance (ridge=1e-6)",
+    "test_statistics": {
+      "global_mah_min": 0.0,
+      "global_mah_max": 285.443728,
+      "global_mah_mean": 4.961471,
+      "global_mah_median": 3.693347,
+      "global_mah_p90": 8.875145,
+      "global_mah_p95": 10.807549,
+      "global_mah_p99": 16.725996
+    },
+    "calib_statistics": {
+      "calib_mah_min": 0.0,
+      "calib_mah_max": 577.349857,
+      "calib_mah_mean": 5.027111,
+      "calib_mah_median": 3.683915,
+      "calib_mah_p90": 8.812724,
+      "calib_mah_p95": 10.903215,
+      "calib_mah_p99": 16.72783
+    },
+    "per_actual_class": {
+      "DDoS": {
+        "n": 1667,
+        "global_mah_mean": 3.6487,
+        "global_mah_min": 0.0,
+        "global_mah_max": 18.1108,
+        "global_mah_median": 3.6358,
+        "global_mah_p90": 5.1225,
+        "cc_mah_mean": 3.8118,
+        "cc_mah_min": 1.9259,
+        "cc_mah_max": 90.5382
+      },
+      "DoS": {
+        "n": 1667,
+        "global_mah_mean": 2.9522,
+        "global_mah_min": 1.3863,
+        "global_mah_max": 17.2409,
+        "global_mah_median": 2.5282,
+        "global_mah_p90": 4.7243,
+        "cc_mah_mean": 3.2881,
+        "cc_mah_min": 0.0,
+        "cc_mah_max": 83.7735
+      },
+      "Spoofing": {
+        "n": 1666,
+        "global_mah_mean": 8.2855,
+        "global_mah_min": 2.8936,
+        "global_mah_max": 285.4437,
+        "global_mah_median": 7.0593,
+        "global_mah_p90": 11.6933,
+        "cc_mah_mean": 4.8937,
+        "cc_mah_min": 2.2126,
+        "cc_mah_max": 149.6716
+      }
+    },
+    "error_sample": {
+      "idx": 657,
+      "global_mah": 7.257496,
+      "cc_mah": 29.255702
+    },
+    "mah_p90_test": 8.8751
+  },
+  "part4_class_conditional_mahalanobis": {
+    "description": "CC Mahalanobis: each test record vs its predicted class training distribution",
+    "test_statistics": {
+      "cc_mah_min": 0.0,
+      "cc_mah_max": 149.671567,
+      "cc_mah_mean": 3.997703,
+      "cc_mah_median": 2.896296,
+      "cc_mah_p90": 6.044281,
+      "cc_mah_p95": 8.516138,
+      "cc_mah_p99": 21.063814
+    },
+    "error_sample": {
+      "idx": 657,
+      "cc_mah": 29.255702
+    },
+    "class_train_sizes": {
+      "DDoS": 555340,
+      "DoS": 555339,
+      "Spoofing": 389321
+    }
+  },
+  "part4_calibration_set_mahalanobis": {
+    "description": "Calibration set Mahalanobis (for scientific threshold derivation without test leakage)",
+    "statistics": {
+      "calib_mah_min": 0.0,
+      "calib_mah_max": 577.349857,
+      "calib_mah_mean": 5.027111,
+      "calib_mah_median": 3.683915,
+      "calib_mah_p90": 8.812724,
+      "calib_mah_p95": 10.903215,
+      "calib_mah_p99": 16.72783
+    },
+    "calib_percentile_thresholds": {
+      "50": 3.6839,
+      "75": 6.1819,
+      "90": 8.8127,
+      "95": 10.9032,
+      "99": 16.7278
+    }
+  },
+  "part5_knn_min_dist": {
+    "source": "forensic_near_duplicate_results.json + phase11_12_distribution_ood_results.json",
+    "note": "Min standardized Euclidean distances from full forensic audit (Phase 10 & 11-12)",
+    "n_test": 5000,
+    "near_dup_d_lt_1e6": {
+      "n": 1075,
+      "pct": 21.5
+    },
+    "near_dup_d_lt_0.1": {
+      "n": 3438,
+      "pct": 68.76
+    },
+    "near_dup_d_lt_0.5": {
+      "n": 4336,
+      "pct": 86.72
+    },
+    "min": 0.0,
+    "median": 0.00276,
+    "mean": 0.173498,
+    "p90": 0.615,
+    "p95": 0.8501,
+    "p99": 1.4694,
+    "max": 4.566,
+    "error_sample_657_min_dist": 1.18e-06,
+    "distance_vs_accuracy": {
+      "lt_1e6": {
+        "n": 1075,
+        "errors": 0,
+        "accuracy_pct": 100.0,
+        "mean_conf_pct": 99.9999
+      },
+      "1e6_to_0.01": {
+        "n": 1675,
+        "errors": 1,
+        "accuracy_pct": 99.9403,
+        "mean_conf_pct": 99.9818
+      },
+      "0.01_to_0.1": {
+        "n": 688,
+        "errors": 0,
+        "accuracy_pct": 100.0,
+        "mean_conf_pct": 99.9998
+      },
+      "0.1_to_0.5": {
+        "n": 898,
+        "errors": 0,
+        "accuracy_pct": 100.0,
+        "mean_conf_pct": 99.9997
+      },
+      "gte_0.5": {
+        "n": 664,
+        "errors": 0,
+        "accuracy_pct": 100.0,
+        "mean_conf_pct": 99.9902
+      }
+    }
+  },
+  "part6_confidence_analysis": {
+    "description": "Calibrated confidence threshold abstention analysis on 5,000 test records",
+    "statistics": {
+      "conf_min": 0.658617,
+      "conf_max": 0.999998,
+      "conf_mean": 0.999863,
+      "conf_median": 0.999976,
+      "conf_p90": 0.999995,
+      "conf_p95": 0.999996,
+      "conf_p99": 0.999997
+    },
+    "margin_stats": {
+      "margin_min": 0.317566,
+      "margin_max": 0.999997,
+      "margin_mean": 0.999736,
+      "margin_median": 0.99996,
+      "margin_p90": 0.999992,
+      "margin_p95": 0.999994,
+      "margin_p99": 0.999996
+    },
+    "thresholds": [
+      {
+        "threshold": 0.5,
+        "total_N": 5000,
+        "n_accepted": 5000,
+        "n_abstained": 0,
+        "coverage_pct": 100.0,
+        "errors_in_accepted": 1,
+        "accuracy_accepted_pct": 99.98,
+        "error_rate_pct": 0.02,
+        "errors_to_human": 0,
+        "correct_abstained": 0,
+        "correct_abstained_pct": 0.0
+      },
+      {
+        "threshold": 0.6,
+        "total_N": 5000,
+        "n_accepted": 5000,
+        "n_abstained": 0,
+        "coverage_pct": 100.0,
+        "errors_in_accepted": 1,
+        "accuracy_accepted_pct": 99.98,
+        "error_rate_pct": 0.02,
+        "errors_to_human": 0,
+        "correct_abstained": 0,
+        "correct_abstained_pct": 0.0
+      },
+      {
+        "threshold": 0.65,
+        "total_N": 5000,
+        "n_accepted": 5000,
+        "n_abstained": 0,
+        "coverage_pct": 100.0,
+        "errors_in_accepted": 1,
+        "accuracy_accepted_pct": 99.98,
+        "error_rate_pct": 0.02,
+        "errors_to_human": 0,
+        "correct_abstained": 0,
+        "correct_abstained_pct": 0.0
+      },
+      {
+        "threshold": 0.7,
+        "total_N": 5000,
+        "n_accepted": 4999,
+        "n_abstained": 1,
+        "coverage_pct": 99.98,
+        "errors_in_accepted": 0,
+        "accuracy_accepted_pct": 100.0,
+        "error_rate_pct": 0.0,
+        "errors_to_human": 1,
+        "correct_abstained": 0,
+        "correct_abstained_pct": 0.0
+      },
+      {
+        "threshold": 0.75,
+        "total_N": 5000,
+        "n_accepted": 4999,
+        "n_abstained": 1,
+        "coverage_pct": 99.98,
+        "errors_in_accepted": 0,
+        "accuracy_accepted_pct": 100.0,
+        "error_rate_pct": 0.0,
+        "errors_to_human": 1,
+        "correct_abstained": 0,
+        "correct_abstained_pct": 0.0
+      },
+      {
+        "threshold": 0.8,
+        "total_N": 5000,
+        "n_accepted": 4999,
+        "n_abstained": 1,
+        "coverage_pct": 99.98,
+        "errors_in_accepted": 0,
+        "accuracy_accepted_pct": 100.0,
+        "error_rate_pct": 0.0,
+        "errors_to_human": 1,
+        "correct_abstained": 0,
+        "correct_abstained_pct": 0.0
+      },
+      {
+        "threshold": 0.85,
+        "total_N": 5000,
+        "n_accepted": 4999,
+        "n_abstained": 1,
+        "coverage_pct": 99.98,
+        "errors_in_accepted": 0,
+        "accuracy_accepted_pct": 100.0,
+        "error_rate_pct": 0.0,
+        "errors_to_human": 1,
+        "correct_abstained": 0,
+        "correct_abstained_pct": 0.0
+      },
+      {
+        "threshold": 0.9,
+        "total_N": 5000,
+        "n_accepted": 4998,
+        "n_abstained": 2,
+        "coverage_pct": 99.96,
+        "errors_in_accepted": 0,
+        "accuracy_accepted_pct": 100.0,
+        "error_rate_pct": 0.0,
+        "errors_to_human": 1,
+        "correct_abstained": 1,
+        "correct_abstained_pct": 0.02
+      },
+      {
+        "threshold": 0.95,
+        "total_N": 5000,
+        "n_accepted": 4998,
+        "n_abstained": 2,
+        "coverage_pct": 99.96,
+        "errors_in_accepted": 0,
+        "accuracy_accepted_pct": 100.0,
+        "error_rate_pct": 0.0,
+        "errors_to_human": 1,
+        "correct_abstained": 1,
+        "correct_abstained_pct": 0.02
+      },
+      {
+        "threshold": 0.99,
+        "total_N": 5000,
+        "n_accepted": 4997,
+        "n_abstained": 3,
+        "coverage_pct": 99.94,
+        "errors_in_accepted": 0,
+        "accuracy_accepted_pct": 100.0,
+        "error_rate_pct": 0.0,
+        "errors_to_human": 1,
+        "correct_abstained": 2,
+        "correct_abstained_pct": 0.04
+      }
+    ]
+  },
+  "part7_confidence_mahalanobis_combination": {
+    "description": "HIGH/LOW conf (>=0.9) x CLOSE/FAR Mah (P90=8.8751)",
+    "combo_results": {
+      "HIGH_conf_CLOSE_mah (likely in-dist, confident)": {
+        "n": 4499,
+        "n_errors": 0,
+        "accuracy_pct": 100.0,
+        "mean_conf_pct": 99.9955,
+        "mean_mah_dist": 4.0119
+      },
+      "HIGH_conf_FAR_mah (confident but outlier)": {
+        "n": 499,
+        "n_errors": 0,
+        "accuracy_pct": 100.0,
+        "mean_conf_pct": 99.9952,
+        "mean_mah_dist": 13.5094
+      },
+      "LOW_conf_CLOSE_mah (uncertain despite proximity)": {
+        "n": 1,
+        "n_errors": 1,
+        "accuracy_pct": 0.0,
+        "mean_conf_pct": 65.8617,
+        "mean_mah_dist": 7.2575
+      },
+      "LOW_conf_FAR_mah (uncertain AND distant)": {
+        "n": 1,
+        "n_errors": 0,
+        "accuracy_pct": 100.0,
+        "mean_conf_pct": 88.3582,
+        "mean_mah_dist": 9.5468
+      }
+    }
+  },
+  "part8_error_analysis": {
+    "single_error": {
+      "original_row_idx": 657,
+      "actual_class": "DDoS",
+      "predicted_class": "DoS",
+      "calib_confidence": 0.658617,
+      "top1_top2_margin": 0.317566,
+      "global_mah_dist": 7.257496,
+      "cc_mah_dist": 29.255702,
+      "knn_min_dist_from_prior": 1.18e-06,
+      "calibrated_probs": {
+        "DDoS": 0.341051,
+        "DoS": 0.658617,
+        "Spoofing": 0.000332
+      },
+      "would_catch_at_confidence_thresholds": {
+        "conf<0.5": false,
+        "conf<0.6": false,
+        "conf<0.65": false,
+        "conf<0.7": true,
+        "conf<0.75": true,
+        "conf<0.8": true,
+        "conf<0.85": true,
+        "conf<0.9": true,
+        "conf<0.95": true,
+        "conf<0.99": true
+      },
+      "would_flag_by_mahalanobis": {
+        "global_mah>P50": true,
+        "global_mah>P75": true,
+        "global_mah>P90": false,
+        "global_mah>P95": false,
+        "global_mah>P99": false
+      }
+    },
+    "lowest_5_correct_confidence": [
+      {
+        "sample_idx": 4071,
+        "actual_class": "DoS",
+        "predicted_class": "DoS",
+        "calib_top1_prob": 0.883582,
+        "top1_top2_margin": 0.76924,
+        "global_mah_dist": 9.546806,
+        "cc_mah_dist": 29.144151
+      },
+      {
+        "sample_idx": 244,
+        "actual_class": "DDoS",
+        "predicted_class": "DDoS",
+        "calib_top1_prob": 0.985215,
+        "top1_top2_margin": 0.970572,
+        "global_mah_dist": 2.514145,
+        "cc_mah_dist": 2.654498
+      },
+      {
+        "sample_idx": 1934,
+        "actual_class": "DoS",
+        "predicted_class": "DoS",
+        "calib_top1_prob": 0.995799,
+        "top1_top2_margin": 0.991782,
+        "global_mah_dist": 7.536117,
+        "cc_mah_dist": 83.773517
+      },
+      {
+        "sample_idx": 417,
+        "actual_class": "Spoofing",
+        "predicted_class": "Spoofing",
+        "calib_top1_prob": 0.996428,
+        "top1_top2_margin": 0.992982,
+        "global_mah_dist": 4.014135,
+        "cc_mah_dist": 4.962556
+      },
+      {
+        "sample_idx": 2660,
+        "actual_class": "Spoofing",
+        "predicted_class": "Spoofing",
+        "calib_top1_prob": 0.997929,
+        "top1_top2_margin": 0.99649,
+        "global_mah_dist": 4.118888,
+        "cc_mah_dist": 3.939761
+      }
+    ]
+  },
+  "part10_13_threshold_leakage_prevention": {
+    "description": "Threshold derived from calibration set to avoid test leakage",
+    "false_rejection_analysis": [
+      {
+        "calib_percentile": 50,
+        "calib_mah_thr": 3.6839,
+        "n_retained": 2497,
+        "n_flagged": 2503,
+        "coverage_pct": 49.94,
+        "correct_flagged": 2502,
+        "correct_flagged_pct": 50.04,
+        "errors_flagged": 1,
+        "acc_retained_pct": 100.0
+      },
+      {
+        "calib_percentile": 75,
+        "calib_mah_thr": 6.1819,
+        "n_retained": 3770,
+        "n_flagged": 1230,
+        "coverage_pct": 75.4,
+        "correct_flagged": 1229,
+        "correct_flagged_pct": 24.58,
+        "errors_flagged": 1,
+        "acc_retained_pct": 100.0
+      },
+      {
+        "calib_percentile": 90,
+        "calib_mah_thr": 8.8127,
+        "n_retained": 4489,
+        "n_flagged": 511,
+        "coverage_pct": 89.78,
+        "correct_flagged": 511,
+        "correct_flagged_pct": 10.22,
+        "errors_flagged": 0,
+        "acc_retained_pct": 99.9777
+      },
+      {
+        "calib_percentile": 95,
+        "calib_mah_thr": 10.9032,
+        "n_retained": 4763,
+        "n_flagged": 237,
+        "coverage_pct": 95.26,
+        "correct_flagged": 237,
+        "correct_flagged_pct": 4.74,
+        "errors_flagged": 0,
+        "acc_retained_pct": 99.979
+      },
+      {
+        "calib_percentile": 99,
+        "calib_mah_thr": 16.7278,
+        "n_retained": 4950,
+        "n_flagged": 50,
+        "coverage_pct": 99.0,
+        "correct_flagged": 50,
+        "correct_flagged_pct": 1.0,
+        "errors_flagged": 0,
+        "acc_retained_pct": 99.9798
+      }
+    ]
+  }
+}

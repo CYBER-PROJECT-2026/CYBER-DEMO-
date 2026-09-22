@@ -1,0 +1,21 @@
+{
+  "source": "NIST",
+  "document_id": "NIST-IR-8259A",
+  "title": "NIST IR 8259A: IoT Device Cybersecurity Capability Core Baseline",
+  "official_url": "https://csrc.nist.gov/publications/detail/nistir/8259a/final",
+  "publication_date": "2020-05",
+  "capabilities": [
+    {
+      "capability": "Device Identification & Hardware Identity",
+      "description": "Each IoT device must possess a unique, verifiable identity (e.g. IEEE 802.1AR DevID, immutable MAC address) to prevent spoofing, MAC cloning, and rogue device impersonation."
+    },
+    {
+      "capability": "Device Configuration & Secure Defaults",
+      "description": "Disable legacy protocols (Telnet, unencrypted HTTP, cleartext SNMP) to eliminate trivial attack vectors and prevent IoT nodes from being recruited into Mirai-like botnet swarms."
+    },
+    {
+      "capability": "Data Protection & Network Interface Restraint",
+      "description": "Restrict open listening sockets to authorized management ports and isolate IoT data transport to encrypted channels (TLS 1.3, DTLS, MQTT over TLS)."
+    }
+  ]
+}

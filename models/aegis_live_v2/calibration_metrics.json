@@ -1,0 +1,467 @@
+{
+  "temperature": 1.0054586295782204,
+  "validation": {
+    "raw": {
+      "nll": 0.32938894629478455,
+      "brier_score": 0.20560432970523834,
+      "ece": 0.009670539816220588,
+      "mce": 0.6394408345222473,
+      "bins": [
+        {
+          "bin_idx": 1,
+          "bin_range": "[0.0, 0.1]",
+          "count": 0,
+          "sample_share": 0.0,
+          "mean_confidence": 0.05,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_idx": 2,
+          "bin_range": "[0.1, 0.2]",
+          "count": 0,
+          "sample_share": 0.0,
+          "mean_confidence": 0.15000000000000002,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_idx": 3,
+          "bin_range": "[0.2, 0.3]",
+          "count": 0,
+          "sample_share": 0.0,
+          "mean_confidence": 0.25,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_idx": 4,
+          "bin_range": "[0.3, 0.4]",
+          "count": 1,
+          "sample_share": 8.333333333333333e-05,
+          "mean_confidence": 0.3605591654777527,
+          "empirical_accuracy": 1.0,
+          "calibration_gap": 0.6394408345222473
+        },
+        {
+          "bin_idx": 5,
+          "bin_range": "[0.4, 0.5]",
+          "count": 5,
+          "sample_share": 0.0004166666666666667,
+          "mean_confidence": 0.48003482818603516,
+          "empirical_accuracy": 0.6,
+          "calibration_gap": 0.11996517181396482
+        },
+        {
+          "bin_idx": 6,
+          "bin_range": "[0.5, 0.6]",
+          "count": 1331,
+          "sample_share": 0.11091666666666666,
+          "mean_confidence": 0.5505976676940918,
+          "empirical_accuracy": 0.5439519158527423,
+          "calibration_gap": 0.006645751841349523
+        },
+        {
+          "bin_idx": 7,
+          "bin_range": "[0.6, 0.7]",
+          "count": 1258,
+          "sample_share": 0.10483333333333333,
+          "mean_confidence": 0.6484555006027222,
+          "empirical_accuracy": 0.6645468998410174,
+          "calibration_gap": 0.01609139923829528
+        },
+        {
+          "bin_idx": 8,
+          "bin_range": "[0.7, 0.8]",
+          "count": 1381,
+          "sample_share": 0.11508333333333333,
+          "mean_confidence": 0.751828670501709,
+          "empirical_accuracy": 0.7950760318609703,
+          "calibration_gap": 0.04324736135926133
+        },
+        {
+          "bin_idx": 9,
+          "bin_range": "[0.8, 0.9]",
+          "count": 1687,
+          "sample_share": 0.14058333333333334,
+          "mean_confidence": 0.8521789908409119,
+          "empirical_accuracy": 0.8441019561351512,
+          "calibration_gap": 0.00807703470576071
+        },
+        {
+          "bin_idx": 10,
+          "bin_range": "[0.9, 1.0]",
+          "count": 6337,
+          "sample_share": 0.5280833333333333,
+          "mean_confidence": 0.9724425077438354,
+          "empirical_accuracy": 0.970490768502446,
+          "calibration_gap": 0.0019517392413894719
+        }
+      ],
+      "mean_confidence": 0.8491360545158386,
+      "mean_confidence_correct": 0.8766058683395386,
+      "mean_confidence_incorrect": 0.6897364258766174,
+      "mean_entropy": 0.4732826352119446,
+      "mean_entropy_correct": 0.4130043685436249,
+      "mean_entropy_incorrect": 0.8230604529380798
+    },
+    "calibrated": {
+      "nll": 0.32938525080680847,
+      "brier_score": 0.20562683045864105,
+      "ece": 0.00948382683098318,
+      "mce": 0.6399428844451904,
+      "bins": [
+        {
+          "bin_idx": 1,
+          "bin_range": "[0.0, 0.1]",
+          "count": 0,
+          "sample_share": 0.0,
+          "mean_confidence": 0.05,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_idx": 2,
+          "bin_range": "[0.1, 0.2]",
+          "count": 0,
+          "sample_share": 0.0,
+          "mean_confidence": 0.15000000000000002,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_idx": 3,
+          "bin_range": "[0.2, 0.3]",
+          "count": 0,
+          "sample_share": 0.0,
+          "mean_confidence": 0.25,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_idx": 4,
+          "bin_range": "[0.3, 0.4]",
+          "count": 1,
+          "sample_share": 8.333333333333333e-05,
+          "mean_confidence": 0.36005711555480957,
+          "empirical_accuracy": 1.0,
+          "calibration_gap": 0.6399428844451904
+        },
+        {
+          "bin_idx": 5,
+          "bin_range": "[0.4, 0.5]",
+          "count": 5,
+          "sample_share": 0.0004166666666666667,
+          "mean_confidence": 0.47985076904296875,
+          "empirical_accuracy": 0.6,
+          "calibration_gap": 0.12014923095703123
+        },
+        {
+          "bin_idx": 6,
+          "bin_range": "[0.5, 0.6]",
+          "count": 1337,
+          "sample_share": 0.11141666666666666,
+          "mean_confidence": 0.550540030002594,
+          "empirical_accuracy": 0.5445026178010471,
+          "calibration_gap": 0.0060374122015468545
+        },
+        {
+          "bin_idx": 7,
+          "bin_range": "[0.6, 0.7]",
+          "count": 1271,
+          "sample_share": 0.10591666666666667,
+          "mean_confidence": 0.6486913561820984,
+          "empirical_accuracy": 0.6648308418568056,
+          "calibration_gap": 0.016139485674707243
+        },
+        {
+          "bin_idx": 8,
+          "bin_range": "[0.7, 0.8]",
+          "count": 1380,
+          "sample_share": 0.115,
+          "mean_confidence": 0.752042829990387,
+          "empirical_accuracy": 0.7971014492753623,
+          "calibration_gap": 0.04505861928497534
+        },
+        {
+          "bin_idx": 9,
+          "bin_range": "[0.8, 0.9]",
+          "count": 1697,
+          "sample_share": 0.14141666666666666,
+          "mean_confidence": 0.8523343205451965,
+          "empirical_accuracy": 0.8461991750147319,
+          "calibration_gap": 0.006135145530464681
+        },
+        {
+          "bin_idx": 10,
+          "bin_range": "[0.9, 1.0]",
+          "count": 6309,
+          "sample_share": 0.52575,
+          "mean_confidence": 0.9723232984542847,
+          "empirical_accuracy": 0.9705183071802187,
+          "calibration_gap": 0.0018049912740659702
+        }
+      ],
+      "mean_confidence": 0.8484947085380554,
+      "mean_confidence_correct": 0.8759759068489075,
+      "mean_confidence_incorrect": 0.6890289187431335,
+      "mean_entropy": 0.475176602602005,
+      "mean_entropy_correct": 0.41499432921409607,
+      "mean_entropy_incorrect": 0.8243976831436157
+    }
+  },
+  "test": {
+    "raw": {
+      "accuracy": 0.8179166666666666,
+      "nll": 0.3873851001262665,
+      "brier_score": 0.2507559061050415,
+      "ece": 0.03384694544722637,
+      "mce": 0.12690460681915283,
+      "bins": [
+        {
+          "bin_idx": 1,
+          "bin_range": "[0.0, 0.1]",
+          "count": 0,
+          "sample_share": 0.0,
+          "mean_confidence": 0.05,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_idx": 2,
+          "bin_range": "[0.1, 0.2]",
+          "count": 0,
+          "sample_share": 0.0,
+          "mean_confidence": 0.15000000000000002,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_idx": 3,
+          "bin_range": "[0.2, 0.3]",
+          "count": 0,
+          "sample_share": 0.0,
+          "mean_confidence": 0.25,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_idx": 4,
+          "bin_range": "[0.3, 0.4]",
+          "count": 2,
+          "sample_share": 0.00016666666666666666,
+          "mean_confidence": 0.37309539318084717,
+          "empirical_accuracy": 0.5,
+          "calibration_gap": 0.12690460681915283
+        },
+        {
+          "bin_idx": 5,
+          "bin_range": "[0.4, 0.5]",
+          "count": 11,
+          "sample_share": 0.0009166666666666666,
+          "mean_confidence": 0.47900769114494324,
+          "empirical_accuracy": 0.36363636363636365,
+          "calibration_gap": 0.11537132750857959
+        },
+        {
+          "bin_idx": 6,
+          "bin_range": "[0.5, 0.6]",
+          "count": 1271,
+          "sample_share": 0.10591666666666667,
+          "mean_confidence": 0.550395131111145,
+          "empirical_accuracy": 0.5483870967741935,
+          "calibration_gap": 0.002008034336951514
+        },
+        {
+          "bin_idx": 7,
+          "bin_range": "[0.6, 0.7]",
+          "count": 1258,
+          "sample_share": 0.10483333333333333,
+          "mean_confidence": 0.6480650901794434,
+          "empirical_accuracy": 0.6232114467408585,
+          "calibration_gap": 0.02485364343858487
+        },
+        {
+          "bin_idx": 8,
+          "bin_range": "[0.7, 0.8]",
+          "count": 1446,
+          "sample_share": 0.1205,
+          "mean_confidence": 0.7510920763015747,
+          "empirical_accuracy": 0.6811894882434302,
+          "calibration_gap": 0.06990258805814453
+        },
+        {
+          "bin_idx": 9,
+          "bin_range": "[0.8, 0.9]",
+          "count": 1659,
+          "sample_share": 0.13825,
+          "mean_confidence": 0.8502712845802307,
+          "empirical_accuracy": 0.7763713080168776,
+          "calibration_gap": 0.07389997656335312
+        },
+        {
+          "bin_idx": 10,
+          "bin_range": "[0.9, 1.0]",
+          "count": 6353,
+          "sample_share": 0.5294166666666666,
+          "mean_confidence": 0.9764116406440735,
+          "empirical_accuracy": 0.9532504328663624,
+          "calibration_gap": 0.023161207777711135
+        }
+      ],
+      "mean_confidence": 0.8517213463783264,
+      "mean_confidence_correct": 0.8818110823631287,
+      "mean_confidence_incorrect": 0.7165582776069641,
+      "mean_entropy": 0.46235978603363037,
+      "mean_entropy_correct": 0.3898448944091797,
+      "mean_entropy_incorrect": 0.7880958914756775
+    },
+    "calibrated": {
+      "accuracy": 0.8179166666666666,
+      "nll": 0.38702526688575745,
+      "brier_score": 0.25062477588653564,
+      "ece": 0.033231160357594484,
+      "mce": 0.12712132930755615,
+      "bins": [
+        {
+          "bin_idx": 1,
+          "bin_range": "[0.0, 0.1]",
+          "count": 0,
+          "sample_share": 0.0,
+          "mean_confidence": 0.05,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_idx": 2,
+          "bin_range": "[0.1, 0.2]",
+          "count": 0,
+          "sample_share": 0.0,
+          "mean_confidence": 0.15000000000000002,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_idx": 3,
+          "bin_range": "[0.2, 0.3]",
+          "count": 0,
+          "sample_share": 0.0,
+          "mean_confidence": 0.25,
+          "empirical_accuracy": 0.0,
+          "calibration_gap": 0.0
+        },
+        {
+          "bin_idx": 4,
+          "bin_range": "[0.3, 0.4]",
+          "count": 2,
+          "sample_share": 0.00016666666666666666,
+          "mean_confidence": 0.37287867069244385,
+          "empirical_accuracy": 0.5,
+          "calibration_gap": 0.12712132930755615
+        },
+        {
+          "bin_idx": 5,
+          "bin_range": "[0.4, 0.5]",
+          "count": 13,
+          "sample_share": 0.0010833333333333333,
+          "mean_confidence": 0.4819656014442444,
+          "empirical_accuracy": 0.46153846153846156,
+          "calibration_gap": 0.02042713990578282
+        },
+        {
+          "bin_idx": 6,
+          "bin_range": "[0.5, 0.6]",
+          "count": 1285,
+          "sample_share": 0.10708333333333334,
+          "mean_confidence": 0.550806999206543,
+          "empirical_accuracy": 0.5447470817120622,
+          "calibration_gap": 0.00605991749448076
+        },
+        {
+          "bin_idx": 7,
+          "bin_range": "[0.6, 0.7]",
+          "count": 1255,
+          "sample_share": 0.10458333333333333,
+          "mean_confidence": 0.6484479904174805,
+          "empirical_accuracy": 0.6262948207171315,
+          "calibration_gap": 0.022153169700348974
+        },
+        {
+          "bin_idx": 8,
+          "bin_range": "[0.7, 0.8]",
+          "count": 1453,
+          "sample_share": 0.12108333333333333,
+          "mean_confidence": 0.7510942816734314,
+          "empirical_accuracy": 0.6847900894700619,
+          "calibration_gap": 0.06630419220336947
+        },
+        {
+          "bin_idx": 9,
+          "bin_range": "[0.8, 0.9]",
+          "count": 1667,
+          "sample_share": 0.13891666666666666,
+          "mean_confidence": 0.8505166172981262,
+          "empirical_accuracy": 0.7774445110977805,
+          "calibration_gap": 0.07307210620034577
+        },
+        {
+          "bin_idx": 10,
+          "bin_range": "[0.9, 1.0]",
+          "count": 6325,
+          "sample_share": 0.5270833333333333,
+          "mean_confidence": 0.9763658046722412,
+          "empirical_accuracy": 0.9535177865612648,
+          "calibration_gap": 0.022848018110976365
+        }
+      ],
+      "mean_confidence": 0.8511053919792175,
+      "mean_confidence_correct": 0.8812323808670044,
+      "mean_confidence_incorrect": 0.7157750725746155,
+      "mean_entropy": 0.4641527235507965,
+      "mean_entropy_correct": 0.39167553186416626,
+      "mean_entropy_incorrect": 0.7897195816040039
+    },
+    "per_class": {
+      "Benign": {
+        "samples": 3000,
+        "accuracy": 0.8733333333333333,
+        "raw_mean_conf": 0.9247485399246216,
+        "cal_mean_conf": 0.9242872595787048,
+        "raw_correct_conf": 0.9479851126670837,
+        "cal_correct_conf": 0.9476009011268616,
+        "raw_incorrect_conf": 0.7645386457443237,
+        "cal_incorrect_conf": 0.763546347618103
+      },
+      "DDoS": {
+        "samples": 3000,
+        "accuracy": 0.7623333333333333,
+        "raw_mean_conf": 0.784383237361908,
+        "cal_mean_conf": 0.783635675907135,
+        "raw_correct_conf": 0.8117080926895142,
+        "cal_correct_conf": 0.810950517654419,
+        "raw_incorrect_conf": 0.6967369318008423,
+        "cal_incorrect_conf": 0.6960211396217346
+      },
+      "DoS": {
+        "samples": 3000,
+        "accuracy": 0.7883333333333333,
+        "raw_mean_conf": 0.7975174784660339,
+        "cal_mean_conf": 0.7967544198036194,
+        "raw_correct_conf": 0.827449381351471,
+        "cal_correct_conf": 0.826675295829773,
+        "raw_incorrect_conf": 0.6860387921333313,
+        "cal_incorrect_conf": 0.6853163242340088
+      },
+      "Spoofing": {
+        "samples": 3000,
+        "accuracy": 0.8476666666666667,
+        "raw_mean_conf": 0.9002360105514526,
+        "cal_mean_conf": 0.8997443914413452,
+        "raw_correct_conf": 0.9272359013557434,
+        "cal_correct_conf": 0.9267995953559875,
+        "raw_incorrect_conf": 0.7499935626983643,
+        "cal_incorrect_conf": 0.7491943836212158
+      }
+    }
+  }
+}

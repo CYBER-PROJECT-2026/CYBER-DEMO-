@@ -1,0 +1,1017 @@
+[
+  {
+    "query": "17-feature",
+    "file": "AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md",
+    "line": 26,
+    "text": "- 3.3 [Experimental 17-Feature and 25-Feature Variants](#33-experimental-17-feature-and-25-feature-variants)",
+    "classification": "CURRENT"
+  },
+  {
+    "query": "17-feature",
+    "file": "AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md",
+    "line": 53,
+    "text": "- 8.2 [Live Feature Compatibility Gap (46 vs. 17 Features)](#82-live-feature-compatibility-gap-46-vs-17-features)",
+    "classification": "CURRENT"
+  },
+  {
+    "query": "all 34 classes",
+    "file": "AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md",
+    "line": 136,
+    "text": "* An extraction of 2,625,447 records (1,837,813 train, 393,817 validation, 393,817 test) spanning 34 classes (33 attack types + 1 benign class).",
+    "classification": "CURRENT"
+  },
+  {
+    "query": "17-feature",
+    "file": "AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md",
+    "line": 225,
+    "text": "2026-Q2 : SMOTE-Tomek Prototype : 17 features with RobustScaler : models/xgboost_smote_tomek.json : Initial attack mapping",
+    "classification": "CURRENT"
+  },
+  {
+    "query": "17-feature",
+    "file": "AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md",
+    "line": 306,
+    "text": "### 3.3 Experimental 17-Feature and 25-Feature Variants",
+    "classification": "CURRENT"
+  },
+  {
+    "query": "17-feature",
+    "file": "AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md",
+    "line": 310,
+    "text": "1. **The 17-Feature Model (`cic_iot_xgboost_17features_model.pkl`):**",
+    "classification": "CURRENT"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md",
+    "line": 520,
+    "text": "*(Note: An earlier prototype calibration converged to $T = 1.317657 \\approx 1.3177$, whereas the active AEGIS calibrator is fixed at $T = 1.3451923980$.)*",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md",
+    "line": 520,
+    "text": "*(Note: An earlier prototype calibration converged to $T = 1.317657 \\approx 1.3177$, whereas the active AEGIS calibrator is fixed at $T = 1.3451923980$.)*",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "17-feature",
+    "file": "AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md",
+    "line": 708,
+    "text": "### 8.2 Live Feature Compatibility Gap (46 vs. 17 Features)",
+    "classification": "CURRENT"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "CALIBRATION_CONFIDENCE_COMPARISON.md",
+    "line": 10,
+    "text": "- Model: `models/aegis/aegis_xgboost_model.pkl` (46 features, frozen; root historical baseline: `cic_iot_xgboost_model.pkl`)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "CALIBRATION_REPORT.md",
+    "line": 6,
+    "text": "> This report records the historical Phase 9 calibration study evaluating initial calibrators on the legacy root model (`cic_iot_xgboost_model.pkl`) with baseline $T \\approx 1.3177$.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "CALIBRATION_REPORT.md",
+    "line": 6,
+    "text": "> This report records the historical Phase 9 calibration study evaluating initial calibrators on the legacy root model (`cic_iot_xgboost_model.pkl`) with baseline $T \\approx 1.3177$.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "CALIBRATION_REPORT.md",
+    "line": 37,
+    "text": "- **Model File**: [`cic_iot_xgboost_model.pkl`](file:///d:/-AI-Driven-Intrusion-Detection-System-for-IoT-Networks/cic_iot_xgboost_model.pkl)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "CALIBRATION_REPORT.md",
+    "line": 218,
+    "text": "- **Learned Temperature Parameter**: **`T = 1.3177`**",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "CALIBRATION_REPORT.md",
+    "line": 333,
+    "text": "cic_iot_xgboost_model.pkl (Raw probabilities / logits)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "CONFIDENCE_SANITY_REPORT.md",
+    "line": 184,
+    "text": "**Answer**: **Yes.** Isotonic regression is inherently a piecewise constant step function. Because the 46 features create high class separation, the non-parametric isotonic fit groups nearly all predictions into flat saturation steps at 0.0 and 1.0. For applications requiring smooth, continuous, bell-shaped probability distributions, **Temperature Scaling ($T=1.3177$)** or **Sigmoid / Platt scaling** (both already fitted and preserved in [`calibrator_temperature.pkl`](file:///d:/-AI-Driven-Intrusion-Detection-System-for-IoT-Networks/calibrator_temperature.pkl) and [`calibrator_sigmoid.pkl`](file:///d:/-AI-Driven-Intrusion-Detection-System-for-IoT-Networks/calibrator_sigmoid.pkl)) should be preferred.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "17-feature",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 6,
+    "text": "> This document records the Phase 8 technical gap analysis evaluating why the prototype Suricata bridge (`suricata_to_ml.py`, 17 features) was incompatible with the 46-feature production model (`models/aegis/aegis_xgboost_model.pkl`).",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 14,
+    "text": "This is a **Read-Only Technical Audit** evaluating the compatibility of the current Suricata and live-traffic flow extraction pipeline against the frozen production 46-feature XGBoost model (`cic_iot_xgboost_model.pkl`), its Temperature Scaling calibration layer (`calibrator_temperature.pkl`), and TreeSHAP explainability engine.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 17,
+    "text": "1. **Model Requirement**: `cic_iot_xgboost_model.pkl` requires exactly **46 raw network telemetry features** in a specific canonical order with **no feature scaling** (raw float values).",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "17-feature",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 18,
+    "text": "2. **Current Suricata Bridge (`suricata_to_ml.py`)**: Only constructs **17 features**, using hard-coded constants (`Tot sum = 74`, `Rate = 1`, `Duration = 0`), applies an incompatible `RobustScaler`, and points to an obsolete 17-feature JSON model (`models/xgboost_smote_tomek.json`).",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "17-feature",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 20,
+    "text": "4. **Current Live Flow Extractor (`backend/engine/flow_extractor.py`)**: Calculates only **17 features** from Scapy packets. It is missing 29 statistical, timing, and protocol features (e.g., `Header_Length`, `IAT`, `Min`, `Max`, `AVG`, `Std`, `Tot size`, `Magnitue`, `Radius`, `Covariance`, `Variance`, `Number`, protocol one-hot flags).",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 21,
+    "text": "5. **Live Pipeline Safety Verdict**: **`FAIL`** \u2014 The current live pipeline cannot be safely connected to `cic_iot_xgboost_model.pkl` without causing immediate dimensionality errors or extreme inference corruption due to missing/placeholder values.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 27,
+    "text": "The 46 features used to train `cic_iot_xgboost_model.pkl` originate from the official **CIC-IoT-2023 dataset** (Canadian Institute for Cybersecurity), extracted via [`extract_ciciot_dataset.py`](file:///d:/-AI-Driven-Intrusion-Detection-System-for-IoT-Networks/extract_ciciot_dataset.py) from the Hugging Face repository `lacg030175/CIC-IoT-2023-neto-full`.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 143,
+    "text": "The table below audits all 46 features required by `cic_iot_xgboost_model.pkl` (indexed exactly as stored in `model.feature_names_in_` from 1 to 46) against the current live integration code (`suricata_to_ml.py` and `backend/engine/flow_extractor.py`).",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 248,
+    "text": "The canonical feature order extracted directly from `cic_iot_xgboost_model.pkl` (`model.feature_names_in_`) is:",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 264,
+    "text": "- **Result**: Passing either output to `cic_iot_xgboost_model.pkl` raises a `ValueError: feature_names mismatch` exception immediately.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 270,
+    "text": "| Artifact / Pipeline Component | Preprocessing Applied | Compatibility with `cic_iot_xgboost_model.pkl` |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 272,
+    "text": "| **`cic_iot_xgboost_model.pkl`** | **None** (Trained on raw float values) | **Canonical Baseline** |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "17-feature",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 274,
+    "text": "| **`backend/detection/detector.py`** | `RobustScaler.transform(X)` | **INCOMPATIBLE** (Configured for old 17-feature model) |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 286,
+    "text": "`suricata_to_ml.py` loads `models/xgboost_smote_tomek.json` with `RobustScaler`, which is a legacy 17-feature experimental artifact, rather than `cic_iot_xgboost_model.pkl`.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "17-feature",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 286,
+    "text": "`suricata_to_ml.py` loads `models/xgboost_smote_tomek.json` with `RobustScaler`, which is a legacy 17-feature experimental artifact, rather than `cic_iot_xgboost_model.pkl`.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 307,
+    "text": "- Live flow inferences should pass through `backend/engine/pipeline.py` to leverage Temperature Scaling ($T=1.3177$), TreeSHAP, and the 5-Agent reasoning system.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "LIVE_FEATURE_COMPATIBILITY_AUDIT.md",
+    "line": 313,
+    "text": "The current Suricata live-traffic script (`suricata_to_ml.py`) is an obsolete test stub from early prototyping. It cannot extract or compute the 46 features required by `cic_iot_xgboost_model.pkl` and is **unsafe for live deployment**.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "MODEL_EVALUATION_AND_NEXT_STEPS.md",
+    "line": 7,
+    "text": "> - **Active Production Model:** `models/aegis/aegis_xgboost_model.pkl` (supersedes legacy root `cic_iot_xgboost_model.pkl`)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "MODEL_EVALUATION_AND_NEXT_STEPS.md",
+    "line": 15,
+    "text": "We evaluated the newly retrained XGBoost model (`cic_iot_xgboost_model.pkl`) and its associated label encoder (`label_encoder.pkl`) across two test suites:",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "MODEL_EVALUATION_AND_NEXT_STEPS.md",
+    "line": 110,
+    "text": "Now that the new model `cic_iot_xgboost_model.pkl` and encoder `label_encoder.pkl` are verified, follow these next steps to deploy and integrate them:",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "MODEL_EVALUATION_AND_NEXT_STEPS.md",
+    "line": 114,
+    "text": "A[\"Trained Model (cic_iot_xgboost_model.pkl)\"] --> B[\"Step 1: Deploy Artifacts to models/ and preprocessed_objects/\"]",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "MODEL_EVALUATION_AND_NEXT_STEPS.md",
+    "line": 126,
+    "text": "- Copy `cic_iot_xgboost_model.pkl` $\\rightarrow$ `models/xgboost_model.pkl` and `preprocessed_objects/xgboost_model.pkl`",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "MODEL_EVALUATION_AND_NEXT_STEPS.md",
+    "line": 133,
+    "text": "- Update `inference.py` to read `model.feature_names_in_` directly from `cic_iot_xgboost_model.pkl`.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "MODEL_EVALUATION_AND_NEXT_STEPS.md",
+    "line": 140,
+    "text": "- Point `MODEL_FILE` to `cic_iot_xgboost_model.pkl` (or `models/xgboost_model.pkl`).",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "MODEL_EVALUATION_AND_NEXT_STEPS.md",
+    "line": 169,
+    "text": "| **New Model** | [`cic_iot_xgboost_model.pkl`](file:///d:/-AI-Driven-Intrusion-Detection-System-for-IoT-Networks/cic_iot_xgboost_model.pkl) | 46 features, 3 classes, XGBoost classifier |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "MULTI_AGENT_IMPLEMENTATION_PLAN.md",
+    "line": 17,
+    "text": "- **ML Classifier (`cic_iot_xgboost_model.pkl`)**: 46-feature XGBoost classifier trained on CIC IoT dataset classifying traffic into `DDoS`, `DoS`, and `Spoofing`.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "MULTI_AGENT_IMPLEMENTATION_PLAN.md",
+    "line": 24,
+    "text": "- `cic_iot_xgboost_model.pkl` (XGBoost model file)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "MULTI_AGENT_IMPLEMENTATION_PLAN.md",
+    "line": 131,
+    "text": "- `cic_iot_xgboost_model.pkl`",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero hallucination",
+    "file": "MULTI_AGENT_IMPLEMENTATION_PLAN.md",
+    "line": 155,
+    "text": "- Measure 100% completion rate, latency percentiles (p50, p95, p99), grounding compliance, and zero hallucinations.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "PHASE_8_VERIFICATION_REPORT.md",
+    "line": 18,
+    "text": "| 1 | `cic_iot_xgboost_model.pkl` | Frozen 46-feature XGBoost classifier | **VERIFIED (UNCHANGED)** | `94e03af2842b661c46a3ae658f137b019d6143272dc01e97e571ba5aa5667126` |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "PHASE_8_VERIFICATION_REPORT.md",
+    "line": 19,
+    "text": "| 2 | `calibrator_temperature.pkl` | Temperature scaling calibrator ($T \\approx 1.3177$) | **VERIFIED (UNCHANGED)** | `61fad75aaecad0bd92e45c12c6af399334e79a066d38b2edc46baa77881115a8` |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "SHAP_EXPLAINABILITY_REPORT.md",
+    "line": 6,
+    "text": "> This report documents the Phase 7 local and global TreeSHAP explainability baseline fitted on the legacy root model artifact (`cic_iot_xgboost_model.pkl`) and $T \\approx 1.3177$. In active AEGIS, TreeSHAP explainer operates with identical mathematical parity directly on `models/aegis/aegis_xgboost_model.pkl`.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "SHAP_EXPLAINABILITY_REPORT.md",
+    "line": 6,
+    "text": "> This report documents the Phase 7 local and global TreeSHAP explainability baseline fitted on the legacy root model artifact (`cic_iot_xgboost_model.pkl`) and $T \\approx 1.3177$. In active AEGIS, TreeSHAP explainer operates with identical mathematical parity directly on `models/aegis/aegis_xgboost_model.pkl`.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "SHAP_EXPLAINABILITY_REPORT.md",
+    "line": 10,
+    "text": "**Base Model:** `cic_iot_xgboost_model.pkl` (46 Features, Frozen)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "SHAP_EXPLAINABILITY_REPORT.md",
+    "line": 11,
+    "text": "**Calibrator:** `calibrator_temperature.pkl` ($T = 1.317657$, Frozen)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "SHAP_EXPLAINABILITY_REPORT.md",
+    "line": 24,
+    "text": "|  [46 Network Features]  -->  [Frozen XGBoost]  -->  Raw Logits (z)  -->  [Temperature Scaling (T=1.3177)] |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "SHAP_EXPLAINABILITY_REPORT.md",
+    "line": 43,
+    "text": "* **Model File:** `cic_iot_xgboost_model.pkl`",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "TEMPERATURE_SCALING_VALIDATION.md",
+    "line": 5,
+    "text": "> This document validates the initial Temperature Scaling calibration on the legacy baseline model (`cic_iot_xgboost_model.pkl`) with $T \\approx 1.317657$.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "TEMPERATURE_SCALING_VALIDATION.md",
+    "line": 5,
+    "text": "> This document validates the initial Temperature Scaling calibration on the legacy baseline model (`cic_iot_xgboost_model.pkl`) with $T \\approx 1.317657$.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "TEMPERATURE_SCALING_VALIDATION.md",
+    "line": 13,
+    "text": "- Base Model: `cic_iot_xgboost_model.pkl` (46 features, frozen)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "TEMPERATURE_SCALING_VALIDATION.md",
+    "line": 15,
+    "text": "- Calibrator: `calibrator_temperature.pkl` ($T = 1.317657$, frozen)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "TEMPERATURE_SCALING_VALIDATION.md",
+    "line": 21,
+    "text": "This offline empirical evaluation validates **Temperature Scaling ($T = 1.317657$)** as the post-processing probability calibration layer for the 46-feature XGBoost IoT Intrusion Detection System.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "TEMPERATURE_SCALING_VALIDATION.md",
+    "line": 27,
+    "text": "|   46 Network Features  -->  Frozen XGBoost  -->  Raw Logits (z)  -->  Temp Scaling (z / 1.3177)   |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "TEMPERATURE_SCALING_VALIDATION.md",
+    "line": 34,
+    "text": "| Metric | Original Raw XGBoost | Temperature Scaling ($T=1.3177$) | Isotonic Regression (Reference) |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "TEMPERATURE_SCALING_VALIDATION.md",
+    "line": 144,
+    "text": "**Yes.** Because Temperature Scaling applies a strictly positive scalar division ($z / T$, with $T = 1.317657 > 0$) prior to softmax, the ranking of logits is invariant ($\\arg\\max_k z_k / T = \\arg\\max_k z_k$). 100.00% (5,000 / 5,000) of class predictions match raw XGBoost.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "calibration_consistency_audit.md",
+    "line": 5,
+    "text": "> This document resolves the historical clerical discrepancy regarding the Phase 15 root calibrator (`calibrator_temperature.pkl`, $T \\approx 1.317657$).",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "calibration_consistency_audit.md",
+    "line": 10,
+    "text": "Investigate the reported discrepancy between the Phase 15 documentation ($T \\approx 0.447$) and the canonical calibration audit records ($T = 1.317657$). Determine the true stored parameter, the mathematical role of each value, the parameterization used in production inference, the validity of Phase 14/15 confidence thresholds and abstention states, and whether any code change is required.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "calibration_consistency_audit.md",
+    "line": 24,
+    "text": "**Category C**: $T = 1.317657$ is the actual, frozen, and only temperature value in the artifact and production codebase. The mention of $T \\approx 0.447$ in the Phase 15 documentation was a **clerical mislabeling / documentation error in the Markdown text**.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "calibration_consistency_audit.md",
+    "line": 29,
+    "text": "- Because Row #657 produced confidence $0.6586$ in all Phase 14 and Phase 15 test runs, this empirically confirms that the entire codebase has been executing strictly with $T = 1.317657$.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "calibration_consistency_audit.md",
+    "line": 96,
+    "text": "- Manual $\\text{softmax}(z / 1.317657)$:",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "calibration_consistency_audit.md",
+    "line": 108,
+    "text": "- Manual $\\text{softmax}(z / 1.317657)$:",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "calibration_consistency_audit.md",
+    "line": 116,
+    "text": "- `calib.predict_proba(logits)` ($T = 1.317657$):",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "calibration_consistency_audit.md",
+    "line": 129,
+    "text": "However, in Phase 14 and Phase 15, Row #657 produced confidence **$0.6586$**, successfully triggering the low-confidence rule. This confirms that Phase 14 and Phase 15 executed with $T = 1.317657$.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "calibration_consistency_audit.md",
+    "line": 143,
+    "text": "This proves that the Phase 14 confidence threshold ($0.70$) was established, tested, and validated against the exact probabilities produced by $T = 1.317657$.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "calibration_consistency_audit.md",
+    "line": 150,
+    "text": "**$T = 1.317656719700599$** (commonly reported as $T \\approx 1.3177$). It is stored as a float attribute `self.temperature` inside `calibrator_temperature.pkl`.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "calibration_consistency_audit.md",
+    "line": 155,
+    "text": "### 3. What does 1.317657 represent?",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "calibration_consistency_audit.md",
+    "line": 162,
+    "text": "**YES, 100% VALID**. All empirical metrics, confidence scores (such as Row #657's $0.6586$ confidence), abstention evaluations, and invariant tests were computed using the actual frozen calibrator ($T = 1.317657$).",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "evaluation_46features_5000_test_report.md",
+    "line": 6,
+    "text": "> This report documents the initial evaluation of the 5,000-record holdout set on the legacy baseline model artifact (`cic_iot_xgboost_model.pkl`). Active production AEGIS is deployed as `models/aegis/aegis_xgboost_model.pkl` with identical 99.98% baseline accuracy and 100% retained accuracy after abstention.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "evaluation_46features_5000_test_report.md",
+    "line": 12,
+    "text": "We evaluated the pre-trained 46-feature XGBoost multi-class classifier (`cic_iot_xgboost_model.pkl`) and its associated label encoder (`label_encoder.pkl`) on the **5,000-record holdout dataset** (`Testing_data/testing_data.csv`).",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "evaluation_46features_5000_test_report.md",
+    "line": 31,
+    "text": "| **Model Artifact** | [`cic_iot_xgboost_model.pkl`](file:///d:/-AI-Driven-Intrusion-Detection-System-for-IoT-Networks/cic_iot_xgboost_model.pkl) |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "evaluation_46features_5000_test_report.md",
+    "line": 171,
+    "text": "The 46-feature XGBoost model (`cic_iot_xgboost_model.pkl`) demonstrates **exceptional generalization** on the genuinely unseen 5,000-record test set, achieving **`99.9800%` test accuracy** with ultra-low inference latency (`6.92 \u00b5s/record`).",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "forensic_near_duplicate_evaluation.md",
+    "line": 5,
+    "text": "> This forensic report evaluated near-duplicate resistance on the baseline model artifact (`cic_iot_xgboost_model.pkl`). Active AEGIS architecture is deployed under `models/aegis/`.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "forensic_near_duplicate_evaluation.md",
+    "line": 9,
+    "text": "**Model Evaluated**: `cic_iot_xgboost_model.pkl` (Frozen 46-Feature XGBoost Classifier)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "forensic_near_duplicate_evaluation.md",
+    "line": 32,
+    "text": "| **Model Artifact** | [`cic_iot_xgboost_model.pkl`](file:///D:/-AI-Driven-Intrusion-Detection-System-for-IoT-Networks/cic_iot_xgboost_model.pkl) |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "forensic_near_duplicate_evaluation.md",
+    "line": 267,
+    "text": "1. **Not a Zero-Day Generalization Benchmark**: This evaluation measures holdout performance with near-identical feature vectors excluded. It does **not** evaluate unseen attack families, zero-day botnets, or novel protocols outside the CIC-IoT-2023 distribution.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase11_12_distribution_ood_audit.md",
+    "line": 5,
+    "text": "> This forensic report evaluated distribution shifts on the baseline model artifact (`cic_iot_xgboost_model.pkl`) prior to the implementation of the Class-Conditional Mahalanobis abstention gate in Phase 14. Active AEGIS architecture is documented in [OOD_ABSTENTION_ARCHITECTURE.md](file:///d:/-AI-Driven-Intrusion-Detection-System-for-IoT-Networks/OOD_ABSTENTION_ARCHITECTURE.md).",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase11_12_distribution_ood_audit.md",
+    "line": 9,
+    "text": "**Model Evaluated**: `cic_iot_xgboost_model.pkl` (Frozen 46-Feature XGBoost Classifier)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase11_12_distribution_ood_audit.md",
+    "line": 146,
+    "text": "| **2. Explicit Unknown Class?** | **None.** Model output layer strictly produces softmax over 3 classes (`DDoS`, `DoS`, `Spoofing`). | [`cic_iot_xgboost_model.pkl`](file:///d:/-AI-Driven-Intrusion-Detection-System-for-IoT-Networks/cic_iot_xgboost_model.pkl) | **LIMITATION** |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "phase11_12_distribution_ood_audit.md",
+    "line": 157,
+    "text": "The repository contains benchmark splits derived from CIC-IoT-2023. There is no real-world out-of-distribution capture (e.g., Mirai botnet on real hardware, enterprise SCADA telemetry, or zero-day protocol exploits) currently present.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "phase11_12_distribution_ood_audit.md",
+    "line": 226,
+    "text": "3. **Unknown Attack Class**: A novel attack technique (e.g., zero-day Bluetooth spoofing or novel botnet) not present in the 3 training classes.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase13_ood_abstention_design_audit.md",
+    "line": 9,
+    "text": "**Model Evaluated**: `cic_iot_xgboost_model.pkl` (Frozen 46-Feature XGBoost Classifier)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "phase13_ood_abstention_design_audit.md",
+    "line": 81,
+    "text": "An attack type not represented in the training label space (`DDoS`, `DoS`, `Spoofing`). For example, a zero-day Bluetooth exploit or novel MQTT-specific botnet would be unknown. The model unconditionally assigns it to one of the 3 known classes.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "phase13_ood_abstention_design_audit.md",
+    "line": 435,
+    "text": "There is **no real-world out-of-distribution traffic** (e.g., Mirai botnet on real hardware, SCADA telemetry from industrial PLCs, Bluetooth IoT attack captures, benign enterprise traffic, or zero-day protocol exploits) currently in the project.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase13_ood_abstention_design_audit.md",
+    "line": 646,
+    "text": "\u2022 cic_iot_xgboost_model.pkl (frozen)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "phase13_ood_abstention_design_audit.md",
+    "line": 728,
+    "text": "| **10** | What additional independent dataset is required for real OOD validation? | A genuinely independent out-of-distribution dataset representing traffic from: (a) different hardware / network topology, (b) benign/normal traffic, (c) novel attack types not in CIC-IoT-2023 (e.g., Mirai, MQTT zero-day, Bluetooth exploits). |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase13_ood_abstention_design_audit.md",
+    "line": 730,
+    "text": "| **12** | What must remain unchanged? | `cic_iot_xgboost_model.pkl`, `label_encoder.pkl`, 46-feature schema, `calibrator_temperature.pkl`, `testing_data.csv`, all production inference endpoints. |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase14_ood_abstention_threshold_audit.md",
+    "line": 9,
+    "text": "**Model**: `cic_iot_xgboost_model.pkl` (Frozen 46-Feature XGBoost Classifier)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase14_ood_abstention_threshold_audit.md",
+    "line": 22,
+    "text": "XGBOOST MODEL ARTIFACT MODIFIED:         NO (cic_iot_xgboost_model.pkl untouched)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase14_ood_abstention_threshold_audit.md",
+    "line": 187,
+    "text": "(cic_iot_xgboost_model.pkl)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "phase14_ood_abstention_threshold_audit.md",
+    "line": 277,
+    "text": "> 1. **No Real-World External OOD Dataset**: We do NOT currently have an independent real-world OOD dataset (e.g. physical testbed captures with zero-day protocols, live SCADA/Modbus attacks, or external network topologies). The OOD mechanism is validated as an **uncertainty and geometric novelty gate** using the available training, calibration, and holdout data rather than as a definitive zero-day or semantic unknown-attack detector.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "phase14_ood_abstention_threshold_audit.md",
+    "line": 278,
+    "text": "> 2. **No Zero-Day Claims**: AEGIS-IoT does **NOT** claim zero-day attack identification. When an unfamiliar input is abstained, the system does not identify what the novel attack is; it merely asserts that the input lacks sufficient empirical support to trust a closed-world 3-class prediction.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase15_end_to_end_integrity_audit.md",
+    "line": 4,
+    "text": "This document delivers the forensic audit of the complete AEGIS-IoT system after Phase 14. In compliance with strict auditing protocols, the core ML model (`models/aegis/aegis_xgboost_model.pkl`, with frozen historical root copy `cic_iot_xgboost_model.pkl`), label encoder, temperature calibrator (`models/aegis/aegis_calibrator_temperature.pkl`, $T = 1.345192$), canonical 46-feature schema, and dataset splits remained **100% frozen**. No synthetic OOD data was generated, no zero-day capabilities were claimed, and no ML parameters were retrained.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "phase15_end_to_end_integrity_audit.md",
+    "line": 4,
+    "text": "This document delivers the forensic audit of the complete AEGIS-IoT system after Phase 14. In compliance with strict auditing protocols, the core ML model (`models/aegis/aegis_xgboost_model.pkl`, with frozen historical root copy `cic_iot_xgboost_model.pkl`), label encoder, temperature calibrator (`models/aegis/aegis_calibrator_temperature.pkl`, $T = 1.345192$), canonical 46-feature schema, and dataset splits remained **100% frozen**. No synthetic OOD data was generated, no zero-day capabilities were claimed, and no ML parameters were retrained.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase15_end_to_end_integrity_audit.md",
+    "line": 12,
+    "text": "- `models/aegis/aegis_xgboost_model.pkl` (3-class XGBoost model trained on CICIoT2023; root baseline: `cic_iot_xgboost_model.pkl`)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase15_end_to_end_integrity_audit.md",
+    "line": 184,
+    "text": "| `cic_iot_xgboost_model.pkl` | **HISTORICAL / BASELINE** | Root historical frozen artifact superseded by `models/aegis/` |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "phase15_end_to_end_integrity_audit.md",
+    "line": 186,
+    "text": "| `calibrator_temperature.pkl` | **HISTORICAL / BASELINE** | Root historical calibrator ($T \\approx 1.3177$) superseded by `models/aegis/` |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "phase15_end_to_end_integrity_audit.md",
+    "line": 247,
+    "text": "| **Zero-Day Detection** | **UNSUPPORTED / REMOVE** | AEGIS does not detect arbitrary zero-day exploits. It flags flow-metric outliers exceeding the statistical threshold. |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero hallucination",
+    "file": "phase15_end_to_end_integrity_audit.md",
+    "line": 249,
+    "text": "| **100% Hallucination-Free** | **UNSUPPORTED / REMOVE** | Multi-agent outputs are grounded in retrieved citations, but epistemic uncertainty and LLM summarization variance remain non-zero. |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "0% false positives",
+    "file": "phase15_end_to_end_integrity_audit.md",
+    "line": 250,
+    "text": "| **0% False Positives / Negatives** | **UNSUPPORTED / REMOVE** | False positive rate is non-zero (43 benign/normal samples abstained at 99.14% coverage). |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "17-feature",
+    "file": "phase15_end_to_end_integrity_audit.md",
+    "line": 270,
+    "text": "- **Q8: Can a stale 17-feature artifact be used by production inference?**",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "phase15_fixes.md",
+    "line": 11,
+    "text": "- The ML model (`cic_iot_xgboost_model.pkl`) was **not modified**.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "completely independent external dataset",
+    "file": "reports\\aegis_external_validation\\official_ciciot_holdout_report.md",
+    "line": 4,
+    "text": "> **Dataset Distribution Clarification**: This evaluation was conducted on non-overlapping test partitions from the official CICIoT2023 benchmark distribution (`lacg030175/CIC-IoT-2023-neto-full` test split). While verified to have zero cryptographic record overlap with the 1.5M training set, it originates from the same benchmark environment family and should not be described as a completely independent real-world external dataset.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero hallucination",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 14,
+    "text": "A total of **91 documentation and report files** across the repository were analyzed against 16 critical claim vectors. While the core technical architecture and empirical benchmarks are rigorously validated, several project reports contain legacy artifacts, outdated model identifiers, uncontextualized performance figures, or over-broad marketing assertions (e.g., \"zero hallucinations\", \"zero-day detection\", \"all 34 CICIoT2023 classes\").",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 14,
+    "text": "A total of **91 documentation and report files** across the repository were analyzed against 16 critical claim vectors. While the core technical architecture and empirical benchmarks are rigorously validated, several project reports contain legacy artifacts, outdated model identifiers, uncontextualized performance figures, or over-broad marketing assertions (e.g., \"zero hallucinations\", \"zero-day detection\", \"all 34 CICIoT2023 classes\").",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "17-feature",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 69,
+    "text": "| `README.md` (L8, L32) | \"Achieved 99.25% multiclass accuracy on the comprehensive CICIoT2023 dataset.\" | **QUALIFIED** | 99.25% refers to the historical academic paper prototype (17 features with Extra Trees and RobustScaler on an older 2.6M split). Active AEGIS achieves 99.98% on the 46-feature benchmark. | \"The initial academic prototype achieved 99.25% accuracy using 17 features. The production AEGIS system achieves 99.98% holdout accuracy on 46 canonical flow features across target classes (DDoS, DoS, Spoofing).\" |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "completely independent external dataset",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 71,
+    "text": "| `reports/aegis_external_validation/official_ciciot_holdout_report.md` (L1) | \"# Official CICIoT2023 External Holdout Evaluation Report\" | **QUALIFIED** | While non-overlapping and from the official UNB test split, this data is from the *same* synthetic benchmark environment (CICIoT2023), not a distinct physical deployment or external sensor network. | \"# Official CICIoT2023 Independent Test-Split Holdout Evaluation Report<br>*(Note: Evaluated on non-overlapping test partitions from the official CICIoT2023 benchmark distribution)*\" |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "all 34 classes",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 73,
+    "text": "| `AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md` (L129\u2013134) | \"CICIoT2023 encompasses real-world traffic generated by 105 IoT devices executing 33 distinct attack profiles alongside benign communications... spanning 34 classes.\" | **QUALIFIED** | The underlying CICIoT2023 dataset contains 34 classes, but AEGIS models only 3 classes (DDoS, DoS, Spoofing). Unqualified statements imply AEGIS classifies all 34 classes. | \"While the full CICIoT2023 benchmark captures 33 attack categories across 105 IoT devices, the AEGIS-IoT production classifier is targeted specifically to high-volume volumetric and spoofing threats across 3 primary classes: DDoS, DoS, and Spoofing.\" |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "direct raw PCAP",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 75,
+    "text": "| `PHASE_8_VERIFICATION_REPORT.md` (L169), `README.md` (L12) | \"Live packet capture started\" / \"Full pipeline integration with Suricata\" | **QUALIFIED** | Suricata and packet sniffers extract raw packets and aggregate them into 46 tabular flow statistics; the ML model cannot consume raw PCAP or streaming packet bytes directly. | \"Network sniffers and Suricata log monitors stream flow telemetry into an intermediate flow-aggregation buffer, which computes the 46 canonical statistical features required by the detector.\" |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero hallucination",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 86,
+    "text": "| `AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md` (L585) | \"\u2022 Zero Hallucination Guarantee\" | **UNSUPPORTED** | Large Language Models are probabilistic text generators. Even with strict retrieval grounding and deterministic templates, no generative system can mathematically guarantee zero hallucinations. | **REMOVE claim.** Replace with: \"Structured Grounding & Epistemic Segregation (Strict boundaries enforcing evidence-backed facts from model and RAG sources).\" |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 89,
+    "text": "| `phase15_end_to_end_integrity_audit.md` (L244) | \"Zero-Day Detection\" (in general claims context) | **UNSUPPORTED** | AEGIS is a 3-class closed-world classifier with a statistical outlier gate. It flags statistical distribution deviations; it does not identify or diagnose arbitrary zero-day vulnerabilities. | **REMOVE claim.** State clearly: \"AEGIS-IoT does not detect zero-day exploits. It identifies telemetry that deviates from known attack profiles via Mahalanobis distance.\" |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "0% false positives",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 90,
+    "text": "| `CALIBRATION_CONFIDENCE_COMPARISON.md` (L35), `phase15_end_to_end_integrity_audit.md` (L247) | \"0% False Positives / Negatives\" / \"virtually no false positives\" | **UNSUPPORTED** | False positive rate is non-zero. On the 5,000-sample test set, 42 normal/benign flow variations trigger abstention at the 99.14% coverage threshold. | Replace with: \"Empirical False Positive Rate is characterized by a 0.86% abstention rate on clean test telemetry, prioritizing safety over forced guesses.\" |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "direct raw PCAP",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 91,
+    "text": "| Implicit Claims of Direct Raw PCAP Ingestion | Any claim implying XGBoost reads raw PCAP files directly | **UNSUPPORTED** | Tree-based models cannot consume binary PCAP streams; they strictly require pre-computed 46 float32 aggregate flow features. | Clarify: \"Model operates exclusively on structured 46-feature flow statistical vectors aggregated from network traffic.\" |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 101,
+    "text": "| `AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md` (L77, L91, L192, L224, L233, L386, L710, L845) | Model named as `cic_iot_xgboost_model.pkl` | **OUTDATED** | The active production model is `models/aegis/aegis_xgboost_model.pkl`. `cic_iot_xgboost_model.pkl` is the frozen legacy artifact. | Update documentation to refer to the active model: `models/aegis/aegis_xgboost_model.pkl`. |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 102,
+    "text": "| `AEGIS_IOT_COMPREHENSIVE_PROJECT_REPORT.md` (L78, L94) | Temperature parameter stated as $T = 1.3177$ / `calibrator_temperature.pkl` | **OUTDATED** | $T = 1.3177$ was fitted on the legacy model. The active AEGIS model calibrator has $T = 1.3451923980$ in `models/aegis/aegis_calibrator_temperature.pkl`. | Update to: \"$T = 1.345192$ (`models/aegis/aegis_calibrator_temperature.pkl`).\" |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 103,
+    "text": "| `CALIBRATION_REPORT.md` (L30, L211) | `cic_iot_xgboost_model.pkl` and $T = 1.3177$ | **OUTDATED** | Represents the Phase 9 legacy calibration study. | Add banner: `[HISTORICAL STUDY: Phase 9 Legacy Model Calibration]`. |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.3177",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 103,
+    "text": "| `CALIBRATION_REPORT.md` (L30, L211) | `cic_iot_xgboost_model.pkl` and $T = 1.3177$ | **OUTDATED** | Represents the Phase 9 legacy calibration study. | Add banner: `[HISTORICAL STUDY: Phase 9 Legacy Model Calibration]`. |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 104,
+    "text": "| `TEMPERATURE_SCALING_VALIDATION.md` (L6\u20138, L20) | `cic_iot_xgboost_model.pkl`, `label_encoder.pkl`, $T = 1.317657$ | **OUTDATED** | Documents the legacy calibration baseline. | Add banner: `[HISTORICAL VALIDATION: Phase 10 Legacy Baseline]`. |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 104,
+    "text": "| `TEMPERATURE_SCALING_VALIDATION.md` (L6\u20138, L20) | `cic_iot_xgboost_model.pkl`, `label_encoder.pkl`, $T = 1.317657$ | **OUTDATED** | Documents the legacy calibration baseline. | Add banner: `[HISTORICAL VALIDATION: Phase 10 Legacy Baseline]`. |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 105,
+    "text": "| `MULTI_AGENT_ARCHITECTURE.md` (L25, L70) | Architecture diagram citing `cic_iot_xgboost_model.pkl` | **OUTDATED** | Active backend pipeline loads `models/aegis/aegis_xgboost_model.pkl`. | Update architecture diagram to cite `models/aegis/aegis_xgboost_model.pkl`. |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 106,
+    "text": "| `phase15_end_to_end_integrity_audit.md` (L12, L97, L181, L268) | \"All production entry points bind strictly to `cic_iot_xgboost_model.pkl`\" | **OUTDATED** | Superseded by the AEGIS integration verified in Phase 15. Active detector and pipeline bind to `models/aegis/aegis_xgboost_model.pkl`. | Update to: \"All production entry points bind strictly to `models/aegis/aegis_xgboost_model.pkl`.\" |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 107,
+    "text": "| `backend/detection/detector.py` (L6\u20137, L38) | Docstrings mentioning `cic_iot_xgboost_model.pkl`, `label_encoder.pkl`, and `calibrator_temperature.pkl` | **OUTDATED** | While executable constants point to `models/aegis/*`, docstrings retain legacy filenames. | Update docstrings in `detector.py` to match executable constants. |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero hallucination",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 142,
+    "text": "- **Critical Claims Flagged:** 6 claims (Zero Hallucination Guarantee, Zero-Day Detection, 0% False Positives, Detection of All 34 CICIoT Classes, Direct Raw PCAP Consumption, Completely Independent External Dataset Claim)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "zero-day detection",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 142,
+    "text": "- **Critical Claims Flagged:** 6 claims (Zero Hallucination Guarantee, Zero-Day Detection, 0% False Positives, Detection of All 34 CICIoT Classes, Direct Raw PCAP Consumption, Completely Independent External Dataset Claim)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "0% false positives",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 142,
+    "text": "- **Critical Claims Flagged:** 6 claims (Zero Hallucination Guarantee, Zero-Day Detection, 0% False Positives, Detection of All 34 CICIoT Classes, Direct Raw PCAP Consumption, Completely Independent External Dataset Claim)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "direct raw PCAP",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 142,
+    "text": "- **Critical Claims Flagged:** 6 claims (Zero Hallucination Guarantee, Zero-Day Detection, 0% False Positives, Detection of All 34 CICIoT Classes, Direct Raw PCAP Consumption, Completely Independent External Dataset Claim)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "completely independent external dataset",
+    "file": "reports\\aegis_final_claim_audit.md",
+    "line": 142,
+    "text": "- **Critical Claims Flagged:** 6 claims (Zero Hallucination Guarantee, Zero-Day Detection, 0% False Positives, Detection of All 34 CICIoT Classes, Direct Raw PCAP Consumption, Completely Independent External Dataset Claim)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_integration\\integration_dependency_map.md",
+    "line": 34,
+    "text": "| 26 | `cic_iot_xgboost_model.pkl` | `MODEL_CORE` | `MODEL_PATH = os.path.join(ROOT_DIR, \"cic_iot_xgboost_model.pkl\")` |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_integration\\integration_dependency_map.md",
+    "line": 42,
+    "text": "| 31 | `cic_iot_xgboost_model.pkl` | `MODEL_CORE` | `MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")` |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_integration\\integration_dependency_map.md",
+    "line": 56,
+    "text": "| 34 | `cic_iot_xgboost_model.pkl` | `MODEL_CORE` | `MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")` |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_integration\\integration_dependency_map.md",
+    "line": 64,
+    "text": "| 32 | `cic_iot_xgboost_model.pkl` | `MODEL_CORE` | `MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")` |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_integration\\integration_dependency_map.md",
+    "line": 72,
+    "text": "| 33 | `cic_iot_xgboost_model.pkl` | `MODEL_CORE` | `MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")` |",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_integration\\integration_plan.md",
+    "line": 25,
+    "text": "MODEL_PATH = os.path.join(ROOT_DIR, \"cic_iot_xgboost_model.pkl\")",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_integration\\integration_plan.md",
+    "line": 40,
+    "text": "MODEL_PATH = os.path.join(BASE_DIR, \"cic_iot_xgboost_model.pkl\")",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_integration\\integration_plan.md",
+    "line": 75,
+    "text": "1. `cic_iot_xgboost_model.pkl` (Legacy root production model)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "reports\\aegis_integration\\integration_plan.md",
+    "line": 77,
+    "text": "3. `calibrator_temperature.pkl` (Legacy temperature calibrator, $T=1.317657$)",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "T = 1.317657",
+    "file": "reports\\aegis_integration\\integration_plan.md",
+    "line": 86,
+    "text": "- **Previous Calibrator:** `calibrator_temperature.pkl` ($T = 1.317657$) fitted on legacy model outputs.",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\aegis_integration\\integration_plan.md",
+    "line": 134,
+    "text": "- Change `MODEL_PATH` back to `os.path.join(ROOT_DIR, \"cic_iot_xgboost_model.pkl\")`",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\model_comparison\\model_comparison_report.md",
+    "line": 5,
+    "text": "> This forensic evaluation proved 100% prediction parity (0 disagreements across 5,000 holdout records) between the legacy root baseline (`cic_iot_xgboost_model.pkl`) and the independent AEGIS model (`models/aegis/aegis_xgboost_model.pkl`).",
+    "classification": "HISTORICAL"
+  },
+  {
+    "query": "cic_iot_xgboost_model.pkl",
+    "file": "reports\\model_comparison\\model_comparison_report.md",
+    "line": 9,
+    "text": "**Production Model:** `cic_iot_xgboost_model.pkl`",
+    "classification": "HISTORICAL"
+  }
+]

@@ -1,0 +1,29 @@
+{
+  "model_name": "AEGIS-Live v2 Temperature Scaling Calibrator",
+  "created_at_utc": "2026-09-20 17:01:34",
+  "evaluation_contract": "TEMPORAL GENERALIZATION WITH PERSISTENT-FLOW IDENTITY",
+  "fitting_dataset": "data/aegis_live_v2_quarantine/validation.csv",
+  "fitting_dataset_sha256": "6ef5f1f49e078160c1065b7bde01a4caaba1b00480abc343e2ca3072c2694ec5",
+  "learned_temperature": 1.0054586295782204,
+  "raw_validation_nll": 0.32938894629478455,
+  "calibrated_validation_nll": 0.32938525080680847,
+  "optimization": {
+    "method": "scipy.optimize.minimize_scalar (bounded)",
+    "bounds": [
+      0.05,
+      10.0
+    ],
+    "iterations": 24,
+    "success": true
+  },
+  "mathematical_verification": {
+    "softmax_diff": 0.0,
+    "argmax_preserved_validation": true,
+    "argmax_preserved_test": true
+  },
+  "reproducibility": {
+    "verified": true,
+    "temperature_delta": 0.0
+  },
+  "verdict": "CALIBRATION_AUDIT = PASS"
+}

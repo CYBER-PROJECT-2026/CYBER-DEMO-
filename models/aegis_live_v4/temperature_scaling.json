@@ -1,0 +1,80 @@
+{
+  "model_name": "AEGIS-Live v4 Temperature Scaling Calibrator",
+  "timestamp_utc": "2026-09-21 17:56:15",
+  "evaluation_contract": "TEMPORAL GENERALIZATION WITH PERSISTENT-FLOW IDENTITY + NETWORK TOPOLOGY",
+  "model_path": "models/aegis_live_v4/aegis_live_xgboost_baseline.pkl",
+  "model_sha256": "c0e5aee8e9e1726f12bfc19e98c440fe44fe278d1796d5866fe2a2488d458a56",
+  "dataset_path": "data/aegis_live_v4/validation.csv",
+  "validation_dataset_sha256": "f1a677ebd0bff3fdc5bc0f56d835062e8bd62a6ea0d68d86c4b7a779bcef4c78",
+  "test_dataset_sha256": "bf1c7c3783e79496dfee1a08bca5569d81c8dde07541acf6605cebf3158683f6",
+  "train_dataset_sha256": "378d981f7871215487a2a46ef70e44107984df75e7317555eebe79f200fd9c63",
+  "validation_row_count": 12000,
+  "test_row_count": 12000,
+  "classes": [
+    "Benign",
+    "DDoS",
+    "DoS",
+    "Spoofing"
+  ],
+  "class_mapping": {
+    "Benign": 0,
+    "DDoS": 1,
+    "DoS": 2,
+    "Spoofing": 3
+  },
+  "learned_temperature": 1.1997873771804932,
+  "raw_validation_nll": 0.13069096207618713,
+  "calibrated_validation_nll": 0.12828204035758972,
+  "nll_improvement_validation": 0.002408921718597412,
+  "optimization": {
+    "method": "scipy.optimize.minimize_scalar (bounded)",
+    "bounds": [
+      0.05,
+      10.0
+    ],
+    "iterations": 28,
+    "success": true,
+    "optimization_duration_seconds": 0.05531787872314453
+  },
+  "validation_metrics": {
+    "raw": {
+      "nll": 0.13069096207618713,
+      "brier_score": 0.07396665960550308,
+      "ece": 0.008408421734968866,
+      "accuracy": 0.9516666666666667,
+      "f1_macro": 0.9515567321768185
+    },
+    "calibrated": {
+      "nll": 0.12828204035758972,
+      "brier_score": 0.07402068376541138,
+      "ece": 0.005623586758971206,
+      "accuracy": 0.9516666666666667,
+      "f1_macro": 0.9515567321768185
+    }
+  },
+  "test_metrics": {
+    "raw": {
+      "nll": 0.16330568492412567,
+      "brier_score": 0.1021016463637352,
+      "ece": 0.03154038877288496,
+      "accuracy": 0.9301666666666667,
+      "f1_macro": 0.9301178618845262,
+      "roc_auc_ovr_macro": 0.9938317916666666
+    },
+    "calibrated": {
+      "nll": 0.15310487151145935,
+      "brier_score": 0.09854469448328018,
+      "ece": 0.02373069520294667,
+      "accuracy": 0.9301666666666667,
+      "f1_macro": 0.9301178618845262,
+      "roc_auc_ovr_macro": 0.993831425925926
+    }
+  },
+  "mathematical_verification": {
+    "argmax_preserved_validation": true,
+    "argmax_preserved_test": true,
+    "probabilities_sum_to_one": true,
+    "zero_nan_or_inf": true
+  },
+  "verdict": "V4_CALIBRATION_AUDIT = PASS"
+}

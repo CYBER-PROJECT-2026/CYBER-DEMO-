@@ -1,0 +1,209 @@
+[
+  {
+    "chunk_id": "NIST-SP800-82-SEC1",
+    "source": "NIST",
+    "domain": "OT & IoT Security",
+    "technique_id": "SP800-82-S1",
+    "title": "NIST SP 800-82: Section 5: OT/IoT Threat and Vulnerability Overview",
+    "url": "https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final",
+    "category": "STANDARDS_GUIDANCE",
+    "tactics": [
+      "OT/IoT Security Baseline",
+      "Containment"
+    ],
+    "platforms": [
+      "IoT",
+      "OT",
+      "ICS"
+    ],
+    "content": "NIST SP 800-82 Rev 3: Guide to Operational Technology (OT) & IoT Security - Section 5: OT/IoT Threat and Vulnerability Overview: Operational Technology and IoT devices are vulnerable to volumetric network denial-of-service (DDoS/DoS) attacks, unauthorized command injection, ARP spoofing, and rogue gateway masquerading. Constrained IoT microcontrollers lack cryptographic hardware acceleration, making them prone to resource exhaustion when bombarded with high-rate packet floods.",
+    "keywords": "NIST SP 800-82 OT IoT network segmentation Purdue model Rate anomaly containment Section 5: OT/IoT Threat and Vulnerability Overview"
+  },
+  {
+    "chunk_id": "NIST-SP800-82-SEC2",
+    "source": "NIST",
+    "domain": "OT & IoT Security",
+    "technique_id": "SP800-82-S2",
+    "title": "NIST SP 800-82: Section 6.2: Network Segmentation & Purdue Architecture",
+    "url": "https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final",
+    "category": "STANDARDS_GUIDANCE",
+    "tactics": [
+      "OT/IoT Security Baseline",
+      "Containment"
+    ],
+    "platforms": [
+      "IoT",
+      "OT",
+      "ICS"
+    ],
+    "content": "NIST SP 800-82 Rev 3: Guide to Operational Technology (OT) & IoT Security - Section 6.2: Network Segmentation & Purdue Architecture: IoT field devices, sensors, and actuators must be segregated into dedicated security zones (Purdue Level 1/0) using firewalls, VLANs, and micro-segmentation. Cross-zone communication must be strictly restricted to stateful inspection proxies to isolate lateral movement.",
+    "keywords": "NIST SP 800-82 OT IoT network segmentation Purdue model Rate anomaly containment Section 6.2: Network Segmentation & Purdue Architecture"
+  },
+  {
+    "chunk_id": "NIST-SP800-82-SEC3",
+    "source": "NIST",
+    "domain": "OT & IoT Security",
+    "technique_id": "SP800-82-S3",
+    "title": "NIST SP 800-82: Section 6.4: Incident Containment & Human-in-the-Loop Mandates",
+    "url": "https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final",
+    "category": "STANDARDS_GUIDANCE",
+    "tactics": [
+      "OT/IoT Security Baseline",
+      "Containment"
+    ],
+    "platforms": [
+      "IoT",
+      "OT",
+      "ICS"
+    ],
+    "content": "NIST SP 800-82 Rev 3: Guide to Operational Technology (OT) & IoT Security - Section 6.4: Incident Containment & Human-in-the-Loop Mandates: Defensive automated response mechanisms on safety-critical IoT (e.g., medical infusion devices, industrial programmable logic controllers) must prioritize non-destructive isolation (quarantine VLAN) over abrupt port shutdown. Automated mitigations must provide transparent explainability and enforce human-in-the-loop analyst authorization before persistent configuration changes.",
+    "keywords": "NIST SP 800-82 OT IoT network segmentation Purdue model Rate anomaly containment Section 6.4: Incident Containment & Human-in-the-Loop Mandates"
+  },
+  {
+    "chunk_id": "NIST-SP800-82-SEC4",
+    "source": "NIST",
+    "domain": "OT & IoT Security",
+    "technique_id": "SP800-82-S4",
+    "title": "NIST SP 800-82: Section 6.7: Detection Signatures & Flow Rate Anomaly Monitoring",
+    "url": "https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final",
+    "category": "STANDARDS_GUIDANCE",
+    "tactics": [
+      "OT/IoT Security Baseline",
+      "Containment"
+    ],
+    "platforms": [
+      "IoT",
+      "OT",
+      "ICS"
+    ],
+    "content": "NIST SP 800-82 Rev 3: Guide to Operational Technology (OT) & IoT Security - Section 6.7: Detection Signatures & Flow Rate Anomaly Monitoring: Network flow anomalies such as rapid deviations in packet rate (Rate > 1000 pkts/s), source burst rate (Srate), destination drift (Drate), and irregular TCP flags (excessive SYN without ACK or unexpected RST/FIN counts) are primary indicators of ongoing denial of service or network reconnaissance.",
+    "keywords": "NIST SP 800-82 OT IoT network segmentation Purdue model Rate anomaly containment Section 6.7: Detection Signatures & Flow Rate Anomaly Monitoring"
+  },
+  {
+    "chunk_id": "NIST-SP800-53-SC-5",
+    "source": "NIST",
+    "domain": "Security Controls",
+    "technique_id": "SC-5",
+    "title": "NIST SP 800-53: Control SC-5 (Denial-of-Service Protection)",
+    "url": "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final",
+    "category": "SECURITY_CONTROL",
+    "tactics": [
+      "Defensive Control",
+      "Incident Handling"
+    ],
+    "platforms": [
+      "Network",
+      "IoT"
+    ],
+    "content": "NIST SP 800-53 Rev 5 Control SC-5: Denial-of-Service Protection. Guidance: Implement boundary protection, ingress rate-limiting, SYN cookies, and adaptive traffic throttling at the IoT network gateway to restrict volumetric flood attacks and maintain availability of critical services.",
+    "keywords": "NIST SP 800-53 SC-5 Denial-of-Service Protection SYN cookies ARP inspection boundary protection"
+  },
+  {
+    "chunk_id": "NIST-SP800-53-SC-7",
+    "source": "NIST",
+    "domain": "Security Controls",
+    "technique_id": "SC-7",
+    "title": "NIST SP 800-53: Control SC-7 (Boundary Protection & Dynamic ARP Inspection)",
+    "url": "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final",
+    "category": "SECURITY_CONTROL",
+    "tactics": [
+      "Defensive Control",
+      "Incident Handling"
+    ],
+    "platforms": [
+      "Network",
+      "IoT"
+    ],
+    "content": "NIST SP 800-53 Rev 5 Control SC-7: Boundary Protection & Dynamic ARP Inspection. Guidance: Enforce managed network interfaces, DHCP snooping, Dynamic ARP Inspection (DAI), and 802.1X port security to prevent adversary-in-the-middle (AiTM) ARP spoofing and IP header forgery.",
+    "keywords": "NIST SP 800-53 SC-7 Boundary Protection & Dynamic ARP Inspection SYN cookies ARP inspection boundary protection"
+  },
+  {
+    "chunk_id": "NIST-SP800-53-SI-4",
+    "source": "NIST",
+    "domain": "Security Controls",
+    "technique_id": "SI-4",
+    "title": "NIST SP 800-53: Control SI-4 (Information System Monitoring & Anomaly Detection)",
+    "url": "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final",
+    "category": "SECURITY_CONTROL",
+    "tactics": [
+      "Defensive Control",
+      "Incident Handling"
+    ],
+    "platforms": [
+      "Network",
+      "IoT"
+    ],
+    "content": "NIST SP 800-53 Rev 5 Control SI-4: Information System Monitoring & Anomaly Detection. Guidance: Continuously monitor inbound and outbound network telemetry for anomalous protocol usage, abnormal inter-arrival time (IAT), header length fluctuations, and unexpected connection state flags.",
+    "keywords": "NIST SP 800-53 SI-4 Information System Monitoring & Anomaly Detection SYN cookies ARP inspection boundary protection"
+  },
+  {
+    "chunk_id": "NIST-SP800-53-IR-4",
+    "source": "NIST",
+    "domain": "Security Controls",
+    "technique_id": "IR-4",
+    "title": "NIST SP 800-53: Control IR-4 (Incident Handling & Response Procedures)",
+    "url": "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final",
+    "category": "SECURITY_CONTROL",
+    "tactics": [
+      "Defensive Control",
+      "Incident Handling"
+    ],
+    "platforms": [
+      "Network",
+      "IoT"
+    ],
+    "content": "NIST SP 800-53 Rev 5 Control IR-4: Incident Handling & Response Procedures. Guidance: Formulate prioritized playbooks for volumetric DDoS, single-endpoint DoS, and spoofing intrusions with step-by-step forensic logging, containment isolation, and post-incident verification.",
+    "keywords": "NIST SP 800-53 IR-4 Incident Handling & Response Procedures SYN cookies ARP inspection boundary protection"
+  },
+  {
+    "chunk_id": "NIST-IR8259A-CAP1",
+    "source": "NIST",
+    "domain": "IoT Device Baseline",
+    "technique_id": "IR8259A-C1",
+    "title": "NIST IR 8259A: Device Identification & Hardware Identity",
+    "url": "https://csrc.nist.gov/publications/detail/nistir/8259a/final",
+    "category": "DEVICE_BASELINE",
+    "tactics": [
+      "Device Hardening"
+    ],
+    "platforms": [
+      "IoT"
+    ],
+    "content": "NIST IR 8259A Core Baseline: Device Identification & Hardware Identity. Details: Each IoT device must possess a unique, verifiable identity (e.g. IEEE 802.1AR DevID, immutable MAC address) to prevent spoofing, MAC cloning, and rogue device impersonation.",
+    "keywords": "NIST IR 8259A IoT device identity MAC cloning botnet prevention Device Identification & Hardware Identity"
+  },
+  {
+    "chunk_id": "NIST-IR8259A-CAP2",
+    "source": "NIST",
+    "domain": "IoT Device Baseline",
+    "technique_id": "IR8259A-C2",
+    "title": "NIST IR 8259A: Device Configuration & Secure Defaults",
+    "url": "https://csrc.nist.gov/publications/detail/nistir/8259a/final",
+    "category": "DEVICE_BASELINE",
+    "tactics": [
+      "Device Hardening"
+    ],
+    "platforms": [
+      "IoT"
+    ],
+    "content": "NIST IR 8259A Core Baseline: Device Configuration & Secure Defaults. Details: Disable legacy protocols (Telnet, unencrypted HTTP, cleartext SNMP) to eliminate trivial attack vectors and prevent IoT nodes from being recruited into Mirai-like botnet swarms.",
+    "keywords": "NIST IR 8259A IoT device identity MAC cloning botnet prevention Device Configuration & Secure Defaults"
+  },
+  {
+    "chunk_id": "NIST-IR8259A-CAP3",
+    "source": "NIST",
+    "domain": "IoT Device Baseline",
+    "technique_id": "IR8259A-C3",
+    "title": "NIST IR 8259A: Data Protection & Network Interface Restraint",
+    "url": "https://csrc.nist.gov/publications/detail/nistir/8259a/final",
+    "category": "DEVICE_BASELINE",
+    "tactics": [
+      "Device Hardening"
+    ],
+    "platforms": [
+      "IoT"
+    ],
+    "content": "NIST IR 8259A Core Baseline: Data Protection & Network Interface Restraint. Details: Restrict open listening sockets to authorized management ports and isolate IoT data transport to encrypted channels (TLS 1.3, DTLS, MQTT over TLS).",
+    "keywords": "NIST IR 8259A IoT device identity MAC cloning botnet prevention Data Protection & Network Interface Restraint"
+  }
+]

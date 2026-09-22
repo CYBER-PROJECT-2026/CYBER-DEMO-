@@ -1,0 +1,335 @@
+{
+  "phase": "Phase 15: AEGIS End-to-End Integrity, Security & Claim Audit",
+  "audit_timestamp": "2026-09-19T22:30:00Z",
+  "invariants_summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "invariants": {
+      "INVARIANT_1_UNKNOWN_TRUSTED_CLASS_NONE": "PASSED",
+      "INVARIANT_2_UNKNOWN_AUTOMATED_BLOCKING_DISALLOWED": "PASSED",
+      "INVARIANT_3_ADVISORY_CANNOT_BECOME_TRUSTED": "PASSED",
+      "INVARIANT_4_RAG_CANNOT_MODIFY_ML_PREDICTION": "PASSED",
+      "INVARIANT_5_RAG_CANNOT_MODIFY_OOD_STATE": "PASSED",
+      "INVARIANT_6_AGENTS_CANNOT_BYPASS_ABSTENTION": "PASSED",
+      "INVARIANT_7_SERIALIZATION_PRESERVES_ABSTENTION": "PASSED",
+      "INVARIANT_8_INFERENCE_FAILURES_FAIL_SAFELY": "PASSED",
+      "INVARIANT_9_EXACT_46_CANONICAL_FEATURES": "PASSED",
+      "INVARIANT_10_TEMPERATURE_CALIBRATION_CONSISTENCY": "PASSED",
+      "INVARIANT_11_SHAP_IDENTICAL_FEATURE_VECTOR": "PASSED",
+      "INVARIANT_12_ENFORCEMENT_BLOCKS_UNKNOWN_AUTOMATION": "PASSED"
+    }
+  },
+  "verified_fixes": [
+    {
+      "component": "backend/enforcement/enforcement.py",
+      "vulnerability": "SecurityEnforcementEngine lacked verification of automated_blocking_allowed on approved actions",
+      "fix": "Added strict policy check raising PermissionError and recording status='BLOCKED_BY_POLICY' when automated actions target UNKNOWN_OR_REVIEW incidents without SOC_ANALYST identity",
+      "status": "VERIFIED_FIXED"
+    },
+    {
+      "component": "backend/agents/agents.py",
+      "vulnerability": "response_generation_agent defaulted to FIREWALL_DROP even when incident was abstained/untrusted",
+      "fix": "Replaced disruptive mitigation with non-disruptive forensic PCAP capture and telemetry monitoring for abstained incidents",
+      "status": "VERIFIED_FIXED"
+    },
+    {
+      "component": "backend/agents/agent_system.py",
+      "vulnerability": "LLMSynthesizer declared incidents as confirmed attacks without exposing UNKNOWN/advisory status",
+      "fix": "Tagged syntheses of abstained alerts with [FACT / ABSTAINED] header, warning that attack classification is advisory and automated blocking is prohibited",
+      "status": "VERIFIED_FIXED"
+    }
+  ],
+  "end_to_end_sample_traces": {
+    "CASE_A_Known_DDoS": {
+      "sample_index": 0,
+      "raw_prediction": "DDoS",
+      "calibrated_probabilities": {
+        "DDoS": 0.9999737739562988,
+        "DoS": 2.1850335542694665e-05,
+        "Spoofing": 4.36405343862134e-06
+      },
+      "confidence": 0.9999737739562988,
+      "mahalanobis_distance": 2.6443,
+      "ood_decision": false,
+      "decision_state": "KNOWN_DDoS",
+      "trusted_class": "DDoS",
+      "advisory_class": "DDoS",
+      "automated_blocking_allowed": true,
+      "recommendations": [
+        {
+          "action_id": "REC-DDOS-01",
+          "priority": "P1 - CRITICAL",
+          "action_type": "RATE_LIMITING_AND_SCRUBBING",
+          "title": "Enforce Dynamic Edge Ingress Rate-Limiting & SYN Cookie Protection",
+          "rationale": "Advisory only. Retrieved DDoS-relevant guidance supports availability protection: [General context \u2014 NIST NIST SP 800-53: Control SC-5 (Denial-of-Service Protection)]: Implement boundary protection, ingress rate-limiting, SYN cookies, and adaptive traffic throttling at the IoT network gateway to restrict volumetric flood attacks and maintain availability of cr",
+          "precautions": "Avoid hard dropping entire subnets if mixed benign/malicious traffic shares the ingress port. Human-in-the-loop approval required.",
+          "guidance": "If supported by retrieved controls: deploy per-source rate-limiting and TCP SYN cookies at the border. Do not treat this as confirmed for this flow until an analyst reviews the evidence.",
+          "supporting_sources": [
+            "NIST (NIST SP 800-53: Control SC-5 (Denial-of-Service Protection)) [general_context]",
+            "CISA (CISA Advisory AA22-110A: Defending IoT and OT Devices Against State-Sponsored and Botnet Threats) [attack_specific]",
+            "MITRE ATT&CK (T1498.001: Direct Network Flood) [mitre_primary]"
+          ]
+        },
+        {
+          "action_id": "REC-DDOS-02",
+          "priority": "P2 - HIGH",
+          "action_type": "VLAN_ISOLATION",
+          "title": "Quarantine Affected IoT Gateway Segment via Micro-Segmentation",
+          "rationale": "Advisory isolation guidance from retrieved DDoS/availability context. Not an automated action.",
+          "precautions": "Ensure quarantine VLAN maintains telemetry logging for post-incident forensic replay.",
+          "guidance": "If retrieved playbooks support it: migrate the affected gateway port to a telemetry quarantine VLAN with human oversight.",
+          "supporting_sources": [
+            "CISA (CISA Advisory AA22-110A: Defending IoT and OT Devices Against State-Sponsored and Botnet Threats) [attack_specific]",
+            "MITRE ATT&CK (T1498.001: Direct Network Flood) [mitre_primary]",
+            "NIST (NIST SP 800-53: Control SC-5 (Denial-of-Service Protection)) [general_context]"
+          ]
+        }
+      ]
+    },
+    "CASE_B_Known_DoS": {
+      "sample_index": 1,
+      "raw_prediction": "DoS",
+      "calibrated_probabilities": {
+        "DDoS": 5.723250524169998e-06,
+        "DoS": 0.9999911785125732,
+        "Spoofing": 3.0548694667231757e-06
+      },
+      "confidence": 0.9999911785125732,
+      "mahalanobis_distance": 1.705,
+      "ood_decision": false,
+      "decision_state": "KNOWN_DoS",
+      "trusted_class": "DoS",
+      "advisory_class": "DoS",
+      "automated_blocking_allowed": true,
+      "recommendations": [
+        {
+          "action_id": "REC-DOS-01",
+          "priority": "P1 - HIGH",
+          "action_type": "CONNECTION_THROTTLING",
+          "title": "Enforce Connection Timeouts and Socket Quotas",
+          "rationale": "Advisory only. Retrieved DoS-relevant guidance (resource/service exhaustion) supports connection protection: Not established from retrieved evidence.",
+          "precautions": "Do not set keep-alive timeouts lower than standard sensor polling intervals without analyst review.",
+          "guidance": "If supported by retrieved controls: tighten idle-connection timeouts and restrict concurrent half-open connections per client.",
+          "supporting_sources": [
+            "MITRE ATT&CK (T1499.003: Application Exhaustion Flood) [mitre_primary]"
+          ]
+        },
+        {
+          "action_id": "REC-DOS-02",
+          "priority": "P2 - MEDIUM",
+          "action_type": "STATEFUL_FIREWALL_FILTER",
+          "title": "Filter Malformed and Unexpected Flag Bursts",
+          "rationale": "Advisory filtering consistent with retrieved endpoint/application exhaustion context. TreeSHAP values are model facts, not proof of a specific packet-crafting technique.",
+          "precautions": "Verify application-layer IoT protocols (MQTT/CoAP) before enforcing header drops.",
+          "guidance": "If retrieved controls support it: configure stateful inspection to drop unexpected flag bursts lacking handshake context.",
+          "supporting_sources": [
+            "MITRE ATT&CK (T1499.003: Application Exhaustion Flood) [mitre_primary]"
+          ]
+        }
+      ]
+    },
+    "CASE_C_Known_Spoofing": {
+      "sample_index": 17,
+      "raw_prediction": "Spoofing",
+      "calibrated_probabilities": {
+        "DDoS": 7.729098797426559e-06,
+        "DoS": 1.4151601135381497e-05,
+        "Spoofing": 0.9999780654907227
+      },
+      "confidence": 0.9999780654907227,
+      "mahalanobis_distance": 4.1837,
+      "ood_decision": false,
+      "decision_state": "KNOWN_Spoofing",
+      "trusted_class": "Spoofing",
+      "advisory_class": "Spoofing",
+      "automated_blocking_allowed": true,
+      "recommendations": [
+        {
+          "action_id": "REC-SPOOF-01",
+          "priority": "P1 - CRITICAL",
+          "action_type": "DYNAMIC_ARP_INSPECTION",
+          "title": "Enable Dynamic ARP Inspection (DAI) & DHCP Snooping",
+          "rationale": "Advisory only. Retrieved spoofing/AiTM guidance supports ARP/DHCP controls: NIST (NIST SP 800-53: Control SC-7 (Boundary Protection & Dynamic ARP Inspection)) [attack_specific, acs=0.41]: NIST SP 800-53 Rev 5 Control SC-7: Boundary Protection & Dynamic ARP Inspection. Guidance: Enforce managed network interfaces, DHCP snooping, Dynamic ARP Inspection (DA",
+          "precautions": "Ensure static IP IoT devices have valid MAC-IP bindings entered in the DHCP snooping database.",
+          "guidance": "If retrieved NIST/CISA excerpts support it: enable DAI and drop unauthorized gratuitous ARPs. Do not infer that this flow already performed ARP poisoning.",
+          "supporting_sources": [
+            "NIST (NIST SP 800-53: Control SC-7 (Boundary Protection & Dynamic ARP Inspection)) [attack_specific]",
+            "MITRE ATT&CK (T1557.002: ARP Cache Poisoning) [mitre_primary]"
+          ]
+        },
+        {
+          "action_id": "REC-SPOOF-02",
+          "priority": "P2 - HIGH",
+          "action_type": "PORT_SECURITY_8021X",
+          "title": "Enforce 802.1X Port Authentication & MAC Pinning",
+          "rationale": "Advisory network-access control consistent with retrieved spoofing/boundary-protection evidence.",
+          "precautions": "Confirm critical sensor endpoints support 802.1X or MAC Authentication Bypass (MAB).",
+          "guidance": "If retrieved controls support it: bind switch-port access to authenticated MACs; isolate unverified MACs.",
+          "supporting_sources": [
+            "NIST (NIST SP 800-53: Control SC-7 (Boundary Protection & Dynamic ARP Inspection)) [attack_specific]",
+            "MITRE ATT&CK (T1557.002: ARP Cache Poisoning) [mitre_primary]"
+          ]
+        }
+      ]
+    },
+    "CASE_D_Row_657": {
+      "sample_index": 657,
+      "raw_prediction": "DoS",
+      "calibrated_probabilities": {
+        "DDoS": 0.34105098247528076,
+        "DoS": 0.6586171984672546,
+        "Spoofing": 0.00033182455808855593
+      },
+      "confidence": 0.6586171984672546,
+      "mahalanobis_distance": 29.2557,
+      "ood_decision": true,
+      "decision_state": "UNKNOWN_OR_REVIEW",
+      "trusted_class": null,
+      "advisory_class": "DoS",
+      "abstention_reasons": [
+        "LOW_CONFIDENCE",
+        "OOD_DISTANCE"
+      ],
+      "automated_blocking_allowed": false,
+      "recommendations": [
+        {
+          "action_id": "REC-DOS-01",
+          "priority": "P1 - HIGH",
+          "action_type": "CONNECTION_THROTTLING",
+          "title": "Enforce Connection Timeouts and Socket Quotas",
+          "rationale": "Advisory only. Retrieved DoS-relevant guidance (resource/service exhaustion) supports connection protection: Not established from retrieved evidence.",
+          "precautions": "Do not set keep-alive timeouts lower than standard sensor polling intervals without analyst review.",
+          "guidance": "If supported by retrieved controls: tighten idle-connection timeouts and restrict concurrent half-open connections per client.",
+          "supporting_sources": [
+            "MITRE ATT&CK (T1499.003: Application Exhaustion Flood) [mitre_primary]"
+          ]
+        },
+        {
+          "action_id": "REC-DOS-02",
+          "priority": "P2 - MEDIUM",
+          "action_type": "STATEFUL_FIREWALL_FILTER",
+          "title": "Filter Malformed and Unexpected Flag Bursts",
+          "rationale": "Advisory filtering consistent with retrieved endpoint/application exhaustion context. TreeSHAP values are model facts, not proof of a specific packet-crafting technique.",
+          "precautions": "Verify application-layer IoT protocols (MQTT/CoAP) before enforcing header drops.",
+          "guidance": "If retrieved controls support it: configure stateful inspection to drop unexpected flag bursts lacking handshake context.",
+          "supporting_sources": [
+            "MITRE ATT&CK (T1499.003: Application Exhaustion Flood) [mitre_primary]"
+          ]
+        }
+      ]
+    },
+    "CASE_E_OOD_Distance_Only": {
+      "sample_index": 6,
+      "raw_prediction": "DDoS",
+      "calibrated_probabilities": {
+        "DDoS": 0.9996592998504639,
+        "DoS": 0.0002668800007086247,
+        "Spoofing": 7.374252163572237e-05
+      },
+      "confidence": 0.9996592998504639,
+      "mahalanobis_distance": 29.8381,
+      "ood_decision": true,
+      "decision_state": "UNKNOWN_OR_REVIEW",
+      "trusted_class": null,
+      "advisory_class": "DDoS",
+      "abstention_reasons": [
+        "OOD_DISTANCE"
+      ],
+      "automated_blocking_allowed": false,
+      "recommendations": [
+        {
+          "action_id": "REC-DDOS-01",
+          "priority": "P1 - CRITICAL",
+          "action_type": "RATE_LIMITING_AND_SCRUBBING",
+          "title": "Enforce Dynamic Edge Ingress Rate-Limiting & SYN Cookie Protection",
+          "rationale": "Advisory only. Retrieved DDoS-relevant guidance supports availability protection: [General context \u2014 NIST NIST SP 800-53: Control SC-5 (Denial-of-Service Protection)]: Implement boundary protection, ingress rate-limiting, SYN cookies, and adaptive traffic throttling at the IoT network gateway to restrict volumetric flood attacks and maintain availability of cr",
+          "precautions": "Avoid hard dropping entire subnets if mixed benign/malicious traffic shares the ingress port. Human-in-the-loop approval required.",
+          "guidance": "If supported by retrieved controls: deploy per-source rate-limiting and TCP SYN cookies at the border. Do not treat this as confirmed for this flow until an analyst reviews the evidence.",
+          "supporting_sources": [
+            "NIST (NIST SP 800-53: Control SC-5 (Denial-of-Service Protection)) [general_context]",
+            "CISA (CISA Advisory AA22-110A: Defending IoT and OT Devices Against State-Sponsored and Botnet Threats) [attack_specific]",
+            "MITRE ATT&CK (T1498.001: Direct Network Flood) [mitre_primary]"
+          ]
+        },
+        {
+          "action_id": "REC-DDOS-02",
+          "priority": "P2 - HIGH",
+          "action_type": "VLAN_ISOLATION",
+          "title": "Quarantine Affected IoT Gateway Segment via Micro-Segmentation",
+          "rationale": "Advisory isolation guidance from retrieved DDoS/availability context. Not an automated action.",
+          "precautions": "Ensure quarantine VLAN maintains telemetry logging for post-incident forensic replay.",
+          "guidance": "If retrieved playbooks support it: migrate the affected gateway port to a telemetry quarantine VLAN with human oversight.",
+          "supporting_sources": [
+            "CISA (CISA Advisory AA22-110A: Defending IoT and OT Devices Against State-Sponsored and Botnet Threats) [attack_specific]",
+            "MITRE ATT&CK (T1498.001: Direct Network Flood) [mitre_primary]",
+            "NIST (NIST SP 800-53: Control SC-5 (Denial-of-Service Protection)) [general_context]"
+          ]
+        }
+      ]
+    },
+    "CASE_F_Dual_Abstention": {
+      "sample_index": 657,
+      "description": "Row 657 triggers both signals (conf=0.6586 < 0.70, Mah=29.2557 > 23.4341)",
+      "raw_prediction": "DoS",
+      "calibrated_probabilities": {
+        "DDoS": 0.34105098247528076,
+        "DoS": 0.6586171984672546,
+        "Spoofing": 0.00033182455808855593
+      },
+      "confidence": 0.6586171984672546,
+      "mahalanobis_distance": 29.2557,
+      "ood_decision": true,
+      "decision_state": "UNKNOWN_OR_REVIEW",
+      "trusted_class": null,
+      "advisory_class": "DoS",
+      "abstention_reasons": [
+        "LOW_CONFIDENCE",
+        "OOD_DISTANCE"
+      ],
+      "automated_blocking_allowed": false,
+      "recommendations": [
+        {
+          "action_id": "REC-DOS-01",
+          "priority": "P1 - HIGH",
+          "action_type": "CONNECTION_THROTTLING",
+          "title": "Enforce Connection Timeouts and Socket Quotas",
+          "rationale": "Advisory only. Retrieved DoS-relevant guidance (resource/service exhaustion) supports connection protection: Not established from retrieved evidence.",
+          "precautions": "Do not set keep-alive timeouts lower than standard sensor polling intervals without analyst review.",
+          "guidance": "If supported by retrieved controls: tighten idle-connection timeouts and restrict concurrent half-open connections per client.",
+          "supporting_sources": [
+            "MITRE ATT&CK (T1499.003: Application Exhaustion Flood) [mitre_primary]"
+          ]
+        },
+        {
+          "action_id": "REC-DOS-02",
+          "priority": "P2 - MEDIUM",
+          "action_type": "STATEFUL_FIREWALL_FILTER",
+          "title": "Filter Malformed and Unexpected Flag Bursts",
+          "rationale": "Advisory filtering consistent with retrieved endpoint/application exhaustion context. TreeSHAP values are model facts, not proof of a specific packet-crafting technique.",
+          "precautions": "Verify application-layer IoT protocols (MQTT/CoAP) before enforcing header drops.",
+          "guidance": "If retrieved controls support it: configure stateful inspection to drop unexpected flag bursts lacking handshake context.",
+          "supporting_sources": [
+            "MITRE ATT&CK (T1499.003: Application Exhaustion Flood) [mitre_primary]"
+          ]
+        }
+      ]
+    }
+  },
+  "final_loophole_answers": {
+    "Q1_can_ood_receive_trusted_known_state": "NO",
+    "Q2_can_unknown_reach_automated_enforcement": "NO",
+    "Q3_can_agent_override_abstention": "NO",
+    "Q4_can_rag_override_abstention": "NO",
+    "Q5_can_api_serialization_lose_abstention": "NO",
+    "Q6_can_frontend_display_unknown_as_confirmed": "NO",
+    "Q7_can_exception_silently_produce_known_prediction": "NO",
+    "Q8_can_stale_17_feature_artifact_be_used": "NO",
+    "Q9_can_advisory_class_be_mistaken_for_trusted": "NO",
+    "Q10_can_human_authorization_be_bypassed": "NO"
+  },
+  "critical_final_question": {
+    "is_safe_against_silent_conversion": "YES",
+    "single_biggest_remaining_limitation": "Closed-world training coverage: The Mahalanobis OOD detector operates in the 46-dimensional engineered flow feature space of CICIoT2023. While mathematically provable within that manifold, novel stealth attacks whose aggregate flow metrics superficially resemble known DDoS/DoS/Spoofing cluster statistics could slip through without triggering distance thresholds."
+  }
+}

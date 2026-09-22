@@ -1,0 +1,14 @@
+scenario,pcap,region_type,source_category,total_packets_processed,valid_packets,rejected_packets,windows_produced,trusted_count,unknown_or_review_count,trusted_pct,unknown_or_review_pct,dominant_advisory_class,mean_calibrated_confidence,median_calibrated_confidence,mean_mahalanobis_distance,median_mahalanobis_distance,count_advisory_benign,count_advisory_ddos,count_advisory_dos,count_advisory_spoofing,automated_blocking_allowed
+PCAP_DDoS-SYN_Flood.pcap_initial_5000,DDoS-SYN_Flood.pcap,initial_traffic_capture,DDoS,5000,4879,121,263,188,75,71.48,28.52,Benign,0.8549,0.9075,5.6434,4.3756,137,86,0,40,False
+PCAP_DoS-SYN_Flood.pcap_initial_5000,DoS-SYN_Flood.pcap,initial_traffic_capture,DoS,5000,4990,10,110,101,9,91.82,8.18,DoS,0.939,0.9897,3.6732,3.0684,2,0,103,5,False
+PCAP_MITM-ArpSpoofing.pcap_initial_5000,MITM-ArpSpoofing.pcap,initial_traffic_capture,Spoofing,5000,4948,52,135,116,19,85.93,14.07,Spoofing,0.9496,0.9916,4.0395,2.684,5,1,0,129,False
+PCAP_BenignTraffic.pcap_initial_5000,BenignTraffic.pcap,initial_traffic_capture,Benign,5000,4892,108,294,236,58,80.27,19.73,Benign,0.9026,0.9582,4.8594,4.2339,219,2,0,73,False
+REGION_BenignTraffic.pcap_representative_normal,BenignTraffic.pcap,representative_normal,Benign,1398,1364,34,83,70,13,84.34,15.66,Benign,0.9328,0.9694,5.0328,4.3237,67,0,0,16,False
+REGION_BenignTraffic.pcap_high_activity_burst,BenignTraffic.pcap,high_activity_burst,Benign,87010,86955,55,1799,1646,153,91.5,8.5,Benign,0.959,0.9966,4.5021,4.0951,1706,4,0,89,False
+REGION_DDoS-SYN_Flood.pcap_pre_attack_baseline,DDoS-SYN_Flood.pcap,pre_attack_baseline,DDoS,3935,3839,96,208,135,73,64.9,35.1,Benign,0.8346,0.8985,5.6667,4.3509,106,70,0,32,False
+REGION_DDoS-SYN_Flood.pcap_transition_onset,DDoS-SYN_Flood.pcap,transition_onset,DDoS,79367,79287,80,1634,1591,43,97.37,2.63,DDoS,0.9875,0.9994,2.8283,2.5905,18,1593,0,23,False
+REGION_DDoS-SYN_Flood.pcap_sustained_attack_peak,DDoS-SYN_Flood.pcap,sustained_attack_peak,DDoS,172146,171892,254,3484,3423,61,98.25,1.75,DDoS,0.9897,0.9997,2.66,2.3655,10,3402,46,26,False
+REGION_DoS-SYN_Flood.pcap_transition_early,DoS-SYN_Flood.pcap,transition_early,DoS,120775,120703,72,2480,2422,58,97.66,2.34,DoS,0.9945,1.0,2.3539,1.9989,0,0,2465,15,False
+REGION_DoS-SYN_Flood.pcap_sustained_attack_peak,DoS-SYN_Flood.pcap,sustained_attack_peak,DoS,141694,141641,53,2892,2730,162,94.4,5.6,DoS,0.9746,0.9999,2.5735,2.0392,0,177,2713,2,False
+REGION_MITM-ArpSpoofing.pcap_transition_intermittent,MITM-ArpSpoofing.pcap,transition_intermittent,Spoofing,3631,3602,29,95,81,14,85.26,14.74,Spoofing,0.94,0.9917,3.655,2.6214,3,0,0,92,False
+REGION_MITM-ArpSpoofing.pcap_sustained_spoofing_active,MITM-ArpSpoofing.pcap,sustained_spoofing_active,Spoofing,566,251,315,48,33,15,68.75,31.25,Spoofing,0.8768,0.9338,7.9703,5.3468,18,0,0,30,False

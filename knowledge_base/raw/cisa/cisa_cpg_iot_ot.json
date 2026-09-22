@@ -1,0 +1,21 @@
+{
+  "source": "CISA",
+  "document_id": "CISA-CPG-IOT-OT",
+  "title": "CISA Cross-Sector Cybersecurity Performance Goals (CPGs) for IoT/OT Environments",
+  "official_url": "https://www.cisa.gov/cross-sector-cybersecurity-performance-goals",
+  "publication_date": "2023-03",
+  "core_goals": [
+    {
+      "goal": "CPG 2.A: Asset Inventory & Protocol Visibility",
+      "description": "Maintain accurate, real-time inventory of all connected IoT endpoints, listening ports, and baseline protocol behaviors."
+    },
+    {
+      "goal": "CPG 3.A: Network Micro-segmentation",
+      "description": "Prevent lateral movement by enforcing VLAN segregation, access control lists (ACLs), and firewall inspection between IoT device tiers."
+    },
+    {
+      "goal": "CPG 5.A: Rapid Containment Playbooks",
+      "description": "Establish pre-approved incident containment playbooks for volumetric DDoS, endpoint exhaustion, and spoofing attacks with human oversight."
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "rule_name": "AEGIS-Live v2 Evidence-Based Abstention Gate",
+  "created_at_utc": "2026-09-20 17:08:56",
+  "evaluation_contract": "TEMPORAL GENERALIZATION WITH PERSISTENT-FLOW IDENTITY",
+  "objective": "Identify unreliable predictions (especially DDoS<->DoS cross-talk) while preserving >=95% coverage",
+  "gate_definition": {
+    "condition": "(confidence < confidence_threshold) OR (mahalanobis_distance > mahalanobis_threshold)",
+    "confidence_threshold": 0.55,
+    "mahalanobis_threshold": 35.0,
+    "calibrated_temperature": 1.0054586295782204,
+    "mahalanobis_regularization_lambda": 0.0001
+  },
+  "semantics": {
+    "status_trusted": "TRUSTED",
+    "status_abstained": "UNKNOWN_OR_REVIEW",
+    "automated_blocking_allowed": false,
+    "note": "Abstention converts prediction to UNKNOWN_OR_REVIEW. Model argmax is preserved as advisory_class only."
+  },
+  "validation_performance": {
+    "coverage": 0.9426666666666667,
+    "abstention_rate": 0.05733333333333333,
+    "retained_samples": 11312,
+    "retained_accuracy": 0.8735855728429985,
+    "retained_macro_f1": 0.8707645933384203,
+    "retained_errors": 1430,
+    "total_errors": 1764,
+    "errors_caught": 334,
+    "error_capture_rate": 0.1893424036281179,
+    "false_abstentions": 354,
+    "false_abstention_rate": 0.03458382180539273,
+    "ddos_dos_total_errors": 1322,
+    "ddos_dos_errors_caught": 272,
+    "ddos_dos_capture_rate": 0.20574886535552195
+  },
+  "dataset_hashes": {
+    "train_csv_sha256": "ee8cbaab106d83468cf9a8e8af624f02b489d4cdc2ddaba30acca5b2826b9d11",
+    "validation_csv_sha256": "6ef5f1f49e078160c1065b7bde01a4caaba1b00480abc343e2ca3072c2694ec5",
+    "test_csv_sha256": "dbe9c194a808f1e57d832458981df912138db637bb9f4ae030fd0fdeaad19d49"
+  },
+  "verdict": "OOD_ABSTENTION_AUDIT = PASS",
+  "test_performance": {
+    "coverage": 0.94575,
+    "abstention_rate": 0.05425,
+    "retained_samples": 11349,
+    "retained_accuracy": 0.8339060710194731,
+    "retained_macro_f1": 0.8327213272913081,
+    "retained_errors": 1885,
+    "total_errors": 2185,
+    "errors_caught": 300,
+    "error_capture_rate": 0.13729977116704806,
+    "false_abstentions": 351,
+    "false_abstention_rate": 0.03576158940397351,
+    "ddos_dos_total_errors": 1342,
+    "ddos_dos_errors_caught": 227,
+    "ddos_dos_capture_rate": 0.169150521609538
+  },
+  "test_breakdown": {
+    "ddos_to_dos": {
+      "total": 711,
+      "caught": 125,
+      "rate": 0.17580872011251758
+    },
+    "dos_to_ddos": {
+      "total": 631,
+      "caught": 102,
+      "rate": 0.16164817749603805
+    }
+  }
+}

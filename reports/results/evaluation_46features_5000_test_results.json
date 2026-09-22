@@ -1,0 +1,136 @@
+{
+  "model_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\cic_iot_xgboost_model.pkl",
+  "encoder_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\label_encoder.pkl",
+  "test_dataset_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\Testing_data\\testing_data.csv",
+  "feature_count": 46,
+  "features": [
+    "flow_duration",
+    "Header_Length",
+    "Protocol Type",
+    "Duration",
+    "Rate",
+    "Srate",
+    "Drate",
+    "fin_flag_number",
+    "syn_flag_number",
+    "rst_flag_number",
+    "psh_flag_number",
+    "ack_flag_number",
+    "ece_flag_number",
+    "cwr_flag_number",
+    "ack_count",
+    "syn_count",
+    "fin_count",
+    "urg_count",
+    "rst_count",
+    "HTTP",
+    "HTTPS",
+    "DNS",
+    "Telnet",
+    "SMTP",
+    "SSH",
+    "IRC",
+    "TCP",
+    "UDP",
+    "DHCP",
+    "ARP",
+    "ICMP",
+    "IPv",
+    "LLC",
+    "Tot sum",
+    "Min",
+    "Max",
+    "AVG",
+    "Std",
+    "Tot size",
+    "IAT",
+    "Number",
+    "Magnitue",
+    "Radius",
+    "Covariance",
+    "Variance",
+    "Weight"
+  ],
+  "target_column": "attack_class",
+  "classes": [
+    "DDoS",
+    "DoS",
+    "Spoofing"
+  ],
+  "total_test_records": 5000,
+  "correct_predictions": 4999,
+  "incorrect_predictions": 1,
+  "overall_accuracy": 0.9998,
+  "balanced_accuracy": 0.9998000399920016,
+  "macro_precision": 0.9998001598721024,
+  "macro_recall": 0.9998000399920016,
+  "macro_f1": 0.9998000399740125,
+  "weighted_precision": 0.9998001199040768,
+  "weighted_recall": 0.9998,
+  "weighted_f1": 0.9997999999820073,
+  "cohen_kappa": 0.999699999988,
+  "matthews_corrcoef": 0.9997000599700078,
+  "roc_auc_ovr": 1.0,
+  "inference_performance": {
+    "total_time_seconds": 0.03459080000175163,
+    "avg_latency_ms": 0.006918160000350326,
+    "avg_latency_us": 6.918160000350326,
+    "throughput_records_per_sec": 144547.10500326118
+  },
+  "per_class": {
+    "DDoS": {
+      "support": 1667,
+      "TP": 1666,
+      "FP": 0,
+      "FN": 1,
+      "TN": 3333,
+      "precision": 1.0,
+      "recall": 0.9994001199760048,
+      "f1_score": 0.9996999699969997
+    },
+    "DoS": {
+      "support": 1667,
+      "TP": 1667,
+      "FP": 1,
+      "FN": 0,
+      "TN": 3332,
+      "precision": 0.999400479616307,
+      "recall": 1.0,
+      "f1_score": 0.9997001499250375
+    },
+    "Spoofing": {
+      "support": 1666,
+      "TP": 1666,
+      "FP": 0,
+      "FN": 0,
+      "TN": 3334,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "DDoS",
+      "DoS",
+      "Spoofing"
+    ],
+    "matrix": [
+      [
+        1666,
+        1,
+        0
+      ],
+      [
+        0,
+        1667,
+        0
+      ],
+      [
+        0,
+        0,
+        1666
+      ]
+    ]
+  }
+}

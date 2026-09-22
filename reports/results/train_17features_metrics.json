@@ -1,0 +1,53 @@
+{
+  "model_file": "cic_iot_xgboost_17features_model.pkl",
+  "encoder_file": "label_encoder_17features.pkl",
+  "num_features": 17,
+  "feature_names": [
+    "flow_duration",
+    "Protocol Type",
+    "Duration",
+    "Rate",
+    "Srate",
+    "Drate",
+    "fin_flag_number",
+    "syn_flag_number",
+    "rst_flag_number",
+    "psh_flag_number",
+    "ack_flag_number",
+    "syn_count",
+    "fin_count",
+    "TCP",
+    "UDP",
+    "Tot sum",
+    "Weight"
+  ],
+  "classes": [
+    "DDoS",
+    "DoS",
+    "Spoofing"
+  ],
+  "num_train_records": 1500000,
+  "training_time_sec": 57.994527100003324,
+  "train_accuracy": 0.884038,
+  "train_balanced_accuracy": 0.8955936038781304,
+  "train_macro_precision": 0.8957377445487121,
+  "train_macro_recall": 0.8955936038781304,
+  "train_macro_f1": 0.8955771707751546,
+  "train_confusion_matrix": [
+    [
+      461403,
+      93937,
+      0
+    ],
+    [
+      80006,
+      475333,
+      0
+    ],
+    [
+      0,
+      0,
+      389321
+    ]
+  ]
+}

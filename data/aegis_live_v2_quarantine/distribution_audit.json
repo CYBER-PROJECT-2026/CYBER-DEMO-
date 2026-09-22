@@ -1,0 +1,728 @@
+{
+  "train": {
+    "duration_ms": {
+      "count": 56000,
+      "min": 0.06103515625,
+      "max": 49491.0249710083,
+      "mean": 969.6167681515217,
+      "median": 13.800501823425293,
+      "std": 3316.9784194770837,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_rate_pps": {
+      "count": 56000,
+      "min": 1.0102841884824543,
+      "max": 819200.0,
+      "mean": 18994.344823565618,
+      "median": 3623.056702592643,
+      "std": 46705.671382877714,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "byte_rate_bps": {
+      "count": 56000,
+      "min": 136.03646700879673,
+      "max": 54746704.84210526,
+      "mean": 1907849.6696922944,
+      "median": 730058.0365079797,
+      "std": 3867400.0222327397,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "iat_mean_ms": {
+      "count": 56000,
+      "min": 0.0012456154336734694,
+      "max": 1010.0209177756797,
+      "mean": 19.788097309214724,
+      "median": 0.2816428943556182,
+      "std": 67.6934371321854,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "iat_std_ms": {
+      "count": 56000,
+      "min": 0.003317670168665176,
+      "max": 742.4584635180813,
+      "mean": 31.131194002350185,
+      "median": 0.8232576070962413,
+      "std": 81.19734884278583,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_size_mean": {
+      "count": 56000,
+      "min": 45.96,
+      "max": 4874.2,
+      "mean": 441.77005035714285,
+      "median": 60.0,
+      "std": 622.6909937623151,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_size_std": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 5677.406396967415,
+      "mean": 371.33107203736125,
+      "median": 0.0,
+      "std": 551.3490295419462,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_size_min": {
+      "count": 56000,
+      "min": 44.0,
+      "max": 1514.0,
+      "mean": 83.34621428571428,
+      "median": 60.0,
+      "std": 158.88404485533388,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_size_max": {
+      "count": 56000,
+      "min": 46.0,
+      "max": 37714.0,
+      "mean": 1322.974642857143,
+      "median": 60.0,
+      "std": 2125.3101484221233,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "syn_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.47024892857142847,
+      "median": 0.2,
+      "std": 0.4724496900397615,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "ack_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.49228571428571427,
+      "median": 0.42,
+      "std": 0.4792003655935922,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "rst_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.04052785714285714,
+      "median": 0.0,
+      "std": 0.15516905952977617,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "fin_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 0.48,
+      "mean": 0.0134475,
+      "median": 0.0,
+      "std": 0.04992968602794385,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "urg_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "std": 0.0,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "psh_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.12654500000000002,
+      "median": 0.0,
+      "std": 0.21466072923455762,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "ece_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 0.2,
+      "mean": 0.00010821428571428572,
+      "median": 0.0,
+      "std": 0.003168354293121437,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "cwr_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 0.12,
+      "mean": 7.357142857142857e-05,
+      "median": 0.0,
+      "std": 0.0019109671144923973,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "ip_ttl_mean": {
+      "count": 56000,
+      "min": 4.0,
+      "max": 247.0,
+      "mean": 88.801,
+      "median": 64.0,
+      "std": 45.90178452635558,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "ip_ttl_std": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 92.9340340988034,
+      "mean": 21.538505828460025,
+      "median": 0.0,
+      "std": 33.420364983456736,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "tcp_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.9528035714285714,
+      "median": 1.0,
+      "std": 0.2120606722907405,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "udp_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.046267857142857145,
+      "median": 0.0,
+      "std": 0.21006649075239225,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "icmp_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0009285714285714286,
+      "median": 0.0,
+      "std": 0.030458590745547028,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "inbound_pkt_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.7564653571428571,
+      "median": 1.0,
+      "std": 0.3040497961762952,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "outbound_pkt_ratio": {
+      "count": 56000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.24353464285714288,
+      "median": 0.0,
+      "std": 0.3040497961762952,
+      "nan_count": 0,
+      "inf_count": 0
+    }
+  },
+  "validation": {
+    "duration_ms": {
+      "count": 12000,
+      "min": 0.06198883056640625,
+      "max": 49516.69502258301,
+      "mean": 500.4226118127505,
+      "median": 11.041045188903809,
+      "std": 2290.759775089695,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_rate_pps": {
+      "count": 12000,
+      "min": 1.009760444981164,
+      "max": 806596.9230769231,
+      "mean": 15700.253250464713,
+      "median": 4528.557663023976,
+      "std": 37409.94071256288,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "byte_rate_bps": {
+      "count": 12000,
+      "min": 141.2342561927095,
+      "max": 64164911.68598305,
+      "mean": 2223805.4022991084,
+      "median": 732988.2452972091,
+      "std": 4056629.86867642,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "iat_mean_ms": {
+      "count": 12000,
+      "min": 0.0012650781748246174,
+      "max": 1010.5447963792451,
+      "mean": 10.21270636352552,
+      "median": 0.22532745283477162,
+      "std": 46.750199491626425,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "iat_std_ms": {
+      "count": 12000,
+      "min": 0.0034107943406212512,
+      "max": 521.6657126165358,
+      "mean": 17.291193873590537,
+      "median": 1.15056674323344,
+      "std": 53.25837848316226,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_size_mean": {
+      "count": 12000,
+      "min": 54.0,
+      "max": 3863.12,
+      "mean": 541.9927416666667,
+      "median": 60.0,
+      "std": 599.5920376270147,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_size_std": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 8711.759784173508,
+      "mean": 558.2686169891896,
+      "median": 0.0,
+      "std": 702.0743285623934,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_size_min": {
+      "count": 12000,
+      "min": 50.0,
+      "max": 1514.0,
+      "mean": 67.75333333333333,
+      "median": 60.0,
+      "std": 71.72376998239332,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_size_max": {
+      "count": 12000,
+      "min": 58.0,
+      "max": 49014.0,
+      "mean": 2288.1804166666666,
+      "median": 60.0,
+      "std": 3115.4204346134184,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "syn_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.47201499999999996,
+      "median": 0.2,
+      "std": 0.4818521435381944,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "ack_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.5145833333333333,
+      "median": 0.68,
+      "std": 0.48482139051814493,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "rst_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.03264333333333333,
+      "median": 0.0,
+      "std": 0.13606256725273919,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "fin_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 0.48,
+      "mean": 0.004528333333333334,
+      "median": 0.0,
+      "std": 0.029080314119314388,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "urg_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "std": 0.0,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "psh_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 0.84,
+      "mean": 0.045303333333333334,
+      "median": 0.0,
+      "std": 0.11736107726766573,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "ece_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 0.24,
+      "mean": 0.00020666666666666666,
+      "median": 0.0,
+      "std": 0.005729458186700406,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "cwr_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 0.12,
+      "mean": 9.666666666666668e-05,
+      "median": 0.0,
+      "std": 0.0028032083500238356,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "ip_ttl_mean": {
+      "count": 12000,
+      "min": 52.0,
+      "max": 247.0,
+      "mean": 82.47913833333334,
+      "median": 64.0,
+      "std": 29.985159983606348,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "ip_ttl_std": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 96.39236145534964,
+      "mean": 19.481667260675568,
+      "median": 0.0,
+      "std": 27.94321732421933,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "tcp_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.9843333333333333,
+      "median": 1.0,
+      "std": 0.12418738837408096,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "udp_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.014666666666666666,
+      "median": 0.0,
+      "std": 0.12021963214141959,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "icmp_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.001,
+      "median": 0.0,
+      "std": 0.031608278297592836,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "inbound_pkt_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.7462383333333333,
+      "median": 1.0,
+      "std": 0.27596255085550725,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "outbound_pkt_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.25376166666666666,
+      "median": 0.0,
+      "std": 0.27596255085550725,
+      "nan_count": 0,
+      "inf_count": 0
+    }
+  },
+  "test": {
+    "duration_ms": {
+      "count": 12000,
+      "min": 0.05602836608886719,
+      "max": 49529.582023620605,
+      "mean": 814.9990983804067,
+      "median": 36.57948970794678,
+      "std": 2740.601803475492,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_rate_pps": {
+      "count": 12000,
+      "min": 1.0094977174682203,
+      "max": 892405.1063829787,
+      "mean": 15483.80385437605,
+      "median": 1366.8864890991804,
+      "std": 40011.41825019187,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "byte_rate_bps": {
+      "count": 12000,
+      "min": 141.5315799890445,
+      "max": 53544306.38297872,
+      "mean": 1178303.8572315762,
+      "median": 416984.10980456276,
+      "std": 2515746.0804385254,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "iat_mean_ms": {
+      "count": 12000,
+      "min": 0.0011434360426299426,
+      "max": 1010.8077964004206,
+      "mean": 16.632634660824625,
+      "median": 0.7465201981213628,
+      "std": 55.93064905052024,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "iat_std_ms": {
+      "count": 12000,
+      "min": 0.0033611874631363638,
+      "max": 535.3721071702449,
+      "mean": 28.536962519495816,
+      "median": 3.0973688161716257,
+      "std": 68.80336833214108,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_size_mean": {
+      "count": 12000,
+      "min": 54.0,
+      "max": 3791.6,
+      "mean": 467.1722316666667,
+      "median": 60.0,
+      "std": 604.6015466437958,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_size_std": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 4085.4277479942825,
+      "mean": 474.98225422003856,
+      "median": 0.0,
+      "std": 665.0874830006828,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_size_min": {
+      "count": 12000,
+      "min": 49.0,
+      "max": 1514.0,
+      "mean": 65.47033333333333,
+      "median": 60.0,
+      "std": 62.833415656526356,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "pkt_size_max": {
+      "count": 12000,
+      "min": 54.0,
+      "max": 29026.0,
+      "mean": 1838.4248333333333,
+      "median": 60.0,
+      "std": 2813.1982476738167,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "syn_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.46083,
+      "median": 0.2,
+      "std": 0.4741695697023755,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "ack_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.5038366666666666,
+      "median": 0.52,
+      "std": 0.47895121134007573,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "rst_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.04733833333333333,
+      "median": 0.0,
+      "std": 0.16850800705879174,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "fin_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 0.32,
+      "mean": 0.007628333333333334,
+      "median": 0.0,
+      "std": 0.03670178173178263,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "urg_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "std": 0.0,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "psh_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.08273333333333334,
+      "median": 0.0,
+      "std": 0.16525577552640722,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "ece_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 0.48,
+      "mean": 0.0002916666666666667,
+      "median": 0.0,
+      "std": 0.006289003088901284,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "cwr_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 0.24,
+      "mean": 0.00015999999999999999,
+      "median": 0.0,
+      "std": 0.003342952479112808,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "ip_ttl_mean": {
+      "count": 12000,
+      "min": 52.16,
+      "max": 247.0,
+      "mean": 86.94833333333334,
+      "median": 64.0,
+      "std": 36.173460688195185,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "ip_ttl_std": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 92.42895782652728,
+      "mean": 19.41288352212067,
+      "median": 0.0,
+      "std": 32.212849606094366,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "tcp_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.9598333333333333,
+      "median": 1.0,
+      "std": 0.19635813861098836,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "udp_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.03891666666666667,
+      "median": 0.0,
+      "std": 0.19340443849256564,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "icmp_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.00125,
+      "median": 0.0,
+      "std": 0.03533470737290407,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "inbound_pkt_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.7619616666666668,
+      "median": 1.0,
+      "std": 0.27220879241147056,
+      "nan_count": 0,
+      "inf_count": 0
+    },
+    "outbound_pkt_ratio": {
+      "count": 12000,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.23803833333333338,
+      "median": 0.0,
+      "std": 0.27220879241147056,
+      "nan_count": 0,
+      "inf_count": 0
+    }
+  }
+}

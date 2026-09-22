@@ -1,0 +1,106 @@
+{
+  "model_file": "cic_iot_xgboost_17features_model.pkl",
+  "encoder_file": "label_encoder_17features.pkl",
+  "feature_count": 17,
+  "feature_names": [
+    "flow_duration",
+    "Protocol Type",
+    "Duration",
+    "Rate",
+    "Srate",
+    "Drate",
+    "fin_flag_number",
+    "syn_flag_number",
+    "rst_flag_number",
+    "psh_flag_number",
+    "ack_flag_number",
+    "syn_count",
+    "fin_count",
+    "TCP",
+    "UDP",
+    "Tot sum",
+    "Weight"
+  ],
+  "classes": [
+    "DDoS",
+    "DoS",
+    "Spoofing"
+  ],
+  "num_training_records": 1500000,
+  "training_time_sec": 57.994527100003324,
+  "training_accuracy": 0.884038,
+  "num_unseen_test_records": 8512465,
+  "test_evaluation_time_sec": 52.75455210002838,
+  "test_accuracy": 0.8324989295110171,
+  "test_balanced_accuracy": 0.8922771611550235,
+  "test_macro_precision": 0.8318374605606076,
+  "test_weighted_precision": 0.8791885907004902,
+  "test_macro_recall": 0.8922771611550235,
+  "test_weighted_recall": 0.8324989295110171,
+  "test_macro_f1": 0.8486108438619584,
+  "test_weighted_f1": 0.8451481256959262,
+  "cohen_kappa": 0.574591314012929,
+  "matthews_corrcoef": 0.5994095973872273,
+  "roc_auc_ovr": 0.9379133017028507,
+  "confusion_matrix": [
+    [
+      5611154,
+      1184814,
+      76
+    ],
+    [
+      240929,
+      1378282,
+      27
+    ],
+    [
+      1,
+      0,
+      97182
+    ]
+  ],
+  "per_class": {
+    "DDoS": {
+      "TP": 5611154,
+      "FP": 240930,
+      "FN": 1184890,
+      "TN": 1475491,
+      "precision": 0.9588300509698767,
+      "recall": 0.8256500399349975,
+      "f1_score": 0.8872702743046245,
+      "support": 6796044
+    },
+    "DoS": {
+      "TP": 1378282,
+      "FP": 1184814,
+      "FN": 240956,
+      "TN": 5708413,
+      "precision": 0.537741075636652,
+      "recall": 0.8511917333955848,
+      "f1_score": 0.6590970496378339,
+      "support": 1619238
+    },
+    "Spoofing": {
+      "TP": 97182,
+      "FP": 103,
+      "FN": 1,
+      "TN": 8415179,
+      "precision": 0.9989412550752942,
+      "recall": 0.9999897101344886,
+      "f1_score": 0.9994652076434168,
+      "support": 97183
+    }
+  },
+  "class_distribution": {
+    "training": {
+      "DDoS": 555340,
+      "DoS": 555339,
+      "Spoofing": 389321
+    },
+    "test": {
+      "DDoS": 6796044,
+      "DoS": 1619238,
+      "Spoofing": 97183
+    }
+  }
+}

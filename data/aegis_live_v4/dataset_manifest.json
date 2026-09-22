@@ -1,0 +1,208 @@
+{
+  "dataset_name": "AEGIS-Live v4 Leakage-Safe Network-Topology-Augmented Dataset",
+  "created_at_utc": "2026-09-21 17:34:59",
+  "evaluation_contract": "TEMPORAL GENERALIZATION WITH PERSISTENT-FLOW IDENTITY",
+  "schema_version": "canonical-29",
+  "feature_count": 29,
+  "canonical_features": [
+    "duration_ms",
+    "pkt_rate_pps",
+    "byte_rate_bps",
+    "iat_mean_ms",
+    "iat_std_ms",
+    "pkt_size_mean",
+    "pkt_size_std",
+    "pkt_size_min",
+    "pkt_size_max",
+    "syn_ratio",
+    "ack_ratio",
+    "rst_ratio",
+    "fin_ratio",
+    "urg_ratio",
+    "psh_ratio",
+    "ece_ratio",
+    "cwr_ratio",
+    "ip_ttl_mean",
+    "ip_ttl_std",
+    "tcp_ratio",
+    "udp_ratio",
+    "icmp_ratio",
+    "inbound_pkt_ratio",
+    "outbound_pkt_ratio",
+    "src_concentration_ratio",
+    "src_ip_entropy",
+    "src_ip_cardinality",
+    "dst_ip_cardinality",
+    "fan_in_ratio"
+  ],
+  "flow_physical_features": [
+    "duration_ms",
+    "pkt_rate_pps",
+    "byte_rate_bps",
+    "iat_mean_ms",
+    "iat_std_ms",
+    "pkt_size_mean",
+    "pkt_size_std",
+    "pkt_size_min",
+    "pkt_size_max",
+    "syn_ratio",
+    "ack_ratio",
+    "rst_ratio",
+    "fin_ratio",
+    "urg_ratio",
+    "psh_ratio",
+    "ece_ratio",
+    "cwr_ratio",
+    "ip_ttl_mean",
+    "ip_ttl_std",
+    "tcp_ratio",
+    "udp_ratio",
+    "icmp_ratio",
+    "inbound_pkt_ratio",
+    "outbound_pkt_ratio"
+  ],
+  "network_topology_features": [
+    "src_concentration_ratio",
+    "src_ip_entropy",
+    "src_ip_cardinality",
+    "dst_ip_cardinality",
+    "fan_in_ratio"
+  ],
+  "excluded_features": [
+    "unique_flow_count",
+    "fan_out_ratio"
+  ],
+  "exclusion_rationale": {
+    "unique_flow_count": "Artifact of ephemeral source port randomization in DoS generator rather than host topology.",
+    "fan_out_ratio": "Collinear / inverse of fan_in_ratio."
+  },
+  "window_parameters": {
+    "flow_capacity_packets": 50,
+    "flow_timeout_sec": 2.0,
+    "network_window_sec": 1.0,
+    "quarantine_dead_time_sec": 5.0,
+    "local_subnet": "192.168.0.0/16"
+  },
+  "pcap_hashes": {
+    "DDoS-SYN_Flood.pcap": "5e8124a87e12483af05cb5b4f36dc095c2a979b08f2ee4e18918c26ad3b041b8",
+    "DoS-SYN_Flood.pcap": "3f45569b3438b1ee5fa9105922a423789e4de176a66d550082f5f082f6546ebd",
+    "MITM-ArpSpoofing.pcap": "da097ba27f5690cf4fe47b916c825735af8a829074a71202624740bf4b7cc196",
+    "BenignTraffic.pcap": "549a89337f529412f2507f862d06394c95e5966b9c01aaa980511590657d1dc8"
+  },
+  "row_counts": {
+    "total": 80000,
+    "train": 56000,
+    "validation": 12000,
+    "test": 12000
+  },
+  "class_counts": {
+    "train": {
+      "DDoS": 14000,
+      "DoS": 14000,
+      "Spoofing": 14000,
+      "Benign": 14000
+    },
+    "validation": {
+      "DDoS": 3000,
+      "DoS": 3000,
+      "Spoofing": 3000,
+      "Benign": 3000
+    },
+    "test": {
+      "DDoS": 3000,
+      "DoS": 3000,
+      "Spoofing": 3000,
+      "Benign": 3000
+    }
+  },
+  "split_hashes": {
+    "train.csv": "378d981f7871215487a2a46ef70e44107984df75e7317555eebe79f200fd9c63",
+    "validation.csv": "f1a677ebd0bff3fdc5bc0f56d835062e8bd62a6ea0d68d86c4b7a779bcef4c78",
+    "test.csv": "bf1c7c3783e79496dfee1a08bca5569d81c8dde07541acf6605cebf3158683f6"
+  },
+  "quarantine_audit": {
+    "DDoS-SYN_Flood.pcap": {
+      "train_end_ts": 1661537978.483755,
+      "quarantine_train_val_start": 1661537978.483755,
+      "quarantine_train_val_end": 1661537983.483755,
+      "val_start_ts": 1661537983.484781,
+      "train_val_actual_gap_sec": 5.001025915145874,
+      "quarantined_train_val_packets": 68106,
+      "val_end_ts": 1661537995.670902,
+      "quarantine_val_test_start": 1661537995.670902,
+      "quarantine_val_test_end": 1661538000.670902,
+      "test_start_ts": 1661538000.68231,
+      "val_test_actual_gap_sec": 5.011408090591431,
+      "quarantined_val_test_packets": 64919
+    },
+    "DoS-SYN_Flood.pcap": {
+      "train_end_ts": 1659447776.289974,
+      "quarantine_train_val_start": 1659447776.289974,
+      "quarantine_train_val_end": 1659447781.289974,
+      "val_start_ts": 1659447781.290049,
+      "train_val_actual_gap_sec": 5.000075101852417,
+      "quarantined_train_val_packets": 72069,
+      "val_end_ts": 1659447791.380628,
+      "quarantine_val_test_start": 1659447791.380628,
+      "quarantine_val_test_end": 1659447796.380628,
+      "test_start_ts": 1659447796.382438,
+      "val_test_actual_gap_sec": 5.00180983543396,
+      "quarantined_val_test_packets": 63115
+    },
+    "MITM-ArpSpoofing.pcap": {
+      "train_end_ts": 1666098731.148053,
+      "quarantine_train_val_start": 1666098731.148053,
+      "quarantine_train_val_end": 1666098736.148053,
+      "val_start_ts": 1666098736.150565,
+      "train_val_actual_gap_sec": 5.002511978149414,
+      "quarantined_train_val_packets": 3083,
+      "val_end_ts": 1666100891.620455,
+      "quarantine_val_test_start": 1666100891.620455,
+      "quarantine_val_test_end": 1666100896.620455,
+      "test_start_ts": 1666100896.65749,
+      "val_test_actual_gap_sec": 5.03703498840332,
+      "quarantined_val_test_packets": 1202
+    },
+    "BenignTraffic.pcap": {
+      "train_end_ts": 1665176981.646544,
+      "quarantine_train_val_start": 1665176981.646544,
+      "quarantine_train_val_end": 1665176986.646544,
+      "val_start_ts": 1665176986.646577,
+      "train_val_actual_gap_sec": 5.000032901763916,
+      "quarantined_train_val_packets": 56140,
+      "val_end_ts": 1665177887.484005,
+      "quarantine_val_test_start": 1665177887.484005,
+      "quarantine_val_test_end": 1665177892.484005,
+      "test_start_ts": 1665177892.530205,
+      "val_test_actual_gap_sec": 5.0462000370025635,
+      "quarantined_val_test_packets": 499
+    }
+  },
+  "exclusion_counts": {
+    "DDoS-SYN_Flood.pcap": {
+      "non_ipv4_packet": 1552,
+      "flushed_subcapacity_window": 1167,
+      "quarantine_train_val_packet": 68106,
+      "quarantine_val_test_packet": 64919
+    },
+    "DoS-SYN_Flood.pcap": {
+      "non_ipv4_packet": 591,
+      "flushed_subcapacity_window": 621,
+      "quarantine_train_val_packet": 72069,
+      "quarantine_val_test_packet": 63115
+    },
+    "MITM-ArpSpoofing.pcap": {
+      "non_ipv4_packet": 26360,
+      "flushed_subcapacity_window": 57203,
+      "quarantine_train_val_packet": 3083,
+      "quarantine_val_test_packet": 1202
+    },
+    "BenignTraffic.pcap": {
+      "non_ipv4_packet": 62632,
+      "flushed_subcapacity_window": 184602,
+      "quarantine_train_val_packet": 56140,
+      "quarantine_val_test_packet": 499
+    }
+  },
+  "verdict": "V4_DATASET_CONSTRUCTION = PASS"
+}

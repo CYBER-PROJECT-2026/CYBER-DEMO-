@@ -1,0 +1,66 @@
+{
+  "timestamp": "2026-09-20 01:11:36",
+  "calibrator_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\models\\aegis\\aegis_calibrator_temperature.pkl",
+  "model_path": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\models\\aegis\\aegis_xgboost_model.pkl",
+  "calibration_dataset": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\calibration_data.csv",
+  "test_dataset": "D:\\-AI-Driven-Intrusion-Detection-System-for-IoT-Networks\\Testing_data\\testing_data.csv",
+  "learned_temperature": 1.345192,
+  "calibration_set_metrics": {
+    "n_samples": 21000,
+    "before_calibration": {
+      "nll_log_loss": 0.000988,
+      "brier_score": 0.000385,
+      "ece_top_10": 8.6e-05,
+      "mce_top_10": 0.049348,
+      "ece_top_15": 0.000219,
+      "classwise_ece": 0.000153,
+      "per_class_ece": [
+        0.000205,
+        0.000213,
+        4.2e-05
+      ]
+    },
+    "after_calibration": {
+      "nll_log_loss": 0.000866,
+      "brier_score": 0.000384,
+      "ece_top_10": 0.000119,
+      "mce_top_10": 0.514949,
+      "ece_top_15": 0.000119,
+      "classwise_ece": 0.000149,
+      "per_class_ece": [
+        0.000205,
+        0.000173,
+        6.9e-05
+      ]
+    }
+  },
+  "test_set_metrics": {
+    "n_samples": 5000,
+    "before_calibration": {
+      "nll_log_loss": 0.00026,
+      "brier_score": 0.000196,
+      "ece_top_10": 0.000162,
+      "mce_top_10": 0.692168,
+      "ece_top_15": 0.000162,
+      "classwise_ece": 0.000108,
+      "per_class_ece": [
+        0.000161,
+        0.000162,
+        1e-06
+      ]
+    },
+    "after_calibration": {
+      "nll_log_loss": 0.000296,
+      "brier_score": 0.000178,
+      "ece_top_10": 0.000214,
+      "mce_top_10": 0.645954,
+      "ece_top_15": 0.000214,
+      "classwise_ece": 0.000143,
+      "per_class_ece": [
+        0.000201,
+        0.000203,
+        2.4e-05
+      ]
+    }
+  }
+}

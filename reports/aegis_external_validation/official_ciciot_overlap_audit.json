@@ -1,0 +1,7 @@
+{
+  "candidate_rows_scanned": 15000,
+  "training_rows_scanned": 1500000,
+  "exact_overlap_count": 1426,
+  "overlap_percentage": 9.506666666666666,
+  "clean_candidate_rows_remaining": 13574
+}

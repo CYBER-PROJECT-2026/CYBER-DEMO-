@@ -1,0 +1,60 @@
+{
+  "audit_name": "Calibration Parameter Consistency Audit",
+  "timestamp": "2026-09-20T00:10:00Z",
+  "artifact_verification": {
+    "file": "calibrator_temperature.pkl",
+    "file_size_bytes": 99,
+    "sha256": "61fad75aaecad0bd92e45c12c6af399334e79a066d38b2edc46baa77881115a8",
+    "class_name": "<class 'calibration_engine.MulticlassTemperatureCalibrator'>",
+    "actual_stored_temperature": 1.317656719700599,
+    "canonical_temperature_value": 1.317656719700599,
+    "exact_match": true
+  },
+  "discrepancy_determination": {
+    "claimed_phase15_value": 0.447,
+    "verified_actual_value": 1.317656719700599,
+    "root_cause": "Phase 15 documentation clerical / mislabeling error in Markdown text. The artifact calibrator_temperature.pkl has NEVER been modified and contains T = 1.317656719700599.",
+    "category": "C (1.317657 is the actual temperature; Phase 15 documentation was mislabeled)"
+  },
+  "mathematical_reproduction": {
+    "test_records_evaluated": 5000,
+    "max_absolute_difference_between_object_and_T_1_317": 0.0,
+    "is_mathematically_identical": true
+  },
+  "sample_row_657_audit": {
+    "raw_logits": [
+      0.46467670798301697,
+      1.3318405151367188,
+      -8.673510551452637
+    ],
+    "calibrated_probabilities_T_1_317": {
+      "DDoS": 0.34105098247528076,
+      "DoS": 0.6586171984672546,
+      "Spoofing": 0.00033182455808855593
+    },
+    "confidence_T_1_317": 0.6586171984672546,
+    "triggers_low_confidence_threshold_0_70_under_T_1_317": true,
+    "hypothetical_probabilities_T_0_447": {
+      "DDoS": 0.12565182149410248,
+      "DoS": 0.8743481636047363,
+      "Spoofing": 1.662358445342349e-10
+    },
+    "confidence_hypothetical_T_0_447": 0.8743481636047363,
+    "triggers_low_confidence_under_hypothetical_T_0_447": false
+  },
+  "dataset_abstention_statistics": {
+    "confidence_threshold": 0.7,
+    "records_with_confidence_below_0_70_under_actual_calibrator": 1,
+    "records_with_confidence_below_0_70_under_manual_1_317": 1,
+    "records_with_confidence_below_0_70_under_hypothetical_0_447": 0,
+    "is_phase14_confidence_evaluation_consistent": true
+  },
+  "definitive_answers": {
+    "Q1_actual_calibration_parameter": "T = 1.317656719700599 (frozen in calibrator_temperature.pkl)",
+    "Q2_what_does_0_447_represent": "A clerical typo / mislabeling in the Phase 15 Markdown audit report. It corresponds to no artifact, no parameter, and no mathematical formula in the system.",
+    "Q3_what_does_1_317657_represent": "The true optimal temperature scaling parameter T learned on the 21,000-record calibration set to minimize cross-entropy log loss and Expected Calibration Error (ECE).",
+    "Q4_which_value_is_actually_used_in_production": "T = 1.317656719700599. All production components (IoTIntrusionDetector, CompleteIDSPipeline, predict_with_temperature.py) load calibrator_temperature.pkl directly.",
+    "Q5_are_phase_14_15_results_valid": "YES. All evaluations, test suites, thresholds, and traces were computed using calibrator_temperature.pkl (T = 1.317657). Zero numbers were computed with 0.447.",
+    "Q6_is_any_code_change_required": "NO code change is required. The production model, calibrator, detection engine, and test suites are 100% consistent and intact. Only the clerical typo in the Phase 15 Markdown documentation needs rectification."
+  }
+}
