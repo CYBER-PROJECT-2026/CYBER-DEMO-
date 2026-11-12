@@ -223,3 +223,52 @@ def validate_29_features(raw_input: Union[Dict[str, Any], pd.Series, pd.DataFram
 
     return df
 
+
+# =============================================================================
+# AEGIS-Live v4.3: 39-Feature Schema (Canonical 29 + 10 Causal Context Features)
+# =============================================================================
+CONTEXT_10_FEATURES: List[str] = [
+    "src_ip_cardinality_5s",
+    "dst_ip_cardinality_5s",
+    "src_ip_entropy_5s",
+    "fan_in_ratio_5s",
+    "fan_out_ratio_5s",
+    "pkt_rate_pps_5s",
+    "byte_rate_bps_5s",
+    "tcp_syn_ratio_5s",
+    "tcp_rst_ratio_5s",
+    "protocol_entropy_5s"
+]
+
+CANONICAL_39_FEATURES: List[str] = CANONICAL_29_FEATURES + CONTEXT_10_FEATURES
+
+
+def validate_39_features(raw_input: Union[Dict[str, Any], pd.Series, pd.DataFrame]) -> pd.DataFrame:
+    """
+    Validates that the input strictly adheres to the 39 canonical v4.3 features:
+    - 24 per-flow physical features
+    - 5 network topology features
+    - 10 causal 5.0-second rolling temporal context features
+    """
+    if isinstance(raw_input, dict):
+        df = pd.DataFrame([raw_input])
+    elif isinstance(raw_input, pd.Series):
+        df = pd.DataFrame([raw_input.to_dict()])
+    elif isinstance(raw_input, pd.DataFrame):
+        df = raw_input.copy()
+    else:
+        raise TypeError(f"Expected dict, Series, or DataFrame, got {type(raw_input)}")
+
+    missing = set(CANONICAL_39_FEATURES) - set(df.columns)
+    if missing:
+        raise ValueError(f"Missing required AEGIS-Live v4.3 features: {sorted(list(missing))}")
+
+    df = df[CANONICAL_39_FEATURES].copy()
+
+    if df.isna().any().any():
+        raise ValueError("Input contains NaN values")
+    if np.isinf(df.values).any():
+        raise ValueError("Input contains Infinite values")
+
+    df = df.astype(np.float32)
+    return df

@@ -34,3 +34,14 @@ build/
 
 # Large PCAP captures
 pcaps/*.pcap
+*.pcap
+*.pcapng
+*.pcap.gz
+*.pcapng.gz
+
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+.pytest-*/

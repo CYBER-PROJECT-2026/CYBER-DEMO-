@@ -396,3 +396,310 @@ class TestAegisLiveV4TemporalCausality:
         assert compute_sha256(os.path.join(V4_DATA_DIR, "train.csv")) == FROZEN_V4_TRAIN_HASH
         assert compute_sha256(os.path.join(V4_DATA_DIR, "validation.csv")) == FROZEN_V4_VAL_HASH
         assert compute_sha256(os.path.join(V4_DATA_DIR, "test.csv")) == FROZEN_V4_TEST_HASH
+
+
+def _build_eth_ipv4_tcp_bytes(src_ip: str, dst_ip: str, sport: int, dport: int,
+                                tcp_flags: int = 0x18, payload: bytes = b"X" * 20) -> bytes:
+    """Helper creating raw Ethernet/IPv4/TCP bytes without calling model inference."""
+    import struct
+    import socket
+    ip_hl = 20
+    tcp_hl = 20
+    tot_len = ip_hl + tcp_hl + len(payload)
+    ip_hdr = struct.pack(
+        "!BBHHHBBH4s4s",
+        0x45, 0, tot_len, 1, 0, 64, 6, 0,
+        socket.inet_aton(src_ip), socket.inet_aton(dst_ip)
+    )
+    tcp_hdr = struct.pack(
+        "!HHIIBBHHH",
+        sport, dport, 1, 0, 0x50, tcp_flags, 65535, 0, 0
+    )
+    eth_hdr = b"\x00\x11\x22\x33\x44\x55\x66\x77\x88\x99\xaa\xbb\x08\x00"
+    return eth_hdr + ip_hdr + tcp_hdr + payload
+
+
+def _stub_inference_factory():
+    """Returns a deterministic stub replacing AEGISLiveV4Inference (ZERO frozen model inference)."""
+    class _StubInference:
+        def __init__(self, *args, **kwargs):
+            self.stub_only = True
+
+        def predict_sample(self, feats_29):
+            return {
+                "predicted_class": "Benign",
+                "calibrated_confidence": 0.99,
+                "confidence": 0.99,
+                "mahalanobis_distance": 1.0,
+                "trusted": True,
+                "decision": "TRUSTED",
+                "status": "TRUSTED",
+                "trusted_class": "Benign",
+                "advisory_class": "Benign",
+                "automated_blocking_allowed": False,
+                "reasons": [],
+                "reason_codes": [],
+                "top2_margin": 0.98,
+                "entropy": 0.05,
+                "feature_vector": dict(feats_29),
+                "calibrated_probabilities": {"Benign": 0.99, "DDoS": 0.004, "DoS": 0.003, "Spoofing": 0.003},
+            }
+
+    return _StubInference
+
+
+class TestV4Phase1CausalSnapshotRemediation:
+    """
+    Batch 26B regression suite verifying Phase 1 temporal causality across runtime and builder.
+    Uses mocked AEGISLiveV4Inference so zero frozen model inference executes.
+    """
+
+    def _new_runtime(self, **kwargs):
+        from unittest.mock import patch
+        from aegis_live.v4_runtime import AegisLiveV4Pipeline
+        with patch("aegis_live.v4_runtime.AEGISLiveV4Inference", _stub_inference_factory()):
+            return AegisLiveV4Pipeline(**kwargs)
+
+    def test_01_flow_flushed_after_inactivity_timeout_uses_ending_snapshot(self):
+        pipeline = self._new_runtime(local_subnet="192.168.0.0/16", max_packets_per_window=50, window_timeout_sec=2.0, min_packets_to_extract=2)
+
+        # Flow A: 4 packets at t=10.00..10.03 while only 192.168.1.10 -> 192.168.1.1 is active
+        pkt_a = _build_eth_ipv4_tcp_bytes("192.168.1.10", "192.168.1.1", 5000, 1883)
+        for i in range(4):
+            assert pipeline.ingest_packet(10.0 + i * 0.01, pkt_a) == []
+
+        # Future traffic on other IPs at t=11.5..12.0 (evicts t=10.03 from 1.0s topology window)
+        for j in range(9):
+            pkt_bg = _build_eth_ipv4_tcp_bytes(f"192.168.1.{100 + j}", "192.168.1.1", 6000 + j, 80)
+            pipeline.ingest_packet(11.5 + j * 0.05, pkt_bg)
+
+        # Packet on Flow A at t=12.50 (gap = 2.47s >= 2.0s) triggers timeout flush of [10.00..10.03]
+        emitted = pipeline.ingest_packet(12.50, pkt_a)
+        assert emitted == []
+        rec = next(r for r in pipeline.incomplete_window_records if "192.168.1.10" in r.flow_identity)
+        assert rec.packet_count == 4
+        assert rec.status == "INCOMPLETE_WINDOW" and rec.v4_eligible is False
+        assert abs(rec.window_end_ts - 10.03) < 1e-9
+        assert abs(rec.topology_snapshot_ts - 10.03) < 1e-9
+
+        # Snapshot must match t=10.03 (1 source), NOT t=12.50 (10 sources)
+        assert rec.features["src_ip_cardinality"] == 1.0
+        assert rec.features["dst_ip_cardinality"] == 1.0
+        assert rec.features["src_ip_entropy"] == 0.0
+        assert rec.features["src_concentration_ratio"] == 1.0
+        assert rec.features["fan_in_ratio"] == 1.0
+
+    def test_02_flow_flushed_at_end_of_stream_uses_own_ending_snapshot(self):
+        pipeline = self._new_runtime(local_subnet="192.168.0.0/16", max_packets_per_window=50, window_timeout_sec=2.0, min_packets_to_extract=2)
+
+        pkt_a = _build_eth_ipv4_tcp_bytes("192.168.1.10", "192.168.1.1", 5000, 1883)
+        for i in range(3):
+            pipeline.ingest_packet(10.0 + i * 0.02, pkt_a)
+
+        # Later stream activity on different flows at t=20.0..20.2
+        for j in range(5):
+            pkt_other = _build_eth_ipv4_tcp_bytes(f"192.168.1.{50 + j}", "192.168.1.2", 7000 + j, 80)
+            pipeline.ingest_packet(20.0 + j * 0.04, pkt_other)
+
+        flushed = pipeline.flush(current_time=25.0, force_all=True)
+        assert flushed == []
+        rec = next(r for r in pipeline.incomplete_window_records if "192.168.1.10" in r.flow_identity)
+        assert rec.status == "INCOMPLETE_WINDOW" and rec.v4_eligible is False
+        assert abs(rec.window_end_ts - 10.04) < 1e-9
+        assert rec.features["src_ip_cardinality"] == 1.0
+        assert rec.features["src_ip_entropy"] == 0.0
+        assert rec.features["fan_in_ratio"] == 1.0
+
+    def test_03_multiple_flows_with_different_ending_timestamps(self):
+        pipeline = self._new_runtime(local_subnet="192.168.0.0/16", max_packets_per_window=50, window_timeout_sec=10.0, min_packets_to_extract=2)
+
+        # Flow A ends at t=10.1 (1 source)
+        pkt_a = _build_eth_ipv4_tcp_bytes("192.168.1.10", "192.168.1.1", 5000, 1883)
+        pipeline.ingest_packet(10.0, pkt_a)
+        pipeline.ingest_packet(10.1, pkt_a)
+
+        # Flow B and helper C end at t=10.6 (all 3 sources within 1.0s of 10.6)
+        pkt_b = _build_eth_ipv4_tcp_bytes("192.168.1.20", "192.168.1.1", 5001, 80)
+        pkt_c = _build_eth_ipv4_tcp_bytes("192.168.1.30", "192.168.1.1", 5002, 80)
+        pipeline.ingest_packet(10.4, pkt_b)
+        pipeline.ingest_packet(10.5, pkt_c)
+        pipeline.ingest_packet(10.6, pkt_b)
+
+        # Flow D ends at t=15.1 (10.0..10.6 already evicted from 1.0s window -> 1 source)
+        pkt_d = _build_eth_ipv4_tcp_bytes("192.168.1.40", "192.168.1.1", 5003, 502)
+        pipeline.ingest_packet(15.0, pkt_d)
+        pipeline.ingest_packet(15.1, pkt_d)
+
+        flushed = pipeline.flush(current_time=20.0, force_all=True)
+        assert flushed == []
+        by_src = {r.flow_identity: r for r in pipeline.incomplete_window_records}
+        assert len(by_src) == 4
+        rec_a = [v for k, v in by_src.items() if "192.168.1.10" in k][0]
+        rec_b = [v for k, v in by_src.items() if "192.168.1.20" in k][0]
+        rec_d = [v for k, v in by_src.items() if "192.168.1.40" in k][0]
+
+        assert rec_a.features["src_ip_cardinality"] == 1.0
+        assert rec_b.features["src_ip_cardinality"] == 3.0
+        assert rec_d.features["src_ip_cardinality"] == 1.0
+
+    def test_04_interleaved_packets_from_multiple_flows_match_causal_batch(self):
+        pipeline = self._new_runtime(local_subnet="192.168.0.0/16", max_packets_per_window=50, window_timeout_sec=2.0, min_packets_to_extract=2)
+
+        stream = []
+        # Interleave Flow A (ends at 10.3), Flow B (hits 50 pkts at 10.7), Flow C (ends at 10.5)
+        for i in range(5):
+            stream.append((10.0 + i * 0.075, "192.168.1.10", "192.168.1.1", 4000, 1883))
+        for i in range(4):
+            stream.append((10.02 + i * 0.16, "192.168.1.30", "192.168.1.1", 4200, 502))
+        for i in range(50):
+            stream.append((10.01 + i * 0.014, "192.168.1.20", "192.168.1.2", 4100 + i, 80))
+        stream.sort(key=lambda x: x[0])
+
+        topo_pkts = []
+        emitted = []
+        for idx, (ts, s_ip, d_ip, sp, dp) in enumerate(stream):
+            buf = _build_eth_ipv4_tcp_bytes(s_ip, d_ip, sp, dp)
+            topo_pkts.append(NetworkTopologyPacket(ts, s_ip, d_ip, sp, dp, 6, len(buf)))
+            emitted.extend(pipeline.ingest_packet(ts, buf))
+        emitted.extend(pipeline.flush(current_time=20.0, force_all=True))
+
+        assert len(emitted) == 1  # Only Flow B is a frozen V4 eligible 50-packet window.
+        assert emitted[0].provenance.packet_count == 50
+        records = [(d.provenance, d.feature_vector) for d in emitted]
+        records.extend((r, r.features) for r in pipeline.incomplete_window_records)
+        assert sorted(prov.packet_count for prov, _ in records) == [4, 5, 50]
+        for provenance, features in records:
+            t_end = provenance.window_end_ts
+            # Find last stream packet belonging to this flow
+            matching_indices = [
+                i for i, (ts, s_ip, d_ip, _, _) in enumerate(stream)
+                if ts <= t_end + 1e-12 and s_ip in provenance.flow_identity and d_ip in provenance.flow_identity
+            ]
+            last_idx = matching_indices[-1]
+            cutoff = stream[last_idx][0] - 1.0
+            batch_ref = compute_network_topology_batch([p for p in topo_pkts[:last_idx + 1] if p.timestamp >= cutoff])
+            for feat in V4_TOPOLOGY_FEATURES:
+                assert abs(features[feat] - batch_ref[feat]) < 1e-12, f"Mismatch on {feat}"
+
+    def test_05_future_packet_after_ending_timestamp_cannot_contaminate(self):
+        pkt_a = _build_eth_ipv4_tcp_bytes("192.168.1.10", "192.168.1.1", 5000, 1883)
+
+        p_clean = self._new_runtime(local_subnet="192.168.0.0/16", max_packets_per_window=50, window_timeout_sec=2.0, min_packets_to_extract=2)
+        for i in range(4):
+            p_clean.ingest_packet(10.0 + i * 0.05, pkt_a)
+        assert p_clean.flush(current_time=15.0, force_all=True) == []
+        rec_clean = next(r for r in p_clean.incomplete_window_records if "192.168.1.10" in r.flow_identity)
+
+        p_fut = self._new_runtime(local_subnet="192.168.0.0/16", max_packets_per_window=50, window_timeout_sec=2.0, min_packets_to_extract=2)
+        for i in range(4):
+            p_fut.ingest_packet(10.0 + i * 0.05, pkt_a)
+        for j in range(25):
+            pkt_spike = _build_eth_ipv4_tcp_bytes(f"10.10.0.{j + 1}", "192.168.1.1", 9000 + j, 80)
+            p_fut.ingest_packet(10.1501 + j * 0.02, pkt_spike)
+        # Flush Flow A by timeout trigger at t=12.5
+        dets_timeout = p_fut.ingest_packet(12.5, pkt_a)
+        assert dets_timeout == []
+        rec_future = next(r for r in p_fut.incomplete_window_records if "192.168.1.10" in r.flow_identity)
+
+        for col in CANONICAL_29_FEATURES:
+            assert rec_clean.features[col] == rec_future.features[col]
+
+    def test_06_full_50_packet_window_emission_and_topology(self):
+        pipeline = self._new_runtime(local_subnet="192.168.0.0/16", max_packets_per_window=50, window_timeout_sec=2.0, min_packets_to_extract=2)
+        bg = _build_eth_ipv4_tcp_bytes("192.168.1.99", "192.168.1.1", 7777, 80)
+
+        emitted = []
+        for i in range(50):
+            ts = 100.0 + i * 0.01
+            if i == 25:
+                emitted.extend(pipeline.ingest_packet(ts - 0.005, bg))
+            pkt = _build_eth_ipv4_tcp_bytes("192.168.1.10", "192.168.1.1", 5000 + i, 1883)
+            emitted.extend(pipeline.ingest_packet(ts, pkt))
+
+        assert len(emitted) == 1
+        det = emitted[0]
+        assert det.provenance.packet_count == 50
+        assert det.feature_vector["src_ip_cardinality"] == 2.0
+
+    def test_07_subcapacity_window_retains_snapshot_across_delay(self):
+        pipeline = self._new_runtime(local_subnet="192.168.0.0/16", max_packets_per_window=50, window_timeout_sec=2.0, min_packets_to_extract=2)
+        pkt_a = _build_eth_ipv4_tcp_bytes("192.168.1.10", "192.168.1.1", 5000, 1883)
+        pkt_h1 = _build_eth_ipv4_tcp_bytes("192.168.1.11", "192.168.1.1", 5001, 1883)
+        pkt_h2 = _build_eth_ipv4_tcp_bytes("192.168.1.12", "192.168.1.1", 5002, 1883)
+
+        pipeline.ingest_packet(50.0, pkt_h1)
+        pipeline.ingest_packet(50.01, pkt_h2)
+        for i in range(5):
+            pipeline.ingest_packet(50.02 + i * 0.01, pkt_a)  # ends at 50.06 with 3 sources
+
+        # Advance time well past 1.0s topology window
+        pkt_late = _build_eth_ipv4_tcp_bytes("192.168.1.200", "192.168.1.9", 8000, 80)
+        pipeline.ingest_packet(55.0, pkt_late)
+
+        flushed = pipeline.flush(current_time=60.0, force_all=True)
+        assert flushed == []
+        rec = next(r for r in pipeline.incomplete_window_records if "192.168.1.10" in r.flow_identity)
+        assert rec.packet_count == 5
+        assert rec.status == "INCOMPLETE_WINDOW" and rec.v4_eligible is False
+        assert abs(rec.window_end_ts - 50.06) < 1e-9
+        assert rec.features["src_ip_cardinality"] == 3.0
+
+    def test_08_builder_runtime_temporal_parity_on_synthetic_stream(self):
+        from aegis_live.build_v4_dataset import LeakageSafeV4DatasetBuilder
+
+        # Synthetic 50-packet Flow A interleaved with background packet B + trailing Flow C
+        stream = [
+            (10.005, _build_eth_ipv4_tcp_bytes("192.168.1.99", "192.168.1.1", 9000, 80)),
+        ]
+        for i in range(50):
+            stream.append((10.000 + i * 0.01, _build_eth_ipv4_tcp_bytes("192.168.1.10", "192.168.1.1", 5000, 1883, payload=b"M" * (16 + (i % 5)))))
+        stream.append((10.60, _build_eth_ipv4_tcp_bytes("192.168.1.88", "192.168.1.1", 9001, 80)))
+        stream.sort(key=lambda x: x[0])
+
+        builder = LeakageSafeV4DatasetBuilder(target_per_class=10, window_capacity=50, timeout_sec=2.0)
+        b_windows = builder.extract_packet_stream_windows(stream, pcap_file="synthetic_parity.pcap", class_label="Benign")
+        assert len(b_windows) == 1
+        b_row = b_windows[0]
+
+        pipeline = self._new_runtime(local_subnet="192.168.0.0/16", max_packets_per_window=50, window_timeout_sec=2.0, min_packets_to_extract=2)
+        r_dets = pipeline.replay_packet_stream(iter(stream))
+        r_full = [d for d in r_dets if d.provenance.packet_count == 50]
+        assert len(r_full) == 1
+        r_vec = r_full[0].feature_vector
+
+        for col in CANONICAL_29_FEATURES:
+            assert abs(float(b_row[col]) - float(r_vec[col])) < 1e-12, f"Builder/Runtime parity mismatch on {col}"
+
+    def test_09_empty_tracker_and_empty_or_single_packet_window_handling(self):
+        empty_batch = compute_network_topology_batch([])
+        assert empty_batch["src_ip_cardinality"] == 0.0
+        assert empty_batch["src_ip_entropy"] == 0.0
+        assert empty_batch["fan_in_ratio"] == 0.0
+
+        pipeline = self._new_runtime(local_subnet="192.168.0.0/16", max_packets_per_window=50, window_timeout_sec=2.0, min_packets_to_extract=2)
+        assert pipeline.net_tracker.extract_current_features()["packet_count"] == 0.0
+        assert pipeline.flush(current_time=100.0, force_all=True) == []
+
+        # Single packet is retained diagnostically and excluded from frozen V4.
+        pkt_single = _build_eth_ipv4_tcp_bytes("192.168.1.10", "192.168.1.1", 5000, 1883)
+        assert pipeline.ingest_packet(100.0, pkt_single) == []
+        assert pipeline.flush(current_time=105.0, force_all=True) == []
+        assert pipeline.windows_rejected == 1
+        assert pipeline.incomplete_window_records[-1].status == "INCOMPLETE_WINDOW"
+        assert pipeline.incomplete_window_records[-1].packet_count == 1
+
+    def test_10_repeated_flush_calls_without_duplicate_emission(self):
+        pipeline = self._new_runtime(local_subnet="192.168.0.0/16", max_packets_per_window=50, window_timeout_sec=2.0, min_packets_to_extract=2)
+        pkt = _build_eth_ipv4_tcp_bytes("192.168.1.10", "192.168.1.1", 5000, 1883)
+        for i in range(4):
+            pipeline.ingest_packet(10.0 + i * 0.05, pkt)
+
+        first = pipeline.flush(current_time=15.0, force_all=True)
+        second = pipeline.flush(current_time=16.0, force_all=True)
+        third = pipeline.flush(current_time=20.0, force_all=False)
+
+        assert first == []
+        assert second == []
+        assert third == []
+        assert len(pipeline.detection_records) == 0
+        assert len(pipeline.incomplete_window_records) == 1

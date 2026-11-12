@@ -15,7 +15,7 @@ Combines:
 
 Strict Invariants:
   - Common network-level 1.0-second sliding window aggregating all active traffic
-  - Topology features are NOT calculated inside individual 5-tuple flow windows
+  - Topology features are packet-global; flow windows use symmetric bidirectional 3-tuple keys
   - Network tracker is strictly causal: past packets only, no future access
   - Network tracker is flushed/reset at temporal partition boundaries (Train -> Quarantine -> Val -> Quarantine -> Test)
   - 5.0-second deterministic state-machine temporal quarantine dead-time between partitions
@@ -26,6 +26,7 @@ Strict Invariants:
 
 import os
 import sys
+import math
 import time
 import json
 import hashlib
@@ -48,7 +49,15 @@ from aegis_live.feature_schema import (
     V4_TOPOLOGY_FEATURES,
     validate_29_features
 )
-from aegis_live.packet_window import FlowWindow, PacketRecord
+from aegis_live.packet_window import (
+    FlowWindow,
+    PacketRecord,
+    MonotonicTimestampGuard,
+    BoundedReorderBuffer,
+    ReorderBufferOverflowError,
+    parse_ipv4_ethernet_frame,
+    classify_direction,
+)
 from aegis_live.network_topology_features import (
     NetworkTopologyPacket,
     NetworkTopologyTracker
@@ -96,7 +105,9 @@ class LeakageSafeV4DatasetBuilder:
                  quarantine_sec: float = QUARANTINE_DEAD_TIME_SEC,
                  net_window_sec: float = NETWORK_WINDOW_SEC,
                  local_subnet: str = LOCAL_SUBNET,
-                 output_dir: str = DATA_V4_DIR):
+                 output_dir: str = DATA_V4_DIR,
+                 reorder_window_sec: float = 0.25,
+                 max_reorder_packets: int = 10000):
         self.target_per_class = target_per_class
         self.train_count = int(target_per_class * train_ratio)
         self.val_count = int(target_per_class * val_ratio)
@@ -107,13 +118,48 @@ class LeakageSafeV4DatasetBuilder:
         self.net_window_sec = net_window_sec
         self.local_network = ipaddress.ip_network(local_subnet)
         self.output_dir = output_dir
+        rw = float(reorder_window_sec)
+        if not math.isfinite(rw) or rw < 0.0:
+            raise ValueError("reorder_window_sec must be finite and non-negative")
+        mr = int(max_reorder_packets)
+        if mr < 1:
+            raise ValueError("max_reorder_packets must be >= 1")
+        self.reorder_window_sec = rw
+        self.max_reorder_packets = mr
 
         self.exclusion_counts: Dict[str, Counter] = {}
+        self.directionality_counts = {k: 0 for k in ("local_to_external", "external_to_local", "local_to_local", "external_to_external")}
         self.quarantine_audit: Dict[str, Any] = {}
         self.partition_feature_sets: Dict[str, set] = {
             "train": set(),
             "validation": set(),
             "test": set()
+        }
+        self.failed_state: bool = False
+        self.failure_reason: Optional[str] = None
+        self.last_operation_status: str = "OK"
+
+    def reset(self) -> None:
+        """Resets builder exclusion, quarantine, partition duplicate sets, and failure state."""
+        self.exclusion_counts.clear()
+        for key in self.directionality_counts:
+            self.directionality_counts[key] = 0
+        self.quarantine_audit.clear()
+        for part in self.partition_feature_sets:
+            self.partition_feature_sets[part].clear()
+        self.failed_state = False
+        self.failure_reason = None
+        self.last_operation_status = "OK"
+
+    def get_ordering_configuration(self) -> Dict[str, Any]:
+        """Returns effective timestamp ordering configuration and transaction status."""
+        return {
+            "reorder_window_sec": self.reorder_window_sec,
+            "max_reorder_packets": self.max_reorder_packets,
+            "operation_mode": "offline_bounded_reorder" if self.reorder_window_sec > 0.0 else "zero_buffer_strict",
+            "failed_state": self.failed_state,
+            "last_operation_status": self.last_operation_status,
+            "failure_reason": self.failure_reason,
         }
 
     def _is_local(self, ip_str: str) -> bool:
@@ -121,6 +167,10 @@ class LeakageSafeV4DatasetBuilder:
             return ipaddress.ip_address(ip_str) in self.local_network
         except ValueError:
             return False
+
+    def get_directionality_summary(self) -> Dict[str, Dict[str, float]]:
+        total = sum(self.directionality_counts.values())
+        return {"counts": dict(self.directionality_counts), "proportions": {k: (v / total if total else 0.0) for k, v in self.directionality_counts.items()}}
 
     def validate_candidate_window(self,
                                   window: FlowWindow,
@@ -252,9 +302,12 @@ class LeakageSafeV4DatasetBuilder:
         return True
 
     def _extract_combined_features(self, window: FlowWindow, net_tracker: NetworkTopologyTracker) -> Dict[str, float]:
-        """Combines 24 per-flow physical features with 5 network-level topology features."""
+        """Combines 24 per-flow physical features with 5 causal network-level topology features."""
         feats_24 = window.extract_features()
-        net_feats = net_tracker.extract_current_features()
+        if getattr(window, "last_topology_snapshot", None) is not None:
+            net_feats = window.last_topology_snapshot
+        else:
+            net_feats = net_tracker.extract_current_features()
 
         return {
             **feats_24,
@@ -271,6 +324,92 @@ class LeakageSafeV4DatasetBuilder:
         pcap_path = os.path.join(PCAP_DIR, pcap_file)
 
         print(f"\n[{class_label}] Processing {pcap_file} -> Target: {self.target_per_class:,} windows", flush=True)
+        with open(pcap_path, "rb") as f:
+            try:
+                reader = dpkt.pcap.Reader(f)
+            except ValueError:
+                f.seek(0)
+                reader = dpkt.pcapng.Reader(f)
+            return self.extract_packet_stream_windows(reader, pcap_file=pcap_file, class_label=class_label)
+
+    def _iter_ordered_packets(self, packet_stream: Any, pcap_file: str):
+        """
+        Fully validates Ethernet/IPv4/L4 frames before reading timestamps or buffering,
+        applies bounded offline reordering (if reorder_window_sec > 0.0) followed by
+        the shared strict monotonic timestamp core guard before quarantine or extraction.
+        Raises ReorderBufferOverflowError fail-closed if buffer exceeds max_reorder_packets.
+        """
+        guard = MonotonicTimestampGuard()
+        if self.reorder_window_sec <= 0.0:
+            for ts, buf in packet_stream:
+                _, frame_err = parse_ipv4_ethernet_frame(buf)
+                if frame_err is not None:
+                    self.exclusion_counts[pcap_file][frame_err] += 1
+                    continue
+                ts_f = float(ts)
+                if not math.isfinite(ts_f):
+                    guard.check_and_accept(ts_f)
+                    self.exclusion_counts[pcap_file]["non_finite_timestamp"] += 1
+                    continue
+                accepted, _ = guard.check_and_accept(ts_f)
+                if not accepted:
+                    self.exclusion_counts[pcap_file]["out_of_order_timestamp"] += 1
+                    continue
+                yield ts_f, buf
+            return
+
+        reorder_buf = BoundedReorderBuffer(
+            lateness_sec=self.reorder_window_sec,
+            max_packets=self.max_reorder_packets,
+        )
+        try:
+            for ts, buf in packet_stream:
+                _, frame_err = parse_ipv4_ethernet_frame(buf)
+                if frame_err is not None:
+                    self.exclusion_counts[pcap_file][frame_err] += 1
+                    continue
+                ts_f = float(ts)
+                if not math.isfinite(ts_f):
+                    self.exclusion_counts[pcap_file]["non_finite_timestamp"] += 1
+                    continue
+                accepted, _, ready = reorder_buf.push(ts_f, buf)
+                if not accepted:
+                    self.exclusion_counts[pcap_file]["out_of_order_timestamp"] += 1
+                    continue
+                for emit_ts, emit_buf in ready:
+                    ok, _ = guard.check_and_accept(emit_ts)
+                    if not ok:
+                        self.exclusion_counts[pcap_file]["out_of_order_timestamp"] += 1
+                        continue
+                    yield emit_ts, emit_buf
+        except ReorderBufferOverflowError as exc:
+            self.failed_state = True
+            self.failure_reason = str(exc)
+            self.last_operation_status = "FAILED_REORDER_OVERFLOW"
+            self.exclusion_counts[pcap_file]["reorder_buffer_overflow"] += 1
+            raise
+
+        for emit_ts, emit_buf in reorder_buf.drain():
+            ok, _ = guard.check_and_accept(emit_ts)
+            if not ok:
+                self.exclusion_counts[pcap_file]["out_of_order_timestamp"] += 1
+                continue
+            yield emit_ts, emit_buf
+
+    def extract_packet_stream_windows(self,
+                                      packet_stream: Any,
+                                      pcap_file: str,
+                                      class_label: str) -> List[Dict[str, Any]]:
+        """
+        Extracts temporally partitioned 29-feature windows from any (ts, raw_bytes) stream
+        using bounded offline reordering, strict monotonic core gating, and causal
+        per-window topology snapshots identical to the V4 live runtime.
+        """
+        if self.failed_state:
+            raise RuntimeError(
+                f"Cannot extract windows while dataset builder is in failed state "
+                f"({self.last_operation_status}: {self.failure_reason}). Call reset() first."
+            )
         t_start = time.time()
 
         self.exclusion_counts[pcap_file] = Counter()
@@ -295,175 +434,116 @@ class LeakageSafeV4DatasetBuilder:
         quarantine_train_val_pkts = 0
         quarantine_val_test_pkts = 0
 
-        with open(pcap_path, "rb") as f:
-            try:
-                reader = dpkt.pcap.Reader(f)
-            except ValueError:
-                f.seek(0)
-                reader = dpkt.pcapng.Reader(f)
+        for ts, buf in self._iter_ordered_packets(packet_stream, pcap_file=pcap_file):
+            total_packets += 1
 
-            for ts, buf in reader:
-                total_packets += 1
+            # 1. Transition: Train -> Quarantine (Train-Val)
+            if current_state == "train" and num_train >= self.train_count:
+                last_train_max_ts = max(w["window_end_ts"] for w in valid_windows if w["partition"] == "train")
+                quarantine_train_val_end = last_train_max_ts + self.quarantine_sec
+                active_windows.clear()
+                net_tracker.reset() # Flush network tracker across partition boundary
+                current_state = "quarantine_train_val"
+                print(f"  --> Train complete ({num_train:,} wins). Entering 5s quarantine: [{last_train_max_ts:.4f} -> {quarantine_train_val_end:.4f}]", flush=True)
 
-                # 1. Transition: Train -> Quarantine (Train-Val)
-                if current_state == "train" and num_train >= self.train_count:
-                    last_train_max_ts = max(w["window_end_ts"] for w in valid_windows if w["partition"] == "train")
-                    quarantine_train_val_end = last_train_max_ts + self.quarantine_sec
-                    active_windows.clear()
-                    net_tracker.reset() # Flush network tracker across partition boundary
-                    current_state = "quarantine_train_val"
-                    print(f"  --> Train complete ({num_train:,} wins). Entering 5s quarantine: [{last_train_max_ts:.4f} -> {quarantine_train_val_end:.4f}]", flush=True)
-
-                # 2. State: Quarantine (Train-Val)
-                if current_state == "quarantine_train_val":
-                    if ts < quarantine_train_val_end:
-                        self.exclusion_counts[pcap_file]["quarantine_train_val_packet"] += 1
-                        quarantine_train_val_pkts += 1
-                        continue
-                    else:
-                        active_windows.clear()
-                        net_tracker.reset()
-                        current_state = "validation"
-                        print(f"  --> Exited 5s quarantine at ts={ts:.4f}. Entering VALIDATION partition.", flush=True)
-
-                # 3. Transition: Validation -> Quarantine (Val-Test)
-                if current_state == "validation" and num_val >= self.val_count:
-                    last_val_max_ts = max(w["window_end_ts"] for w in valid_windows if w["partition"] == "validation")
-                    quarantine_val_test_end = last_val_max_ts + self.quarantine_sec
-                    active_windows.clear()
-                    net_tracker.reset() # Flush network tracker across partition boundary
-                    current_state = "quarantine_val_test"
-                    print(f"  --> Validation complete ({num_val:,} wins). Entering 5s quarantine: [{last_val_max_ts:.4f} -> {quarantine_val_test_end:.4f}]", flush=True)
-
-                # 4. State: Quarantine (Val-Test)
-                if current_state == "quarantine_val_test":
-                    if ts < quarantine_val_test_end:
-                        self.exclusion_counts[pcap_file]["quarantine_val_test_packet"] += 1
-                        quarantine_val_test_pkts += 1
-                        continue
-                    else:
-                        active_windows.clear()
-                        net_tracker.reset()
-                        current_state = "test"
-                        print(f"  --> Exited 5s quarantine at ts={ts:.4f}. Entering TEST partition.", flush=True)
-
-                # 5. State: Test Complete
-                if current_state == "test" and num_test >= self.test_count:
-                    print(f"  --> Test complete ({num_test:,} wins). All targets reached for {pcap_file}.", flush=True)
-                    break
-
-                # Parse frame
-                if len(buf) < 14:
-                    self.exclusion_counts[pcap_file]["ethernet_frame_too_short"] += 1
+            # 2. State: Quarantine (Train-Val)
+            if current_state == "quarantine_train_val":
+                if ts < quarantine_train_val_end:
+                    self.exclusion_counts[pcap_file]["quarantine_train_val_packet"] += 1
+                    quarantine_train_val_pkts += 1
                     continue
-
-                eth_type = (buf[12] << 8) | buf[13]
-                if eth_type != 0x0800:
-                    self.exclusion_counts[pcap_file]["non_ipv4_packet"] += 1
-                    continue
-
-                if len(buf) < 34:
-                    self.exclusion_counts[pcap_file]["ipv4_packet_too_short"] += 1
-                    continue
-
-                ip_proto = buf[23]
-                ttl = buf[22]
-                src_ip = socket.inet_ntoa(buf[26:30])
-                dst_ip = socket.inet_ntoa(buf[30:34])
-
-                tcp_flags = 0
-                sport = 0
-                dport = 0
-                ihl = (buf[14] & 0x0F) * 4
-                tcp_offset = 14 + ihl
-
-                if ip_proto == 6:  # TCP
-                    if len(buf) >= tcp_offset + 14:
-                        sport = (buf[tcp_offset] << 8) | buf[tcp_offset + 1]
-                        dport = (buf[tcp_offset + 2] << 8) | buf[tcp_offset + 3]
-                        tcp_flags = buf[tcp_offset + 13]
-                elif ip_proto == 17:  # UDP
-                    if len(buf) >= 14 + ihl + 4:
-                        sport = (buf[14 + ihl] << 8) | buf[14 + ihl + 1]
-                        dport = (buf[14 + ihl + 2] << 8) | buf[14 + ihl + 3]
-
-                # Update common network topology tracker causally
-                net_pkt = NetworkTopologyPacket(
-                    timestamp=float(ts),
-                    src_ip=src_ip,
-                    dst_ip=dst_ip,
-                    src_port=sport,
-                    dst_port=dport,
-                    protocol=ip_proto,
-                    pkt_len=len(buf)
-                )
-                net_tracker.add_packet(net_pkt)
-
-                is_inbound = self._is_local(dst_ip)
-                pkt_rec = PacketRecord(
-                    timestamp=float(ts),
-                    pkt_len=len(buf),
-                    ip_proto=ip_proto,
-                    ip_ttl=ttl,
-                    tcp_flags=tcp_flags,
-                    is_inbound=is_inbound
-                )
-
-                ip_pair = tuple(sorted([src_ip, dst_ip]))
-                flow_key = (ip_pair[0], ip_pair[1], ip_proto)
-                flow_id_str = f"{ip_pair[0]}<->{ip_pair[1]}:{ip_proto}"
-
-                part_cnt = num_train if current_state == "train" else (num_val if current_state == "validation" else num_test)
-
-                if flow_key in active_windows:
-                    window = active_windows[flow_key]
-                    gap = (pkt_rec.timestamp - window.last_timestamp) if window.last_timestamp is not None else 0.0
-
-                    if gap >= self.timeout_sec:
-                        if len(window.packets) >= self.window_capacity:
-                            feats = self._extract_combined_features(window, net_tracker)
-                            accepted = self._try_accept_window(
-                                window, feats, class_label, pcap_file, flow_id_str,
-                                current_state, valid_windows, part_cnt
-                            )
-                            if accepted:
-                                if current_state == "train": num_train += 1
-                                elif current_state == "validation": num_val += 1
-                                elif current_state == "test": num_test += 1
-                        else:
-                            self.exclusion_counts[pcap_file]["flushed_subcapacity_window"] += 1
-
-                        fresh_window = FlowWindow(flow_key, self.window_capacity, self.timeout_sec)
-                        ready = fresh_window.add_packet(pkt_rec)
-                        if ready:
-                            feats = self._extract_combined_features(fresh_window, net_tracker)
-                            accepted = self._try_accept_window(
-                                fresh_window, feats, class_label, pcap_file, flow_id_str,
-                                current_state, valid_windows, part_cnt
-                            )
-                            if accepted:
-                                if current_state == "train": num_train += 1
-                                elif current_state == "validation": num_val += 1
-                                elif current_state == "test": num_test += 1
-                            del active_windows[flow_key]
-                        else:
-                            active_windows[flow_key] = fresh_window
-                    else:
-                        ready = window.add_packet(pkt_rec)
-                        if ready:
-                            feats = self._extract_combined_features(window, net_tracker)
-                            accepted = self._try_accept_window(
-                                window, feats, class_label, pcap_file, flow_id_str,
-                                current_state, valid_windows, part_cnt
-                            )
-                            if accepted:
-                                if current_state == "train": num_train += 1
-                                elif current_state == "validation": num_val += 1
-                                elif current_state == "test": num_test += 1
-                            del active_windows[flow_key]
                 else:
+                    active_windows.clear()
+                    net_tracker.reset()
+                    current_state = "validation"
+                    print(f"  --> Exited 5s quarantine at ts={ts:.4f}. Entering VALIDATION partition.", flush=True)
+
+            # 3. Transition: Validation -> Quarantine (Val-Test)
+            if current_state == "validation" and num_val >= self.val_count:
+                last_val_max_ts = max(w["window_end_ts"] for w in valid_windows if w["partition"] == "validation")
+                quarantine_val_test_end = last_val_max_ts + self.quarantine_sec
+                active_windows.clear()
+                net_tracker.reset() # Flush network tracker across partition boundary
+                current_state = "quarantine_val_test"
+                print(f"  --> Validation complete ({num_val:,} wins). Entering 5s quarantine: [{last_val_max_ts:.4f} -> {quarantine_val_test_end:.4f}]", flush=True)
+
+            # 4. State: Quarantine (Val-Test)
+            if current_state == "quarantine_val_test":
+                if ts < quarantine_val_test_end:
+                    self.exclusion_counts[pcap_file]["quarantine_val_test_packet"] += 1
+                    quarantine_val_test_pkts += 1
+                    continue
+                else:
+                    active_windows.clear()
+                    net_tracker.reset()
+                    current_state = "test"
+                    print(f"  --> Exited 5s quarantine at ts={ts:.4f}. Entering TEST partition.", flush=True)
+
+            # 5. State: Test Complete
+            if current_state == "test" and num_test >= self.test_count:
+                print(f"  --> Test complete ({num_test:,} wins). All targets reached for {pcap_file}.", flush=True)
+                break
+
+            # Shared validation; rejected frames never touch topology or flow state.
+            parsed, parse_err = parse_ipv4_ethernet_frame(buf)
+            if parse_err is not None:
+                self.exclusion_counts[pcap_file][parse_err] += 1
+                continue
+            ip_proto, ttl = parsed.ip_proto, parsed.ip_ttl
+            src_ip, dst_ip = parsed.src_ip, parsed.dst_ip
+            sport, dport, tcp_flags = parsed.sport, parsed.dport, parsed.tcp_flags
+            # Update common network topology tracker causally
+            net_pkt = NetworkTopologyPacket(
+                timestamp=float(ts),
+                src_ip=src_ip,
+                dst_ip=dst_ip,
+                src_port=sport,
+                dst_port=dport,
+                protocol=ip_proto,
+                pkt_len=parsed.pkt_len
+            )
+            net_tracker.add_packet(net_pkt)
+
+            is_inbound = self._is_local(dst_ip)
+            direction = classify_direction(self._is_local(src_ip), is_inbound)
+            self.directionality_counts[direction] += 1
+            self.exclusion_counts[pcap_file][f"direction_{direction}"] += 1
+            pkt_rec = PacketRecord(
+                timestamp=float(ts),
+                pkt_len=parsed.pkt_len,
+                ip_proto=ip_proto,
+                ip_ttl=ttl,
+                tcp_flags=tcp_flags,
+                is_inbound=is_inbound
+            )
+
+            ip_pair = tuple(sorted([src_ip, dst_ip]))
+            flow_key = (ip_pair[0], ip_pair[1], ip_proto)
+            flow_id_str = f"{ip_pair[0]}<->{ip_pair[1]}:{ip_proto}"
+
+            part_cnt = num_train if current_state == "train" else (num_val if current_state == "validation" else num_test)
+
+            if flow_key in active_windows:
+                window = active_windows[flow_key]
+                gap = (pkt_rec.timestamp - window.last_timestamp) if window.last_timestamp is not None else 0.0
+
+                if gap >= self.timeout_sec:
+                    if len(window.packets) >= self.window_capacity:
+                        feats = self._extract_combined_features(window, net_tracker)
+                        accepted = self._try_accept_window(
+                            window, feats, class_label, pcap_file, flow_id_str,
+                            current_state, valid_windows, part_cnt
+                        )
+                        if accepted:
+                            if current_state == "train": num_train += 1
+                            elif current_state == "validation": num_val += 1
+                            elif current_state == "test": num_test += 1
+                    else:
+                        self.exclusion_counts[pcap_file]["flushed_subcapacity_window"] += 1
+
                     fresh_window = FlowWindow(flow_key, self.window_capacity, self.timeout_sec)
                     ready = fresh_window.add_packet(pkt_rec)
+                    fresh_window.set_topology_snapshot(net_tracker.extract_current_features())
                     if ready:
                         feats = self._extract_combined_features(fresh_window, net_tracker)
                         accepted = self._try_accept_window(
@@ -474,8 +554,39 @@ class LeakageSafeV4DatasetBuilder:
                             if current_state == "train": num_train += 1
                             elif current_state == "validation": num_val += 1
                             elif current_state == "test": num_test += 1
+                        del active_windows[flow_key]
                     else:
                         active_windows[flow_key] = fresh_window
+                else:
+                    ready = window.add_packet(pkt_rec)
+                    window.set_topology_snapshot(net_tracker.extract_current_features())
+                    if ready:
+                        feats = self._extract_combined_features(window, net_tracker)
+                        accepted = self._try_accept_window(
+                            window, feats, class_label, pcap_file, flow_id_str,
+                            current_state, valid_windows, part_cnt
+                        )
+                        if accepted:
+                            if current_state == "train": num_train += 1
+                            elif current_state == "validation": num_val += 1
+                            elif current_state == "test": num_test += 1
+                        del active_windows[flow_key]
+            else:
+                fresh_window = FlowWindow(flow_key, self.window_capacity, self.timeout_sec)
+                ready = fresh_window.add_packet(pkt_rec)
+                fresh_window.set_topology_snapshot(net_tracker.extract_current_features())
+                if ready:
+                    feats = self._extract_combined_features(fresh_window, net_tracker)
+                    accepted = self._try_accept_window(
+                        fresh_window, feats, class_label, pcap_file, flow_id_str,
+                        current_state, valid_windows, part_cnt
+                    )
+                    if accepted:
+                        if current_state == "train": num_train += 1
+                        elif current_state == "validation": num_val += 1
+                        elif current_state == "test": num_test += 1
+                else:
+                    active_windows[flow_key] = fresh_window
 
         t_elapsed = time.time() - t_start
         print(f"[{class_label}] Extraction complete in {t_elapsed:.2f}s ({total_packets:,} total packets parsed).", flush=True)
@@ -501,6 +612,11 @@ class LeakageSafeV4DatasetBuilder:
         return valid_windows
 
     def build_dataset(self):
+        if self.failed_state:
+            raise RuntimeError(
+                f"Cannot build dataset while builder is in failed state "
+                f"({self.last_operation_status}: {self.failure_reason}). Call reset() first."
+            )
         print("=" * 88)
         print("  AEGIS-Live v4: LEAKAGE-SAFE DATASET CONSTRUCTION PIPELINE")
         print("  Architecture: 24 Per-Flow Physical Features + 5 Network-Level Topology Features")
@@ -588,7 +704,9 @@ class LeakageSafeV4DatasetBuilder:
                 "flow_timeout_sec": self.timeout_sec,
                 "network_window_sec": self.net_window_sec,
                 "quarantine_dead_time_sec": self.quarantine_sec,
-                "local_subnet": str(self.local_network)
+                "local_subnet": str(self.local_network),
+                "reorder_window_sec": self.reorder_window_sec,
+                "max_reorder_packets": self.max_reorder_packets
             },
             "pcap_hashes": {
                 p["filename"]: compute_file_sha256(os.path.join(PCAP_DIR, p["filename"]))
@@ -646,7 +764,7 @@ AEGIS-Live v4 solves the topological information loss observed in v3. While v3 c
 ```
 RAW PACKETS
     |
-    +--> existing per-5-tuple flow window (50 pkts)
+    +--> existing symmetric bidirectional per-3-tuple flow window (50 packets; ports excluded)
     |       |
     |       +--> 24 canonical physical features
     |

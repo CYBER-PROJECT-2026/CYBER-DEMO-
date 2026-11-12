@@ -4,7 +4,7 @@ aegis_live/network_topology_features.py
 Network-Level Topology Feature Extraction for AEGIS-Live.
 
 Investigates extracting topology features across a common network-level time window
-aggregating all active endpoints/flows (as opposed to isolated 5-tuple flow windows).
+aggregating all active endpoints/flows (as opposed to isolated symmetric bidirectional 3-tuple flow windows).
 
 Candidate Features (7):
   1. src_ip_cardinality: |{src_ip_i}|
@@ -228,7 +228,13 @@ class NetworkTopologyTracker:
         if packet is None:
             return False, None
 
-        ts = packet.timestamp
+        ts = float(packet.timestamp)
+        if not math.isfinite(ts):
+            raise ValueError(f"Non-finite topology packet timestamp {ts!r}")
+        if self.last_ts is not None and ts < self.last_ts:
+            raise ValueError(
+                f"Out-of-order topology packet timestamp {ts:.6f} < last_ts {self.last_ts:.6f}"
+            )
         self.last_ts = ts
 
         # Initialize window start on first packet
